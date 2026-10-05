@@ -1,0 +1,56 @@
+@use 'mixins' as *;
+@use 'animations';
+@use 'utilities';
+@use 'fonts';
+
+:root {
+  --ac: #f2440f; // brand accent
+  --ac2: #d63a0a; // brand accent (buttons / links)
+  --orb: #ffc08f; // hero ball colour
+}
+
+body {
+  margin: 0;
+  background: #fafafa;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+
+  &:hover {
+    color: inherit;
+  }
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  text-align: left;
+}
+
+::selection {
+  background: #f2440f;
+  color: #fff;
+}
+
+.app {
+  width: 100%;
+  font-family: 'Geist', 'Helvetica Neue', Helvetica, sans-serif;
+  color: #0e0e0f;
+  background: #fafafa;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: clip;
+}
+
+.ac {
+  color: var(--ac);
+}
