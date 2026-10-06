@@ -130,11 +130,11 @@ $cube-img: url('../../assets/images/cordon-cubes.webp');
   display: flex;
   align-items: center;
 
-  &:hover .chev,
-  &:focus-within .chev { transform: rotate(180deg); }
+  &:not(.is-closed):hover .chev,
+  &:not(.is-closed):focus-within .chev { transform: rotate(180deg); }
 
-  &:hover > .navlink,
-  &:focus-within > .navlink { opacity: 1; }
+  &:not(.is-closed):hover > .navlink,
+  &:not(.is-closed):focus-within > .navlink { opacity: 1; }
 }
 
 // ---------- Services ----------
@@ -153,8 +153,8 @@ $cube-img: url('../../assets/images/cordon-cubes.webp');
   transition: opacity .22s, transform .32s $ease, visibility 0s .22s;
   z-index: 60;
 
-  .sdd:hover &,
-  .sdd:focus-within & {
+  .sdd:not(.is-closed):hover &,
+  .sdd:not(.is-closed):focus-within & {
     opacity: 1;
     visibility: visible;
     transform: none;
@@ -275,8 +275,8 @@ $cube-img: url('../../assets/images/cordon-cubes.webp');
   transition: opacity .22s, transform .32s $ease, visibility 0s .22s;
   z-index: 60;
 
-  .pdd:hover &,
-  .pdd:focus-within & {
+  .pdd:not(.is-closed):hover &,
+  .pdd:not(.is-closed):focus-within & {
     opacity: 1;
     visibility: visible;
     transform: translate(-50%, 0);
@@ -307,8 +307,8 @@ $cube-img: url('../../assets/images/cordon-cubes.webp');
   translate: 0 10px;
   transition: opacity .3s, translate .45s $ease, transform .35s $ease, border-color .3s, box-shadow .35s;
 
-  .pdd:hover &,
-  .pdd:focus-within & { opacity: 1; translate: 0 0; }
+  .pdd:not(.is-closed):hover &,
+  .pdd:not(.is-closed):focus-within & { opacity: 1; translate: 0 0; }
 
   &:nth-child(2) { transition-delay: .04s, .04s, 0s, 0s, 0s; }
   &:nth-child(3) { transition-delay: .08s, .08s, 0s, 0s, 0s; }

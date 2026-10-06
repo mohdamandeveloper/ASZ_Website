@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import logo from '../../assets/images/asz-logo2.png';
 import './Header.scss';
@@ -94,7 +95,28 @@ const renderLabel = (label, withChevron) =>
     );
   };
 
+// Drop-downs open on hover / focus-within (pure CSS). After a click on any link inside,
+// "is-closed" suppresses that so the panel shuts right away; it re-arms on the next
+// hover or keyboard focus.
+const useDropdown = (base) => {
+  const [closed, setClosed] = useState(false);
+  return {
+    className: base + (closed ? ' is-closed' : ''),
+    onClick: (e) => {
+      if (!e.target.closest('a')) return;
+      if (document.activeElement && document.activeElement.blur) document.activeElement.blur();
+      setClosed(true);
+    },
+    onMouseEnter: () => setClosed(false),
+    onMouseLeave: () => setClosed(false),
+    onFocus: () => setClosed(false),
+  };
+};
+
 export default function Header() {
+  const services = useDropdown('sdd');
+  const products = useDropdown('pdd');
+
   return (
     <header className="site-header">
       <nav className="nav" aria-label="Main">
@@ -108,7 +130,7 @@ export default function Header() {
           </NavLink>
 
           {/* Services drop-down */}
-          <div className="sdd">
+          <div {...services}>
             <NavLink className="navlink" to={ROUTES.services}>
               {renderLabel('Services', true)}
             </NavLink>
@@ -136,7 +158,7 @@ export default function Header() {
           </div>
 
           {/* Products drop-down */}
-          <div className="pdd">
+          <div {...products}>
             <NavLink className="navlink" to={ROUTES.products}>
               {renderLabel('Products', true)}
             </NavLink>
