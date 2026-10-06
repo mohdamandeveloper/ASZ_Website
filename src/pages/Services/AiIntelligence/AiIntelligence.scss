@@ -1,13 +1,6 @@
-@use '../../../styles/mixins' as *;
-
-// Reuses from your global styles:
-//   .btn .btn-ac .btn-ghost (utilities) · .eyebrow · .h2 · .up .live .rv .rvs (animations) · --ac / --ac2
-// Everything below is page-specific.
-
 $ease: cubic-bezier(.2, .7, .2, 1);
 
 .ai-intel {
-  // shared layout helpers (scoped to this page)
   &__wrap {
     position: relative;
     max-width: 1264px;
@@ -22,9 +15,6 @@ $ease: cubic-bezier(.2, .7, .2, 1);
     gap: 32px;
   }
 
-  // ===================================================================
-  //  1 · HERO
-  // ===================================================================
   &__hero {
     position: relative;
     margin-top: -68px; // tucks under the sticky header
@@ -53,7 +43,9 @@ $ease: cubic-bezier(.2, .7, .2, 1);
     pointer-events: none;
   }
 
-  &__hero-wrap { padding: 0 48px; }
+  &__hero-wrap {
+    padding: 0 48px;
+  }
 
   &__hero-inner {
     display: flex;
@@ -76,7 +68,6 @@ $ease: cubic-bezier(.2, .7, .2, 1);
     padding: 0 16px;
     border-radius: 999px;
     border: 1px solid rgba(255, 255, 255, .18);
-    @include mono;
     font-size: 11px;
     letter-spacing: .16em;
     text-transform: uppercase;
@@ -89,7 +80,9 @@ $ease: cubic-bezier(.2, .7, .2, 1);
       opacity: .7;
       transition: opacity .2s;
 
-      &:hover { opacity: 1; }
+      &:hover {
+        opacity: 1;
+      }
     }
   }
 
@@ -100,14 +93,16 @@ $ease: cubic-bezier(.2, .7, .2, 1);
     background: var(--ac);
   }
 
-  &__crumb-sep { opacity: .4; }
+  &__crumb-sep {
+    opacity: .4;
+  }
 
   &__h1.up {
     margin: 0;
-    font-size: clamp(40px, 4.8vw, 76px);
-    line-height: .97;
-    font-weight: 800;
-    letter-spacing: -0.055em;
+    font-size: clamp(44px, 4.2vw, 60px);
+    line-height: 1.02;
+    font-weight: 600;
+    letter-spacing: -0.045em;
     animation-delay: .08s;
   }
 
@@ -127,16 +122,24 @@ $ease: cubic-bezier(.2, .7, .2, 1);
     animation-delay: .26s;
   }
 
-  &__ghost.btn-ghost { font-weight: 600; }
+  &__ghost.btn-ghost {
+    font-weight: 600;
+  }
 
   // ===================================================================
   //  2 · WHAT WE DELIVER
   // ===================================================================
-  &__deliver { background: #fafafa; }
+  &__deliver {
+    background: #fafafa;
+  }
 
-  &__deliver-wrap { padding: 124px 32px 120px; }
+  &__deliver-wrap {
+    padding: 124px 32px 120px;
+  }
 
-  &__deliver-wrap &__split { margin-bottom: 48px; }
+  &__deliver-wrap &__split {
+    margin-bottom: 48px;
+  }
 
   &__title.h2 {
     line-height: 1;
@@ -167,7 +170,9 @@ $ease: cubic-bezier(.2, .7, .2, 1);
       border-color: #0e0e0f;
       box-shadow: 0 28px 46px -28px rgba(0, 0, 0, .35);
 
-      .ai-intel__card-bar { transform: scaleX(1); }
+      .ai-intel__card-bar {
+        transform: scaleX(1);
+      }
     }
   }
 
@@ -184,7 +189,6 @@ $ease: cubic-bezier(.2, .7, .2, 1);
   }
 
   &__card-n {
-    @include mono;
     font-size: 12px;
     letter-spacing: .14em;
     color: var(--ac2);
@@ -244,7 +248,7 @@ $ease: cubic-bezier(.2, .7, .2, 1);
   }
 
   &__cta-title.h2 {
-    font-size: clamp(42px, 5.6vw, 84px);
+    font-size: clamp(44px, 4.2vw, 80px);
     line-height: .96;
     font-weight: 800;
     letter-spacing: -0.055em;
@@ -291,13 +295,22 @@ $ease: cubic-bezier(.2, .7, .2, 1);
 //  Responsive
 // =====================================================================
 @media (max-width: 1000px) {
-  .ai-intel__cards { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .ai-intel__cards {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 
 @media (max-width: 900px) {
   .ai-intel {
-    &__wrap { padding-left: 20px !important; padding-right: 20px !important; }
-    &__sec { padding-top: 80px !important; padding-bottom: 80px !important; }
+    &__wrap {
+      padding-left: 20px !important;
+      padding-right: 20px !important;
+    }
+
+    &__sec {
+      padding-top: 80px !important;
+      padding-bottom: 80px !important;
+    }
 
     &__split {
       flex-direction: column !important;
@@ -313,5 +326,7 @@ $ease: cubic-bezier(.2, .7, .2, 1);
 }
 
 @media (max-width: 640px) {
-  .ai-intel__cards { grid-template-columns: 1fr; }
+  .ai-intel__cards {
+    grid-template-columns: 1fr;
+  }
 }

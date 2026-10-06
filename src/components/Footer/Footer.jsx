@@ -15,12 +15,12 @@ const COMPANY = [
 
 // Edit hrefs to match your router
 const SERVICES = [
-  { label: 'AI & Intelligent Systems', href: '/services/ai' },
-  { label: 'Smart Security Systems', href: '/services/security' },
-  { label: 'Enterprise Systems & ERP', href: '/services/erp' },
-  { label: 'Product & Application Engineering', href: '/services/product-engineering' },
-  { label: 'Digital Transformation & Cloud', href: '/services/cloud' },
-  { label: 'Technology Talent & Engineering', href: '/services/talent' },
+  { label: 'AI & Intelligent Systems', href: '/service/ai-intelligence' },
+  { label: 'Smart Security Systems', href: '/service/smart-security' },
+  { label: 'Enterprise Systems & ERP', href: '/service/enterprise-erp' },
+  { label: 'Product & Application Engineering', href: '/service/product-application' },
+  { label: 'Digital Transformation & Cloud', href: '/service/digital-transformation' },
+  { label: 'Technology Talent & Engineering', href: '/service/technology-talent' },
 ];
 
 const OFFICES = [

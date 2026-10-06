@@ -1,5 +1,3 @@
-@use '../../styles/mixins' as *;
-
 .site-header {
   position: sticky;
   top: 28px;
@@ -39,7 +37,6 @@
     }
 
     span {
-      @include mono;
       font-size: 10px;
       letter-spacing: .24em;
       text-transform: uppercase;
@@ -323,7 +320,6 @@ $cube-img: url('../../assets/images/cordon-cubes.webp');
     display: flex;
     align-items: center;
     justify-content: center;
-    @include mono;
     font-size: 9.5px;
     letter-spacing: .12em;
     color: #6a6a6a;
@@ -347,7 +343,6 @@ $cube-img: url('../../assets/images/cordon-cubes.webp');
   .n {
     display: block;
     margin: 14px 4px 0;
-    @include mono;
     font-size: 10.5px;
     letter-spacing: .14em;
     color: var(--ac2);

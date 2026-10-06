@@ -1,28 +1,89 @@
-@use 'mixins' as *;
-
-// Buttons (size is driven by custom properties so each placement can tune it)
 .btn {
-  display: inline-flex; align-items: center; justify-content: flex-start;
-  height: var(--h, 56px); padding: 0 var(--px, 28px); gap: var(--g, 14px);
-  border-radius: 999px; color: #fff; font-size: var(--fs, 16px); white-space: nowrap;
-  transition: transform .2s cubic-bezier(.4,0,.2,1), background .2s, box-shadow .2s, filter .2s;
-  svg { transition: transform .2s cubic-bezier(.4,0,.2,1); }
-  &:hover { transform: translateY(-1px); svg { transform: translateX(3px); } }
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-start;
+  height: var(--h, 56px);
+  padding: 0 var(--px, 28px);
+  gap: var(--g, 14px);
+  border-radius: 999px;
+  color: #fff;
+  font-size: var(--fs, 16px);
+  white-space: nowrap;
+  transition: transform .2s cubic-bezier(.4, 0, .2, 1), background .2s, box-shadow .2s, filter .2s;
+
+  svg {
+    transition: transform .2s cubic-bezier(.4, 0, .2, 1);
+  }
+
+  &:hover {
+    transform: translateY(-1px);
+
+    svg {
+      transform: translateX(3px);
+    }
+  }
 }
-.btn-ac { background: var(--ac2); font-weight: 600; &:hover { filter: brightness(1.1); box-shadow: 0 10px 30px -8px rgba(242,68,15,.7); } }
-.btn-ghost { background: var(--gbg, rgba(255,255,255,.03)); border: 1px solid rgba(255,255,255,.24); font-weight: 500; &:hover { background: rgba(255,255,255,.12); } }
+
+.btn-ac {
+  background: var(--ac2);
+  font-weight: 600;
+
+  &:hover {
+    filter: brightness(1.1);
+    box-shadow: 0 10px 30px -8px rgba(242, 68, 15, .7);
+  }
+}
+
+.btn-ghost {
+  background: var(--gbg, rgba(255, 255, 255, .03));
+  border: 1px solid rgba(255, 255, 255, .24);
+  font-weight: 500;
+
+  &:hover {
+    background: rgba(255, 255, 255, .12);
+  }
+}
 
 // Text link with arrow
 .tlink {
-  display: inline-flex; align-items: center; gap: 8px; min-height: 44px;
-  font-size: 16px; font-weight: 500; color: var(--ac2); transition: gap .2s;
-  &:hover { gap: 14px; }
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--ac2);
+  transition: gap .2s;
+
+  &:hover {
+    gap: 14px;
+  }
 }
 
 // Section heading + eyebrow label
-.h2 { margin: 0; font-size: clamp(34px, 3.8vw, 56px); line-height: 1.04; font-weight: 600; letter-spacing: -0.045em; }
+.h2 {
+  margin: 0;
+  font-size: clamp(34px, 3.8vw, 56px);
+  line-height: 1.04;
+  font-weight: 600;
+  letter-spacing: -0.045em;
+}
+
 .eyebrow {
-  display: flex; align-items: center; gap: 10px; margin-bottom: 20px;
-  @include mono; font-size: 11px; letter-spacing: .16em; text-transform: uppercase; color: #5c5c5c;
-  &::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--ac); }
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+  font-size: 11px;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: #5c5c5c;
+
+  &::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--ac);
+  }
 }

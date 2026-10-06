@@ -189,7 +189,7 @@ export default function Header() {
         </div>
 
         <a className="btn btn-ac nav__cta" href="#contact">
-          Start a project
+          Start a Conversation
           <svg width="14" height="14" strokeWidth="2" {...svgProps}>
             <path d="M5 12h14M13 6l6 6-6 6" />
           </svg>
