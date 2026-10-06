@@ -41,6 +41,12 @@ const arrowRight = (
   </svg>
 );
 
+const Arrow = ({ size = 16 }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <path d="M5 12h14M13 6l6 6-6 6" />
+  </svg>
+);
+
 const Work = () => {
   const [active, setActive] = useState('All');
   const { hash, key } = useLocation();
@@ -83,6 +89,9 @@ const Work = () => {
             <p className="up pg-hero__text">
               Our work spans industries and geographies — real deployments, real clients, and real technology built to solve meaningful business challenges.
             </p>
+            <div className="sv-hero__cta up">
+              <a className="btn btn-ac" href="#contact">Start a Conversation <Arrow /></a>
+            </div>
           </div>
         </div>
       </section>
