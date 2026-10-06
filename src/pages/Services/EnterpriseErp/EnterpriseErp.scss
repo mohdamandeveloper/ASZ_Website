@@ -1,0 +1,372 @@
+// ==========================================================================
+// Service detail pages: Smart Security Systems + Enterprise Systems & ERP
+// (both pages share the same design, only the content differs)
+//
+// Re-used from your existing global styles (not redefined here):
+//   .btn .btn-ac .btn-ghost  buttons (sized with --h / --px / --g / --fs)
+//   .eyebrow                 mono label with accent dot
+//   .ac                      accent colour text
+//   .up .live .rv .rvs       entrance / pulse / scroll-reveal animations
+// ==========================================================================
+
+$mono: 'Geist Mono', monospace; // same stack as the `mono` mixin in _mixins.scss
+
+// The hero slides under your sticky header (68px tall) so the dark hero
+// background runs behind the floating nav bar. Set to 0 if the page is
+// rendered without that header.
+$header-overlap: 68px;
+
+$bp-tablet: 1000px;
+$bp-mobile: 900px;
+$bp-phone: 640px;
+
+.svc {
+  display: block;
+
+  // ------------------------------------------------------------------------
+  // Shared layout helpers
+  // ------------------------------------------------------------------------
+  &__wrap {
+    max-width: 1264px;
+    margin: 0 auto;
+    box-sizing: border-box;
+  }
+
+  // ------------------------------------------------------------------------
+  // 1. Hero
+  // ------------------------------------------------------------------------
+  &__hero {
+    position: relative;
+    margin-top: -$header-overlap;
+    background: #07070a;
+    color: #fff;
+    overflow: hidden;
+  }
+
+  &__hero-grid {
+    position: absolute;
+    inset: 0;
+    opacity: 0.07;
+    background-image: linear-gradient(rgba(255, 255, 255, 0.16) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.16) 1px, transparent 1px);
+    background-size: 80px 80px;
+    -webkit-mask-image: radial-gradient(circle at 82% 50%, #000, transparent 60%);
+    mask-image: radial-gradient(circle at 82% 50%, #000, transparent 60%);
+  }
+
+  &__hero-frame {
+    position: absolute;
+    inset: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-radius: 30px;
+    pointer-events: none;
+  }
+
+  &__hero-wrap {
+    position: relative;
+    padding: 0 48px;
+  }
+
+  &__hero-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-end;
+    gap: 26px;
+    min-height: 700px;
+    max-width: 900px;
+    padding: 170px 0 88px;
+    box-sizing: border-box;
+
+    @media (max-width: $bp-mobile) {
+      padding-top: 150px;
+      padding-bottom: 40px;
+      min-height: 0;
+    }
+  }
+
+  // "Services / Page name" pill
+  &__crumb {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    min-height: 36px;
+    padding: 0 16px;
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    font-family: $mono;
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: #d6d6d6;
+
+    a {
+      display: inline-flex;
+      align-items: center;
+      min-height: 34px;
+      opacity: 0.7;
+      transition: opacity 0.2s;
+
+      &:hover {
+        opacity: 1;
+      }
+    }
+  }
+
+  &__crumb-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--ac);
+  }
+
+  &__crumb-sep {
+    opacity: 0.4;
+  }
+
+  &__hero-title {
+    margin: 0;
+    font-size: clamp(40px, 4.8vw, 76px);
+    line-height: 0.97;
+    font-weight: 800;
+    letter-spacing: -0.055em;
+    animation-delay: 0.08s;
+  }
+
+  &__hero-text {
+    margin: 0;
+    max-width: 720px;
+    font-size: 18px;
+    line-height: 1.6;
+    color: #a9abb3;
+    animation-delay: 0.16s;
+  }
+
+  &__hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    animation-delay: 0.26s;
+  }
+
+  // ------------------------------------------------------------------------
+  // 2. What we deliver
+  // ------------------------------------------------------------------------
+  &__deliver {
+    background: #fafafa;
+  }
+
+  &__deliver-wrap {
+    padding: 124px 32px 120px;
+
+    @media (max-width: $bp-mobile) {
+      padding-top: 80px;
+      padding-bottom: 80px;
+    }
+  }
+
+  &__split {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 32px;
+    margin-bottom: 48px;
+
+    @media (max-width: $bp-mobile) {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+
+  &__title {
+    margin: 0;
+    font-size: clamp(34px, 3.8vw, 56px);
+    line-height: 1;
+    font-weight: 700;
+    letter-spacing: -0.05em;
+  }
+
+  &__cards {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 12px;
+
+    @media (max-width: $bp-tablet) {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    @media (max-width: $bp-phone) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &__card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    padding: 28px 26px 26px;
+    box-sizing: border-box;
+    border-radius: 22px;
+    background: #fff;
+    border: 1px solid #e3e3e2;
+    overflow: hidden;
+    transition: transform 0.45s cubic-bezier(0.2, 0.7, 0.2, 1), border-color 0.35s,
+      box-shadow 0.45s;
+
+    &:hover {
+      transform: translateY(-5px);
+      border-color: #0e0e0f;
+      box-shadow: 0 28px 46px -28px rgba(0, 0, 0, 0.35);
+
+      .svc__card-bar {
+        transform: scaleX(1);
+      }
+    }
+  }
+
+  // accent line that draws across the top on hover
+  &__card-bar {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    height: 3px;
+    background: var(--ac);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.55s cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+
+  &__card-num {
+    font-family: $mono;
+    font-size: 12px;
+    letter-spacing: 0.14em;
+    color: var(--ac2);
+  }
+
+  &__card-title {
+    margin: 34px 0 12px;
+    font-size: 22px;
+    font-weight: 600;
+    letter-spacing: -0.03em;
+    line-height: 1.15;
+  }
+
+  &__card-text {
+    margin: 0 0 26px;
+    font-size: 15px;
+    line-height: 1.6;
+    color: #5c5c5c;
+  }
+
+  &__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: auto;
+  }
+
+  &__tag {
+    display: inline-flex;
+    align-items: center;
+    height: 28px;
+    padding: 0 11px;
+    border-radius: 999px;
+    background: #f3f3f2;
+    font-size: 12px;
+    font-weight: 500;
+    color: #3a3a3c;
+    white-space: nowrap;
+  }
+
+  // ------------------------------------------------------------------------
+  // 3. Call to action
+  // ------------------------------------------------------------------------
+  &__cta {
+    background: #fff;
+    border-top: 1px solid #e8e8e7;
+  }
+
+  &__cta-wrap {
+    padding: 128px 32px 136px;
+    text-align: center;
+
+    @media (max-width: $bp-mobile) {
+      padding-top: 80px;
+      padding-bottom: 80px;
+    }
+  }
+
+  &__cta-title {
+    margin: 0;
+    font-size: clamp(42px, 5.6vw, 84px);
+    line-height: 0.96;
+    font-weight: 800;
+    letter-spacing: -0.055em;
+  }
+
+  &__cta-text {
+    margin: 28px auto 0;
+    max-width: 640px;
+    font-size: 19px;
+    line-height: 1.55;
+    color: #5c5c5c;
+  }
+
+  &__cta-actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 14px;
+    margin-top: 44px;
+  }
+}
+
+// ---- Overrides for the shared .btn classes ---------------------------------
+// Written as `.svc .x` (two classes) so they win over the global rules no
+// matter which stylesheet is loaded first.
+.svc {
+  // hero "All Services" ghost button is semi-bold in this design
+  .svc__btn-semibold {
+    font-weight: 600;
+  }
+
+  // larger buttons in the closing call to action
+  .svc__cta-btn {
+    --h: 60px;
+    --px: 34px;
+    --fs: 17px;
+  }
+
+  // light ghost button on the white CTA background
+  .svc__cta-ghost {
+    background: #fff;
+    border: 1px solid #d5d5d4;
+    color: #0e0e0f;
+    font-weight: 600;
+    transition: border-color 0.2s, background 0.2s, transform 0.2s;
+
+    &:hover {
+      border-color: #0e0e0f;
+      background: #f3f3f2;
+      color: #0e0e0f;
+    }
+  }
+
+  // the CTA eyebrow is centred (inline) with a little more space below
+  .svc__cta-eyebrow {
+    display: inline-flex;
+    margin-bottom: 24px;
+  }
+}
+
+// Side padding shrinks to 20px on phones/tablets. Declared last so it beats
+// the `padding` shorthand of each wrap above.
+@media (max-width: $bp-mobile) {
+  .svc__hero-wrap,
+  .svc__deliver-wrap,
+  .svc__cta-wrap {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}

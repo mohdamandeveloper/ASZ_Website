@@ -5,15 +5,26 @@ import './Home.scss';
 /* ------------------------------------------------------------------ */
 /* Config + content                                                    */
 /* ------------------------------------------------------------------ */
-const ORB_COLOR = '#FFC08F'; // keep in sync with --orb in global.scss
-const ACCENT = '#F2440F';    // keep in sync with --ac in global.scss
+const ORB_COLOR = '#FFC08F'; // keep in sync with --orb
+const ACCENT = '#F2440F';    // keep in sync with --ac
+
+// Edit these to match your router. Anything starting with "/" renders a <Link>.
+const ROUTES = {
+  work: '/work',
+  services: '/services',
+  security: '/services/security',
+  engineering: '/services/product-engineering',
+  ai: '/services/ai',
+  cloud: '/services/cloud',
+  jobscout: '/products#jobscout',
+  safin: '/products#safin',
+};
 
 const CAPS = [
   'AI & intelligent systems',
-  'Digital transformation',
+  'Smart security',
   'Product engineering',
-  'Cloud & DevOps',
-  'Security & infrastructure',
+  'Digital transformation',
 ];
 
 // Client logos come from one sprite (8 cols x 4 rows)
@@ -37,28 +48,27 @@ const SECTORS = [...INDUSTRIES, ...INDUSTRIES].map((name, k) => {
 const STATS = [
   { target: 15, suffix: '+', label: 'Years of delivery' },
   { target: 500, suffix: '+', label: 'Projects shipped' },
-  { target: 80, suffix: '+', label: 'Engineers on team' },
+  { target: 80, suffix: '+', label: 'Professionals' },
   { target: 99, suffix: '%', label: 'On-time delivery' },
 ];
 
 const STEPS = [
-  { title: 'Discover', text: 'A discovery call to scope the project. A team proposal follows within 48 hours.' },
-  { title: 'Design', text: "Architecture and interface, shaped around your industry's constraints." },
-  { title: 'Build', text: 'Engineering, testing and QA, with intelligence built in from the first release.' },
-  { title: 'Run', text: 'Deployed to production, then monitored, supported and improved.' },
+  { title: 'Discover', text: 'A focused discovery process to understand your goals, constraints, technology environment, and desired outcomes. We define the scope and delivery approach before engineering begins.' },
+  { title: 'Design', text: 'Architecture, experience, and technical direction shaped around your business requirements, users, industry constraints, and long-term goals.' },
+  { title: 'Build', text: 'Engineering, testing, and quality assurance with security, scalability, and performance considered from the first release.' },
+  { title: 'Run', text: 'Deployed to production, then monitored, supported, and continuously improved as your business evolves.' },
 ];
 
 const CORDON_CHIPS = [
-  { label: 'Vehicle recognition', d: 'M3 13l2-6h14l2 6v5H3zM6.5 16h.01M17.5 16h.01M3 13h18' },
-  { label: 'Facial check-in', d: 'M4 8V5a1 1 0 011-1h3M16 4h3a1 1 0 011 1v3M20 16v3a1 1 0 01-1 1h-3M8 20H5a1 1 0 01-1-1v-3M9 10v1M15 10v1M9.5 15a3.5 3.5 0 005 0' },
-  { label: 'Automated access', d: 'M6 11V8a6 6 0 0112 0v3M5 11h14v9H5zM12 15v2' },
+  { label: 'Vehicle Recognition', d: 'M3 13l2-6h14l2 6v5H3zM6.5 16h.01M17.5 16h.01M3 13h18' },
+  { label: 'Facial Recognition', d: 'M4 8V5a1 1 0 011-1h3M16 4h3a1 1 0 011 1v3M20 16v3a1 1 0 01-1 1h-3M8 20H5a1 1 0 01-1-1v-3M9 10v1M15 10v1M9.5 15a3.5 3.5 0 005 0' },
+  { label: 'Automated Access', d: 'M6 11V8a6 6 0 0112 0v3M5 11h14v9H5zM12 15v2' },
 ];
 
-const SAFIN_BARS = [
-  ['38%', '0s'], ['56%', '.3s'], ['46%', '.6s'], ['74%', '.9s'], ['62%', '1.2s'], ['100%', '1.5s'],
-];
+/* Small shared bits ------------------------------------------------- */
+const A = ({ to, children, ...rest }) =>
+  to.startsWith('/') ? <Link to={to} {...rest}>{children}</Link> : <a href={to} {...rest}>{children}</a>;
 
-/* Small shared icons ------------------------------------------------ */
 const Arrow = ({ size = 16 }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
     <path d="M5 12h14M13 6l6 6-6 6" />
@@ -347,16 +357,16 @@ export default function Home() {
         <div className="wrap hero__wrap">
           <div className="g12 herogrid">
             <div className="hero__copy">
-              <div className="pill up"><span className="live dot" />AI-powered technology</div>
-              <h1 className="up">Engineered to scale.<br /><span className="ac">Built for real impact.</span></h1>
-              <p className="up">AI systems, digital products and secure technology infrastructure built for ambitious businesses.</p>
+              <div className="pill up"><span className="live dot" />Global technology &amp; engineering</div>
+              <h1 className="up"><span className="nw">Engineered to scale.</span><br /><span className="ac nw">Built for real impact.</span></h1>
+              <p className="up">AI systems, intelligent security, digital products, and enterprise technology engineered to solve complex business challenges.</p>
               <div className="hero__actions up">
-                <a className="btn btn-ac" href="#contact">Book your discovery call <Arrow size={15} /></a>
-                <a className="btn btn-ghost" href="#services">Explore our offering</a>
+                <a className="btn btn-ac" href="#contact">Start a Conversation <Arrow size={15} /></a>
+                <a className="btn btn-ghost" href="#services">Explore Our Capabilities <Arrow /></a>
               </div>
             </div>
 
-            <div className="orbbox hero__orb fadein">
+            <div className="hero__orb fadein">
               <div className="hero__orb-glow breathe" aria-hidden="true" />
               <canvas ref={orbRef} aria-hidden="true" />
             </div>
@@ -375,8 +385,8 @@ export default function Home() {
         <div className="sec clients__sec">
           <div className="clients__head rv">
             <div className="eyebrow">Our clients</div>
-            <h2 className="h2">We support customers <span className="ac">around the globe.</span></h2>
-            <p>Delivering innovative technology solutions to businesses worldwide, building lasting partnerships across industries and regions.</p>
+            <h2 className="h2">Trusted by businesses <span className="ac">around the globe.</span></h2>
+            <p>We deliver technology solutions that help organizations build, modernize, and scale — creating lasting partnerships across industries and markets.</p>
           </div>
 
           <div className="mqwrap rv">
@@ -393,7 +403,7 @@ export default function Home() {
           </div>
 
           <div className="clients__more rv">
-            <a className="tlink" href="/work">See our clients <Arrow /></a>
+            <A className="tlink" to={ROUTES.work}>See Our Clients <Arrow /></A>
           </div>
         </div>
       </section>
@@ -403,61 +413,58 @@ export default function Home() {
         <div className="wrap sec services__wrap">
           <div className="split rv services__head">
             <div>
-              <div className="eyebrow">AI solutions</div>
-              <h2 className="h2">Intelligence built into<br /><span className="ac">every solution.</span></h2>
-            </div>
-            <div className="services__intro">
-              <p>From physical security to enterprise platforms, intelligence isn't an add-on at ASZ. We ship things that run in production.</p>
-              <a className="tlink" href="/services">All services <Arrow /></a>
+              <div className="eyebrow">Our capabilities</div>
+              <h2 className="h2">Technology engineered<br /><span className="ac">around your business.</span></h2>
+              <p className="lede">From intelligent AI systems and smart security to product engineering and digital transformation, we bring strategy, engineering, and execution together to solve complex technology challenges.</p>
             </div>
           </div>
 
           <div className="bgrid">
-            <a className="bento bento--sec rvl" href="#contact">
+            <A className="bento bento--sec rvl" to={ROUTES.security}>
               <div className="bento__bg img-sec zoom" aria-hidden="true" />
               <div className="bento__shade" aria-hidden="true" />
-              <span className="badge tone-orange"><span className="live dot" />Featured</span>
+              <span className="badge tone-orange"><span className="live dot" />AI-DRIVEN SECURITY</span>
               <div className="bento__body">
-                <h3>Intelligent Security</h3>
-                <p>Our Cordon platform replaces manual guards and paper logs with a zero-touch, AI-driven system, vehicle recognition, facial check-in, and automated access control, all in one platform.</p>
-                <span className="tag tone-orange">RPA + AI</span>
-                <div className="bento__cta">Start Your Project<span className="circ"><Arrow /></span></div>
+                <h3>Smart Security Systems</h3>
+                <p>Our Cordon platform brings AI-powered vehicle recognition, facial recognition, access control, and visitor management into one intelligent security layer — reducing manual intervention across buildings, campuses, and critical infrastructure.</p>
+                <div className="bento__cta">Learn More<span className="circ"><Arrow /></span></div>
               </div>
-            </a>
+            </A>
 
-            <a className="bento bento--eng rv" href="#contact">
-              <div className="bento__label">Real-time insights</div>
-              <h3>Product Engineering</h3>
-              <p>We design, build, and ship complete digital products, backed by our own line, including JobScout and Safin.</p>
-              <span className="tag tone-blue">MACHINE LEARNING</span>
-            </a>
+            <A className="bento bento--eng rv" to={ROUTES.engineering}>
+              <div className="bento__label">PRODUCT ENGINEERING</div>
+              <h3>Product &amp; Application Engineering</h3>
+              <p>We design, engineer, and scale digital products and enterprise applications from concept to production — combining product thinking, software engineering, AI, and modern architecture.</p>
+            </A>
 
-            <a className="bento bento--ai rvr" href="#contact">
+            <A className="bento bento--ai rvr" to={ROUTES.ai}>
               <div className="bento__bg img-ai zoom" aria-hidden="true" />
               <div className="bento__shade" aria-hidden="true" />
-              <span className="badge badge--abs tone-purple"><span className="dot" />Automated</span>
+              <span className="badge badge--abs tone-purple"><span className="dot" />INTELLIGENT AI</span>
               <div className="bento__body bento__body--pt">
                 <h3>AI &amp; Intelligent Systems</h3>
-                <p>Predictive analytics, computer vision, and machine learning aren't add-ons for us, they're built into the systems we ship.</p>
-                <span className="tag tone-purple">LLM INTEGRATION</span>
+                <p>AI isn't an add-on to what we build. Predictive intelligence, computer vision, machine learning, and intelligent automation are engineered directly into the systems we ship.</p>
               </div>
-            </a>
+            </A>
 
-            <a className="bento bento--dt rv dtsplit" href="#contact">
+            <A className="bento bento--dt rv dtsplit" to={ROUTES.cloud}>
               <div className="dtimg">
                 <div className="bento__bg img-dt zoom" aria-hidden="true" />
                 <div className="bento__shade" aria-hidden="true" />
               </div>
               <div className="bento__dtbody">
-                <span className="badge badge--mb tone-teal"><span className="dot" />Live Monitoring</span>
-                <h3>Digital Transformation</h3>
-                <p>We modernize technology landscapes, cloud, systems, and strategy, aligned to your business goals at every layer.</p>
+                <span className="badge badge--mb tone-teal"><span className="dot" />CLOUD &amp; MODERNIZATION</span>
+                <h3>Digital Transformation &amp; Cloud</h3>
+                <p>We modernize technology landscapes, cloud infrastructure, systems, and architecture — aligning every layer with the business you are building next.</p>
                 <div className="bento__row">
-                  <span className="tag tone-teal">VISION AI</span>
-                  <span className="bento__cta bento__cta--inline">Start Your Project<span className="circ circ--ghost"><Arrow /></span></span>
+                  <span className="bento__cta bento__cta--inline">Learn More<span className="circ circ--ghost"><Arrow /></span></span>
                 </div>
               </div>
-            </a>
+            </A>
+          </div>
+
+          <div className="more rv">
+            <A className="btn morelink" to={ROUTES.services}>Explore All Services <Arrow /></A>
           </div>
         </div>
       </section>
@@ -485,18 +492,18 @@ export default function Home() {
             <div>
               <div className="eyebrow">Our products</div>
               <h2 className="h2">We ship our own products.<br /><span className="ac">Then we build yours.</span></h2>
+              <p className="lede">Our in-house products reflect the same engineering discipline we bring to client engagements — technology designed to solve real problems and operate in the real world.</p>
             </div>
-            <a className="tlink" href="#contact">Book a product demo <Arrow /></a>
           </div>
 
           {/* Cordon */}
           <a className="card card--cordon rvs" href="#contact">
-            <div className="cubeimg zoom card__bg" aria-hidden="true" />
+            <div className="pimg-co zoom card__bg" aria-hidden="true" />
             <div className="card__shade" aria-hidden="true" />
             <div className="cordon__copy">
-              <div className="pill pill--card"><span className="live dot" />Flagship · Intelligent security</div>
+              <div className="pill pill--card"><span className="live dot" />ASZ product · 01 · Intelligent Security</div>
               <h3>Cordon</h3>
-              <p>Replaces manual guards and paper logs with a zero-touch, AI-driven system: vehicle recognition, facial check-in and automated access control, all in one platform.</p>
+              <p>Cordon replaces manual security processes with a zero-touch, AI-driven access system for vehicle recognition, facial recognition, automated access control, and visitor management.</p>
               <div className="cordon__chips">
                 {CORDON_CHIPS.map((c) => (
                   <span className="chip" key={c.label}>
@@ -505,24 +512,24 @@ export default function Home() {
                   </span>
                 ))}
               </div>
-              <span className="btn btn-ac cordon__btn">Explore Cordon <Arrow size={14} /></span>
+              <span className="btn btn-ac cordon__btn">Book a Demo <Arrow size={14} /></span>
             </div>
 
             <div className="cordonui floaty" aria-hidden="true">
               <div className="cordonui__in">
                 <div className="cordonui__top">
-                  <div className="cordonui__name"><span className="cordonui__logo" />Cordon<span>Main gate</span></div>
+                  <div className="cordonui__name"><span className="cordonui__logo" />Cordon<span>Main Gate</span></div>
                   <div className="cordonui__live"><span className="live dot dot--sm" />LIVE</div>
                 </div>
                 <div className="cordonui__cam">
                   <div className="cordonui__grid" />
                   <div className="scan cordonui__scan" />
-                  <div className="cordonui__plate">KA 05 MN 4821</div>
+                  <div className="cordonui__plate">ZX 4827 Q</div>
                   <div className="cordonui__caption">CAM 02 · VEHICLE RECOGNITION</div>
                 </div>
                 <div className="cordonui__rows">
                   <div className="st1"><span>Vehicle recognised</span><span className="ok">Access granted</span></div>
-                  <div className="st2"><span>Facial check-in</span><span className="ok">Verified</span></div>
+                  <div className="st2"><span>Facial Recognition</span><span className="ok">Verified</span></div>
                   <div className="st3"><span>Paper log entry</span><span className="na">Not needed</span></div>
                 </div>
               </div>
@@ -531,37 +538,30 @@ export default function Home() {
 
           <div className="g2 products__pair">
             {/* JobScout */}
-            <a className="card card--dark rvl" href="#contact">
-              <div className="radar" aria-hidden="true">
-                <div className="radar__ring" />
-                <div className="radar__ring radar__ring--2" />
-                <div className="radar__ring radar__ring--3" />
-                <div className="radar__core" />
-                <div className="spin-fast radar__sweep" />
-                <span className="blip radar__blip radar__blip--1" />
-                <span className="blip radar__blip radar__blip--2" />
-                <span className="blip radar__blip radar__blip--3" />
-              </div>
+            <A className="card card--prod rvl" to={ROUTES.jobscout}>
+              <div className="pimg-js zoom card__bg" aria-hidden="true" />
+              <div className="card__shade card__shade--v" aria-hidden="true" />
               <div className="card__top">
                 <span className="card__meta">ASZ product · 02</span>
                 <span className="arrow"><ArrowUpRight /></span>
               </div>
               <h3 className="card__name">JobScout</h3>
-            </a>
+            </A>
 
             {/* Safin */}
-            <a className="card card--light rvr" href="#contact">
-              <div className="bars" aria-hidden="true">
-                {SAFIN_BARS.map(([h, delay], i) => (
-                  <div key={h} className={`rise${i === 5 ? ' rise--ac' : ''}`} style={{ height: h, animationDelay: delay }} />
-                ))}
-              </div>
+            <A className="card card--prod rvr" to={ROUTES.safin}>
+              <div className="pimg-sf zoom card__bg" aria-hidden="true" />
+              <div className="card__shade card__shade--v" aria-hidden="true" />
               <div className="card__top">
                 <span className="card__meta">ASZ product · 03</span>
                 <span className="arrow"><ArrowUpRight /></span>
               </div>
               <h3 className="card__name">Safin</h3>
-            </a>
+            </A>
+          </div>
+
+          <div className="more rv">
+            <a className="btn morelink" href="#contact">Book a Demo <Arrow /></a>
           </div>
         </div>
       </section>
@@ -572,9 +572,8 @@ export default function Home() {
           <div className="split rv industries__head">
             <div>
               <div className="eyebrow">Industries we serve</div>
-              <h2 className="h2">Built for <span className="ac">every sector.</span></h2>
+              <h2 className="h2">Technology built for <span className="ac">every sector.</span></h2>
             </div>
-            <p>Tailored solutions across 12+ verticals, from regulated finance to complex, multi-node supply chains, each with its own constraints and goals.</p>
           </div>
         </div>
         <div className="sectors-wrap rv" ref={sliderWrapRef}>
@@ -599,8 +598,8 @@ export default function Home() {
             <div className="process__intro rvl">
               <div className="eyebrow">How we work</div>
               <h2 className="h2">Scoped. Built.<br /><span className="ac">Running.</span></h2>
-              <p>Four steps from the first call to software running in production.</p>
-              <a className="tlink" href="#contact">Book your discovery call <Arrow /></a>
+              <p>A clear path from the first conversation to technology running in production.</p>
+              <a className="tlink" href="#contact">Start a Conversation <Arrow /></a>
             </div>
 
             <div className="process__list">
@@ -637,12 +636,11 @@ export default function Home() {
         <div className="cta__shade" aria-hidden="true" />
         <div className="hero__frame" aria-hidden="true" />
         <div className="wrap cta__wrap">
-          <div className="pill pill--cta rv"><span className="live dot" />Proposal within 48 hours</div>
           <h2 className="rv">Ready to <span className="ac">build together?</span></h2>
-          <p className="rv">Let's scope your project. We'll have a team proposal ready within 48 hours, no commitment required.</p>
+          <p className="rv">Tell us about your technology challenge. We'll help define the right approach, team, and path to production.</p>
           <div className="cta__actions rv">
-            <a className="btn btn-ac" href="mailto:info@asztechnologies.com">Start a project <Arrow size={15} /></a>
-            <a className="btn btn-ghost" href="/services">Explore our offering</a>
+            <a className="btn btn-ac" href="mailto:info@asztechnologies.com">Start a Conversation <Arrow size={15} /></a>
+            <A className="btn btn-ghost" to={ROUTES.services}>Explore Our Services</A>
           </div>
         </div>
       </section>

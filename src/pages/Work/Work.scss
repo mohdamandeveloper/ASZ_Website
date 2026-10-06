@@ -1,0 +1,491 @@
+// ─────────────────────────────────────────────────────────────
+// Our Work page styles
+// Re-uses from your global SCSS: .btn .btn-ac .tlink .eyebrow .ac
+//                                .up .live .fadein .floaty .rv .rvl .rvr
+// No @use needed – only relies on those global classes.
+// ─────────────────────────────────────────────────────────────
+
+$font-sans: 'Geist', 'Helvetica Neue', Helvetica, sans-serif; // swap to 'Poppins' to match the rest of the site
+$font-mono: 'Geist Mono', monospace;
+$header-h: 68px; // height of your sticky header – hero slides underneath it
+$ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+
+@keyframes pg-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.work-page {
+  width: 100%;
+  font-family: $font-sans;
+  color: #0e0e0f;
+  background: #fafafa;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: clip;
+
+  .pg-wrap {
+    max-width: 1264px;
+    margin: 0 auto;
+    box-sizing: border-box;
+    padding-left: 32px;
+    padding-right: 32px;
+  }
+
+  // keep white label on hover (global a:hover { color: inherit } would override it)
+  .btn-ac,
+  .btn-ac:hover {
+    color: #fff;
+  }
+
+  // ───────────────────────── HERO ─────────────────────────
+  .pg-hero {
+    position: relative;
+    margin-top: -#{$header-h};
+    background: #07070a;
+    color: #fff;
+    overflow: hidden;
+
+    &::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      opacity: 0.07;
+      background-image: linear-gradient(rgba(255, 255, 255, 0.16) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.16) 1px, transparent 1px);
+      background-size: 80px 80px;
+      -webkit-mask-image: radial-gradient(circle at 82% 50%, #000, transparent 60%);
+      mask-image: radial-gradient(circle at 82% 50%, #000, transparent 60%);
+    }
+
+    &::after {
+      content: '';
+      position: absolute;
+      inset: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: 30px;
+      pointer-events: none;
+    }
+
+    // dotted rotating orbs
+    &__orb {
+      position: absolute;
+
+      &--lg {
+        right: -300px;
+        top: -160px;
+        width: 860px;
+        height: 860px;
+
+        .pg-hero__ring {
+          border: 16px dotted var(--ac);
+          opacity: 0.13;
+          filter: blur(7px);
+          animation: pg-spin 120s linear infinite;
+        }
+      }
+
+      &--sm {
+        right: -60px;
+        top: 80px;
+        width: 380px;
+        height: 380px;
+
+        .pg-hero__ring {
+          border: 2px dotted rgba(255, 255, 255, 0.22);
+          animation: pg-spin 90s linear infinite reverse;
+        }
+      }
+    }
+
+    &__ring {
+      width: 100%;
+      height: 100%;
+      box-sizing: border-box;
+      border-radius: 50%;
+    }
+
+    &__grid {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: flex-end;
+      gap: 26px;
+      min-height: 600px;
+      max-width: 860px;
+      padding: 190px 0 96px;
+      box-sizing: border-box;
+    }
+
+    &__badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      height: 36px;
+      padding: 0 16px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      font-family: $font-mono;
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: #d6d6d6;
+
+      .dot {
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background: var(--ac);
+      }
+    }
+
+    &__title {
+      margin: 0;
+      font-size: clamp(44px, 5.2vw, 84px);
+      line-height: 0.96;
+      font-weight: 800;
+      letter-spacing: -0.055em;
+      animation-delay: 0.08s;
+    }
+
+    &__text {
+      margin: 0;
+      max-width: 640px;
+      font-size: 19px;
+      line-height: 1.55;
+      color: #a9abb3;
+      animation-delay: 0.16s;
+    }
+
+    &__actions {
+      animation-delay: 0.26s;
+    }
+  }
+
+  .pg-wrap--hero {
+    position: relative;
+    z-index: 1;
+    padding-left: 48px;
+    padding-right: 48px;
+  }
+
+  // ─────────────────────────── CTA ───────────────────────────
+  .pg-cta {
+    background: #fff;
+    border-top: 1px solid #e8e8e7;
+    text-align: center;
+
+    &__inner {
+      padding-top: 128px;
+      padding-bottom: 136px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      margin-bottom: 24px;
+    }
+
+    &__title {
+      margin: 0;
+      font-size: clamp(42px, 5.6vw, 84px);
+      line-height: 0.96;
+      font-weight: 800;
+      letter-spacing: -0.055em;
+    }
+
+    &__text {
+      margin: 28px auto 0;
+      max-width: 640px;
+      font-size: 19px;
+      line-height: 1.55;
+      color: #5c5c5c;
+    }
+
+    &__actions {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 14px;
+      margin-top: 44px;
+
+      .btn {
+        --h: 60px;
+        --px: 34px;
+        --fs: 17px;
+        font-weight: 600;
+      }
+    }
+
+    &__ghost,
+    &__ghost:hover {
+      color: #0e0e0f;
+    }
+
+    &__ghost {
+      background: #fff;
+      border: 1px solid #d5d5d4;
+      transition: border-color 0.2s, background 0.2s, transform 0.2s;
+
+      &:hover {
+        border-color: #0e0e0f;
+        background: #f3f3f2;
+      }
+    }
+  }
+
+  // ─────────────────────── FILTER BAR ───────────────────────
+  .work-filter {
+    position: sticky;
+    top: 108px; // sits just under your sticky header
+    z-index: 40;
+    background: rgba(250, 250, 250, 0.92);
+    -webkit-backdrop-filter: blur(14px);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid #dcdcdb;
+
+    &__inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      padding-top: 16px;
+      padding-bottom: 16px;
+    }
+
+    &__pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    &__count {
+      font-family: $font-mono;
+      font-size: 12px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #5c5c5c;
+      white-space: nowrap;
+
+      span {
+        color: var(--ac2);
+      }
+    }
+  }
+
+  .work-pill {
+    display: inline-flex;
+    align-items: center;
+    height: 40px;
+    padding: 0 16px;
+    border-radius: 999px;
+    border: 1px solid #d4d4d3;
+    background: #fff;
+    color: #0e0e0f;
+    font-size: 14px;
+    font-weight: 500;
+    transition: background 0.25s, color 0.25s, border-color 0.25s, transform 0.2s;
+
+    &:hover {
+      transform: translateY(-1px);
+    }
+
+    &--on {
+      background: #0e0e0f;
+      border-color: #0e0e0f;
+      color: #fff;
+    }
+  }
+
+  // ─────────────────────────── GRID ───────────────────────────
+  @keyframes pg-pop {
+    from {
+      opacity: 0;
+      translate: 0 18px;
+    }
+    to {
+      opacity: 1;
+      translate: 0 0;
+    }
+  }
+
+  .pg-pop {
+    animation: pg-pop 0.5s $ease both;
+  }
+
+  .work-grid-sec {
+    background: #fafafa;
+  }
+
+  .work-grid-wrap {
+    padding-top: 64px;
+    padding-bottom: 96px;
+  }
+
+  .work-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 24px;
+    row-gap: 64px;
+  }
+
+  .work-card {
+    display: block;
+    transition: transform 0.5s $ease;
+
+    &__img {
+      position: relative;
+      aspect-ratio: 3 / 2;
+      border-radius: 22px;
+      border: 1px dashed #bdbdbc;
+      background: #f0f0ef;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: $font-mono;
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      color: #5c5c5c;
+      transition: border-color 0.3s, background 0.3s;
+    }
+
+    &__go {
+      position: absolute;
+      right: 18px;
+      top: 18px;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      border: 1px solid #bdbdbc;
+      background: #fff;
+      color: #0e0e0f;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.3s, background 0.3s, color 0.3s, border-color 0.3s;
+    }
+
+    &__title {
+      margin-top: 22px;
+      font-size: 26px;
+      font-weight: 600;
+      letter-spacing: -0.03em;
+    }
+
+    &__text {
+      margin: 8px 0 0;
+      max-width: 480px;
+      font-size: 15px;
+      line-height: 1.55;
+      color: #5c5c5c;
+    }
+
+    &__tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 14px;
+    }
+
+    &__tag {
+      display: inline-flex;
+      align-items: center;
+      height: 30px;
+      padding: 0 12px;
+      border-radius: 999px;
+      border: 1px solid #d4d4d3;
+      background: #fff;
+      font-size: 13px;
+
+      &--year {
+        border-style: dashed;
+        border-color: #bdbdbc;
+        background: transparent;
+        font-family: $font-mono;
+        font-size: 11px;
+        letter-spacing: 0.1em;
+        color: #5c5c5c;
+      }
+    }
+
+    &:hover {
+      transform: translateY(-6px);
+
+      .work-card__img {
+        border-color: var(--ac);
+        background: #fff;
+      }
+
+      .work-card__go {
+        transform: translate(3px, -3px);
+        background: var(--ac2);
+        border-color: var(--ac2);
+        color: #fff;
+      }
+    }
+  }
+
+  // ─────────────────────── EMPTY STATE ───────────────────────
+  .work-empty {
+    padding: 88px 32px;
+    border-radius: 26px;
+    border: 1px dashed #bdbdbc;
+    text-align: center;
+
+    &__title {
+      font-size: 30px;
+      font-weight: 600;
+      letter-spacing: -0.035em;
+    }
+
+    &__text {
+      margin: 12px auto 28px;
+      max-width: 420px;
+      font-size: 16px;
+      line-height: 1.6;
+      color: #5c5c5c;
+    }
+
+    .work-pill {
+      height: 48px;
+      padding: 0 24px;
+      border-color: #0e0e0f;
+      font-size: 15px;
+    }
+  }
+
+  // ─────────────────────── Tablet & phone ───────────────────────
+  @media (max-width: 900px) {
+    .pg-wrap {
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+
+    .pg-sec {
+      padding-top: 80px;
+      padding-bottom: 80px;
+    }
+
+    .pg-hero__grid {
+      padding-top: 150px;
+      padding-bottom: 40px;
+      min-height: 0;
+    }
+
+    .work-filter__inner {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .work-grid {
+      grid-template-columns: 1fr;
+    }
+
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .pg-hero__ring,
+    .pg-pop {
+      animation: none !important;
+    }
+  }
+}

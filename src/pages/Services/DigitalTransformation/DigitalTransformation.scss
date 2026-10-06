@@ -1,0 +1,371 @@
+// ─────────────────────────────────────────────────────────────
+// Shared styles for the three service sub-pages
+// (Cloud, Product Engineering, Talent).
+//
+// Re-uses from your existing global.scss / _utilities.scss / _animations.scss:
+//   .btn .btn-ac .btn-ghost  .eyebrow  .ac  .up .live  .rv .rvs
+// Nothing here needs @use – it only relies on those global classes.
+// ─────────────────────────────────────────────────────────────
+
+$font-sans: 'Geist', 'Helvetica Neue', Helvetica, sans-serif; // swap to 'Poppins' if you want the site-wide font
+$font-mono: 'Geist Mono', monospace;
+$header-h: 68px; // height of your sticky header – hero slides underneath it
+$ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+
+.svc-page {
+  width: 100%;
+  font-family: $font-sans;
+  color: #0e0e0f;
+  background: #fafafa;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: clip;
+
+  // shared centred container
+  .svc-wrap {
+    max-width: 1264px;
+    margin: 0 auto;
+    box-sizing: border-box;
+  }
+
+  // ── Buttons: keep the white label on hover (global a:hover { color: inherit } would override it)
+  .btn-ac,
+  .btn-ac:hover,
+  .btn-ghost,
+  .btn-ghost:hover {
+    color: #fff;
+  }
+
+  // ───────────────────────── 1. HERO ─────────────────────────
+  .svc-hero {
+    position: relative;
+    margin-top: -#{$header-h};
+    background: #07070a;
+    color: #fff;
+    overflow: hidden;
+
+    // faint grid
+    &::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      opacity: 0.07;
+      background-image: linear-gradient(rgba(255, 255, 255, 0.16) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.16) 1px, transparent 1px);
+      background-size: 80px 80px;
+      -webkit-mask-image: radial-gradient(circle at 82% 50%, #000, transparent 60%);
+      mask-image: radial-gradient(circle at 82% 50%, #000, transparent 60%);
+    }
+
+    // inner rounded frame
+    &::after {
+      content: '';
+      position: absolute;
+      inset: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: 30px;
+      pointer-events: none;
+    }
+
+    .svc-wrap {
+      position: relative;
+      z-index: 1;
+      padding: 0 48px;
+    }
+
+    &__grid {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: flex-end;
+      gap: 26px;
+      min-height: 700px;
+      max-width: 900px;
+      padding: 170px 0 88px;
+      box-sizing: border-box;
+    }
+
+    &__crumb {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      min-height: 36px;
+      padding: 0 16px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      font-family: $font-mono;
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: #d6d6d6;
+
+      .dot {
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background: var(--ac);
+      }
+
+      a {
+        display: inline-flex;
+        align-items: center;
+        min-height: 34px;
+        opacity: 0.7;
+        transition: opacity 0.2s;
+
+        &:hover {
+          opacity: 1;
+        }
+      }
+
+      .sep {
+        opacity: 0.4;
+      }
+    }
+
+    &__title {
+      margin: 0;
+      font-size: clamp(40px, 4.8vw, 76px);
+      line-height: 0.97;
+      font-weight: 800;
+      letter-spacing: -0.055em;
+      animation-delay: 0.08s;
+    }
+
+    &__text {
+      margin: 0;
+      max-width: 720px;
+      font-size: 18px;
+      line-height: 1.6;
+      color: #a9abb3;
+      animation-delay: 0.16s;
+    }
+
+    &__actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      animation-delay: 0.26s;
+
+      .btn-ghost {
+        font-weight: 600;
+      }
+    }
+  }
+
+  // ───────────────────── 2. WHAT WE DELIVER ─────────────────────
+  .svc-deliver {
+    background: #fafafa;
+
+    .svc-wrap {
+      padding: 124px 32px 120px;
+    }
+
+    &__head {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 32px;
+      margin-bottom: 48px;
+    }
+
+    &__title {
+      margin: 0;
+      font-size: clamp(34px, 3.8vw, 56px);
+      line-height: 1;
+      font-weight: 700;
+      letter-spacing: -0.05em;
+    }
+  }
+
+  .svc-cards {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 12px;
+
+    &--two {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  .svc-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    padding: 28px 26px 26px;
+    box-sizing: border-box;
+    border-radius: 22px;
+    background: #fff;
+    border: 1px solid #e3e3e2;
+    overflow: hidden;
+    transition: transform 0.45s $ease, border-color 0.35s, box-shadow 0.45s;
+
+    &__bar {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      height: 3px;
+      background: var(--ac);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.55s $ease;
+    }
+
+    &__num {
+      font-family: $font-mono;
+      font-size: 12px;
+      letter-spacing: 0.14em;
+      color: var(--ac2);
+    }
+
+    &__title {
+      margin: 34px 0 12px;
+      font-size: 22px;
+      font-weight: 600;
+      letter-spacing: -0.03em;
+      line-height: 1.15;
+    }
+
+    &__text {
+      margin: 0 0 26px;
+      font-size: 15px;
+      line-height: 1.6;
+      color: #5c5c5c;
+    }
+
+    &__tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: auto;
+    }
+
+    &__tag {
+      display: inline-flex;
+      align-items: center;
+      height: 28px;
+      padding: 0 11px;
+      border-radius: 999px;
+      background: #f3f3f2;
+      font-size: 12px;
+      font-weight: 500;
+      color: #3a3a3c;
+      white-space: nowrap;
+    }
+
+    &:hover {
+      transform: translateY(-5px);
+      border-color: #0e0e0f;
+      box-shadow: 0 28px 46px -28px rgba(0, 0, 0, 0.35);
+
+      .svc-card__bar {
+        transform: scaleX(1);
+      }
+    }
+  }
+
+  // ─────────────────────────── CTA ───────────────────────────
+  .svc-cta {
+    background: #fff;
+    border-top: 1px solid #e8e8e7;
+
+    .svc-wrap {
+      padding: 128px 32px 136px;
+      text-align: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      margin-bottom: 24px;
+    }
+
+    &__title {
+      margin: 0;
+      font-size: clamp(42px, 5.6vw, 84px);
+      line-height: 0.96;
+      font-weight: 800;
+      letter-spacing: -0.055em;
+    }
+
+    &__text {
+      margin: 28px auto 0;
+      max-width: 640px;
+      font-size: 19px;
+      line-height: 1.55;
+      color: #5c5c5c;
+    }
+
+    &__actions {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 14px;
+      margin-top: 44px;
+
+      // larger buttons – driven by the custom properties .btn already supports
+      .btn {
+        --h: 60px;
+        --px: 34px;
+        --fs: 17px;
+        font-weight: 600;
+      }
+    }
+
+    &__ghost,
+    &__ghost:hover {
+      color: #0e0e0f;
+    }
+
+    &__ghost {
+      background: #fff;
+      border: 1px solid #d5d5d4;
+      transition: border-color 0.2s, background 0.2s, transform 0.2s;
+
+      &:hover {
+        border-color: #0e0e0f;
+        background: #f3f3f2;
+      }
+    }
+  }
+
+  // ─────────────────────── Tablet & phone ───────────────────────
+  @media (max-width: 1000px) {
+    .svc-cards {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 900px) {
+    .svc-wrap,
+    .svc-hero .svc-wrap,
+    .svc-deliver .svc-wrap,
+    .svc-cta .svc-wrap {
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+
+    .svc-deliver .svc-wrap,
+    .svc-cta .svc-wrap {
+      padding-top: 80px;
+      padding-bottom: 80px;
+    }
+
+    .svc-hero__grid {
+      padding-top: 150px;
+      padding-bottom: 40px;
+      min-height: 0;
+    }
+
+    .svc-deliver__head {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .svc-cards,
+    .svc-cards--two {
+      grid-template-columns: 1fr;
+    }
+  }
+}

@@ -5,6 +5,16 @@ import './styles/global.scss';
 import About from './pages/About/About';
 import Home from './pages/Home/Home';
 import { StrictMode } from 'react';
+import Service from './pages/Services/Service/Service';
+import Services from './pages/Services/Services';
+import AiIntelligence from './pages/Services/AiIntelligence/AiIntelligence';
+import SmartSecurity from './pages/Services/SmartSecurity/SmartSecurity';
+import EnterpriseErp from './pages/Services/EnterpriseErp/EnterpriseErp';
+import ProductApplication from './pages/Services/ProductApplication/ProductApplication';
+import DigitalTransformation from './pages/Services/DigitalTransformation/DigitalTransformation';
+import TechnologyTalent from './pages/Services/TechnologyTalent/TechnologyTalent';
+import Products from './pages/Products/Products';
+import Work from './pages/Work/Work';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -12,6 +22,19 @@ const router = createBrowserRouter(
       <Route index element={<Home />} />
       <Route path='home' element={<Home />} />
       <Route path='about' element={<About />} />
+      <Route path='service' element={<Service />} />
+      <Route path='service' element={<Services />}>
+        <Route path='ai-intelligence' element={<AiIntelligence />} />
+        <Route path='smart-security' element={<SmartSecurity />} />
+        <Route path='enterprise-erp' element={<EnterpriseErp />} />
+        <Route path='product-application' element={<ProductApplication />} />
+        <Route path='digital-transformation' element={<DigitalTransformation />} />
+        <Route path='technology-talent' element={<TechnologyTalent />} />
+      </Route>
+      <Route path='products' element={<Products />} />
+      <Route path='work' element={<Work />} />
+      {/* <Route path='contact' element={<ContactUs />} /> */}
+      {/* <Route path="case-study/:id" element={<CaseStudyDetail />} /> */}
     </Route>
   )
 )

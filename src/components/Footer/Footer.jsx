@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import logo from '../../assets/images/logo.png';
+import logo from '../../assets/images/asz-logo2.png';
 import './Footer.scss';
 
 // Internal routes use <Link>, in-page anchors and external links use <a>
@@ -7,20 +7,27 @@ const A = ({ href, ...p }) => (href.startsWith('/') ? <Link to={href} {...p} /> 
 
 const COMPANY = [
   { label: 'Home', href: '/' },
-  { label: 'About us', href: '/about' },
+  { label: 'About', href: '/about' },
   { label: 'Products', href: '/products' },
-  { label: 'Our work', href: '/work' },
+  { label: 'Our Work', href: '/work' },
   { label: 'Contact', href: '#contact' },
 ];
 
+// Edit hrefs to match your router
 const SERVICES = [
-  'Software development',
-  'Testing & QA',
-  'Mobile development',
-  'UX/UI design',
-  'IT consulting',
-  'Data analytics',
-  'Cybersecurity services',
+  { label: 'AI & Intelligent Systems', href: '/services/ai' },
+  { label: 'Smart Security Systems', href: '/services/security' },
+  { label: 'Enterprise Systems & ERP', href: '/services/erp' },
+  { label: 'Product & Application Engineering', href: '/services/product-engineering' },
+  { label: 'Digital Transformation & Cloud', href: '/services/cloud' },
+  { label: 'Technology Talent & Engineering', href: '/services/talent' },
+];
+
+const OFFICES = [
+  { label: 'Head Office', city: 'Singapore', address: '156 MacPherson Rd, Singapore 348528' },
+  { label: 'UAE Office', city: 'Dubai', address: 'Unit #18-01, 18th Floor, Ontario Tower, Business Bay, Dubai' },
+  { label: 'Australia Office', city: 'Sydney', address: 'Suite 4.02, Level 4, 55 Market Street, Sydney NSW 2000' },
+  { label: 'India Office', city: 'Bangalore', address: 'No.106, 4th Floor, 10th Cross, Ganganagar, Bangalore 560 032' },
 ];
 
 export default function Footer() {
@@ -31,12 +38,16 @@ export default function Footer() {
           <div className="site-footer__about">
             <div className="site-footer__brand">
               <img src={logo} alt="ASZ" />
-              <span>Technologies</span>
+              {/* <span>Technologies</span> */}
             </div>
             <p>
-              One of Asia's leading innovative IT solution providers, offering comprehensive and
-              focused solutions in Cloud, Security, Media and Mobile.
+              Global technology and engineering solutions across AI, intelligent security, digital
+              transformation, product engineering, and enterprise technology.
             </p>
+            <div className="site-footer__contact">
+              <a className="flink flink--sm" href="mailto:info@asztechnologies.com">info@asztechnologies.com</a>
+              <a className="flink flink--sm" href="tel:+919740703030">+91 97407 03030</a>
+            </div>
           </div>
 
           <div className="site-footer__col site-footer__col--company">
@@ -47,25 +58,22 @@ export default function Footer() {
           </div>
 
           <div className="site-footer__col site-footer__col--services">
-            <div className="site-footer__title">Our services</div>
+            <div className="site-footer__title">Our Services</div>
             {SERVICES.map((s) => (
-              <A key={s} className="flink" href="/services">{s}</A>
+              <A key={s.label} className="flink flink--block" href={s.href}>{s.label}</A>
             ))}
           </div>
 
-          <div className="site-footer__col site-footer__col--contact">
-            <div className="site-footer__title">Contact info</div>
-            <div>
-              <div className="site-footer__label">Head office</div>
-              No.106, 4th floor, 10th cross, Ganganagar, Bangalore-32, India
-            </div>
-            <div>
-              <div className="site-footer__label">Call us</div>
-              <a className="flink flink--sm" href="tel:+919740703030">+91 97407 03030</a>
-            </div>
-            <div>
-              <div className="site-footer__label">Email us</div>
-              <a className="flink flink--sm" href="mailto:info@asztechnologies.com">info@asztechnologies.com</a>
+          <div className="site-footer__offices">
+            <div className="site-footer__title site-footer__title--offices">Global Offices</div>
+            <div className="site-footer__offgrid">
+              {OFFICES.map((o) => (
+                <div key={o.label}>
+                  <div className="site-footer__label">{o.label}</div>
+                  <div className="site-footer__city">{o.city}</div>
+                  {o.address}
+                </div>
+              ))}
             </div>
           </div>
         </div>
