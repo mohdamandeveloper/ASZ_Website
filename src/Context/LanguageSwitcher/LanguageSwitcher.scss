@@ -1,0 +1,125 @@
+.lang-switcher {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+
+    .lang-switcher__trigger {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+
+        padding: 8px 12px;
+        border-radius: 999px;
+
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid rgba(255, 255, 255, 0.14);
+        color: inherit;
+
+        cursor: pointer;
+        transition: background 0.2s ease, border-color 0.2s ease;
+
+        font-size: 13px;
+        font-weight: 600;
+        letter-spacing: 0.02em;
+
+        &:hover {
+            background: rgba(255, 255, 255, 0.12);
+            border-color: rgba(255, 255, 255, 0.28);
+        }
+    }
+
+    .lang-switcher__flag {
+        font-size: 16px;
+        line-height: 1;
+    }
+
+    .lang-switcher__code {
+        text-transform: uppercase;
+    }
+
+    .lang-switcher__chevron {
+        display: inline-block;
+        font-size: 10px;
+        transition: transform 0.2s ease;
+
+        &.is-open {
+            transform: rotate(180deg);
+        }
+    }
+
+    .lang-switcher__menu {
+        position: absolute;
+        top: calc(100% + 8px);
+        right: 0;
+
+        min-width: 170px;
+        margin: 0;
+        padding: 6px;
+
+        list-style: none;
+
+        background: #0b0f16;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        border-radius: 12px;
+        box-shadow: 0 16px 40px rgba(0, 0, 0, 0.45);
+
+        z-index: 999;
+    }
+
+    .lang-switcher__option {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        width: 100%;
+
+        padding: 9px 10px;
+        border-radius: 8px;
+
+        background: transparent;
+        border: none;
+        color: #e6ebf5;
+
+        text-align: left;
+        cursor: pointer;
+
+        font-size: 13.5px;
+
+        transition: background 0.15s ease;
+
+        &:hover {
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        &.is-active {
+            background: rgba(255, 107, 53, 0.16);
+            color: #ff8a5b;
+        }
+    }
+
+    // ─── RTL ──────────────────────────────────────────────────────────────
+    &.lang-switcher--rtl {
+        .lang-switcher__menu {
+            right: auto;
+            left: 0;
+        }
+
+        .lang-switcher__option {
+            text-align: right;
+        }
+    }
+}
+
+// Fallback: also flip automatically whenever the switcher sits inside an
+// ancestor that carries the global RTL flag, in case the .lang-switcher--rtl
+// modifier class isn't applied by the consuming header component.
+[dir="rtl"] .lang-switcher,
+.rtl .lang-switcher {
+    .lang-switcher__menu {
+        right: auto;
+        left: 0;
+    }
+
+    .lang-switcher__option {
+        text-align: right;
+    }
+}

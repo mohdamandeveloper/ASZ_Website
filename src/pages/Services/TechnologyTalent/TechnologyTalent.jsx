@@ -15,7 +15,7 @@ const arrow = (
 const DELIVERABLES = [
   {
     title: 'Dedicated Engineering Teams',
-    text: 'A specialized team assembled around your technology, product, and delivery requirements — operating as an extension of your organization.',
+    text: 'A specialized team assembled around your technology, product, and delivery requirements operating as an extension of your organization.',
     tags: ['Dedicated Teams', 'Engineering Pods', 'Extended Teams'],
   },
   {

@@ -87,7 +87,7 @@ const Work = () => {
             </h1>
 
             <p className="up pg-hero__text">
-              Our work spans industries and geographies — real deployments, real clients, and real technology built to solve meaningful business challenges.
+              Our work spans industries and geographies real deployments, real clients, and real technology built to solve meaningful business challenges.
             </p>
             <div className="sv-hero__cta up">
               <a className="btn btn-ac" href="#contact">Start a Conversation <Arrow /></a>

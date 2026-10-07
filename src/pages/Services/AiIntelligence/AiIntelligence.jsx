@@ -8,7 +8,7 @@ const DELIVERABLES = [
   {
     n: '01',
     title: 'AI Agents & Autonomous Workflows',
-    text: 'We build intelligent agents that can reason, act, and orchestrate multi-step workflows — from approvals and operations to customer support and internal processes, with humans involved where judgment matters.',
+    text: 'We build intelligent agents that can reason, act, and orchestrate multi-step workflows from approvals and operations to customer support and internal processes, with humans involved where judgment matters.',
     tags: ['AI Agents', 'Agentic AI', 'Workflow Automation'],
   },
   {
@@ -72,7 +72,7 @@ export default function AiIntelligence() {
             </h1>
 
             <p className="up ai-intel__lead">
-              We design and engineer AI systems that move beyond experimentation and into production — automating complex workflows, augmenting human decisions, understanding unstructured data, and turning business information into intelligent action. From autonomous agents to predictive models and computer vision, we build AI around the way your business actually operates.
+              We design and engineer AI systems that move beyond experimentation and into production automating complex workflows, augmenting human decisions, understanding unstructured data, and turning business information into intelligent action. From autonomous agents to predictive models and computer vision, we build AI around the way your business actually operates.
             </p>
 
             <div className="up ai-intel__actions">

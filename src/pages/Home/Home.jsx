@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
+import { useLanguage, useTranslation } from '../../Context/LanguageContext';
 import './Home.scss';
 
 /* ------------------------------------------------------------------ */
@@ -20,49 +21,27 @@ const ROUTES = {
   safin: '/products#safin',
 };
 
-const CAPS = [
-  'AI & intelligent systems',
-  'Smart security',
-  'Product engineering',
-  'Digital transformation',
-];
-
 // Client logos come from one sprite (8 cols x 4 rows)
 const logoPos = (i) =>
   `${(((i % 8) / 7) * 100).toFixed(3)}% ${((Math.floor(i / 8) / 3) * 100).toFixed(3)}%`;
 const range = (a, b) => Array.from({ length: b - a }, (_, k) => a + k);
 const ROW_A = range(0, 16);
 const ROW_B = range(16, 31);
+const INDUSTRY_COUNT = 12;
 
-const INDUSTRIES = [
-  'Healthcare', 'Travel & Hospitality', 'Banking', 'Education', 'Finance', 'Automotive',
-  'Media & Entertainment', 'Real Estate', 'Retail', 'E-Commerce', 'Logistics & Transport',
-  'Marketing & Advertising',
-];
-// Duplicated so the slider can loop seamlessly
-const SECTORS = [...INDUSTRIES, ...INDUSTRIES].map((name, k) => {
-  const i = k % INDUSTRIES.length;
-  return { id: k, name, n: (i < 9 ? '0' : '') + (i + 1), py: `${((i / 11) * 100).toFixed(3)}%` };
-});
-
+// Text for these lives in the locale files (home.stats, in this order)
 const STATS = [
-  { target: 15, suffix: '+', label: 'Years of delivery' },
-  { target: 500, suffix: '+', label: 'Projects shipped' },
-  { target: 80, suffix: '+', label: 'Professionals' },
-  { target: 99, suffix: '%', label: 'On-time delivery' },
+  { target: 15, suffix: '+' },
+  { target: 500, suffix: '+' },
+  { target: 80, suffix: '+' },
+  { target: 99, suffix: '%' },
 ];
 
-const STEPS = [
-  { title: 'Discover', text: 'A focused discovery process to understand your goals, constraints, technology environment, and desired outcomes. We define the scope and delivery approach before engineering begins.' },
-  { title: 'Design', text: 'Architecture, experience, and technical direction shaped around your business requirements, users, industry constraints, and long-term goals.' },
-  { title: 'Build', text: 'Engineering, testing, and quality assurance with security, scalability, and performance considered from the first release.' },
-  { title: 'Run', text: 'Deployed to production, then monitored, supported, and continuously improved as your business evolves.' },
-];
-
+// Icon paths only; labels from home.products.chips (same order)
 const CORDON_CHIPS = [
-  { label: 'Vehicle Recognition', d: 'M3 13l2-6h14l2 6v5H3zM6.5 16h.01M17.5 16h.01M3 13h18' },
-  { label: 'Facial Recognition', d: 'M4 8V5a1 1 0 011-1h3M16 4h3a1 1 0 011 1v3M20 16v3a1 1 0 01-1 1h-3M8 20H5a1 1 0 01-1-1v-3M9 10v1M15 10v1M9.5 15a3.5 3.5 0 005 0' },
-  { label: 'Automated Access', d: 'M6 11V8a6 6 0 0112 0v3M5 11h14v9H5zM12 15v2' },
+  'M3 13l2-6h14l2 6v5H3zM6.5 16h.01M17.5 16h.01M3 13h18',
+  'M4 8V5a1 1 0 011-1h3M16 4h3a1 1 0 011 1v3M20 16v3a1 1 0 01-1 1h-3M8 20H5a1 1 0 01-1-1v-3M9 10v1M15 10v1M9.5 15a3.5 3.5 0 005 0',
+  'M6 11V8a6 6 0 0112 0v3M5 11h14v9H5zM12 15v2',
 ];
 
 /* Small shared bits ------------------------------------------------- */
@@ -70,12 +49,12 @@ const A = ({ to, children, ...rest }) =>
   to.startsWith('/') ? <Link to={to} {...rest}>{children}</Link> : <a href={to} {...rest}>{children}</a>;
 
 const Arrow = ({ size = 16 }) => (
-  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+  <svg className="rtl-flip" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
     <path d="M5 12h14M13 6l6 6-6 6" />
   </svg>
 );
 const ArrowUpRight = ({ size = 16, sw = 1.8 }) => (
-  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={sw} strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+  <svg className="rtl-flip" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={sw} strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
     <path d="M7 17L17 7M9 7h8v8" />
   </svg>
 );
@@ -109,6 +88,23 @@ const makePoints = () => {
 /* Component                                                           */
 /* ------------------------------------------------------------------ */
 export default function Home() {
+  const t = useTranslation();
+  const { language } = useLanguage();
+  const caps = t.home_caps;
+  const statLabels = t.home_stats;
+  const chipLabels = t.home_products_chips;
+  const steps = t.home_process_steps;
+  const industries = t.home_industries_items;
+
+  // Duplicated so the slider can loop seamlessly
+  const sectors = useMemo(
+    () => [...industries, ...industries].map((name, k) => {
+      const i = k % INDUSTRY_COUNT;
+      return { id: k, name, n: (i < 9 ? '0' : '') + (i + 1), py: `${((i / 11) * 100).toFixed(3)}%` };
+    }),
+    [industries]
+  );
+
   const orbRef = useRef(null);
   const statsRef = useRef(null);
   const processRef = useRef(null);
@@ -315,7 +311,7 @@ export default function Home() {
       wrap.removeEventListener('wheel', onWheel);
       wrap.removeEventListener('dragstart', onDragStart);
     };
-  }, []);
+  }, [language.code]); // re-run on language change: sector names change the track width
 
   /* Stats: count up once when scrolled into view ------------------- */
   useEffect(() => {
@@ -357,12 +353,12 @@ export default function Home() {
         <div className="wrap hero__wrap">
           <div className="g12 herogrid">
             <div className="hero__copy">
-              <div className="pill up"><span className="live dot" />Global technology &amp; engineering</div>
-              <h1 className="up"><span className="nw">Engineered to scale.</span><br /><span className="ac nw">Built for real impact.</span></h1>
-              <p className="up">AI systems, intelligent security, digital products, and enterprise technology engineered to solve complex business challenges.</p>
+              <div className="pill up"><span className="live dot" />{t.home_hero_pill}</div>
+              <h1 className="up"><span className="nw">{t.home_hero_line1}</span><br /><span className="ac nw">{t.home_hero_line2}</span></h1>
+              <p className="up">{t.home_hero_text}</p>
               <div className="hero__actions up">
-                <a className="btn btn-ac" href="#contact">Start a Conversation <Arrow size={15} /></a>
-                <a className="btn btn-ghost" href="#services">Explore Our Capabilities <Arrow /></a>
+                <a className="btn btn-ac" href="#contact">{t.home_hero_primary} <Arrow size={15} /></a>
+                <a className="btn btn-ghost" href="#services">{t.home_hero_secondary} <Arrow /></a>
               </div>
             </div>
 
@@ -373,7 +369,7 @@ export default function Home() {
           </div>
 
           <div className="caps up">
-            {CAPS.map((c, i) => (
+            {caps.map((c, i) => (
               <span key={c} className="cap"><span className="ac">{`0${i + 1}`}</span>{c}</span>
             ))}
           </div>
@@ -384,9 +380,9 @@ export default function Home() {
       <section id="clients" className="clients">
         <div className="sec clients__sec">
           <div className="clients__head rv">
-            <div className="eyebrow">Our clients</div>
-            <h2 className="h2">Trusted by businesses <span className="ac">around the globe.</span></h2>
-            <p>We deliver technology solutions that help organizations build, modernize, and scale — creating lasting partnerships across industries and markets.</p>
+            <div className="eyebrow">{t.home_clients_eyebrow}</div>
+            <h2 className="h2">{t.home_clients_title} <span className="ac">{t.home_clients_accent}</span></h2>
+            <p>{t.home_clients_text}</p>
           </div>
 
           <div className="mqwrap rv">
@@ -403,7 +399,7 @@ export default function Home() {
           </div>
 
           <div className="clients__more rv">
-            <A className="tlink" to={ROUTES.work}>See Our Clients <Arrow /></A>
+            <A className="tlink" to={ROUTES.work}>{t.home_clients_link} <Arrow /></A>
           </div>
         </div>
       </section>
@@ -413,9 +409,9 @@ export default function Home() {
         <div className="wrap sec services__wrap">
           <div className="split rv services__head">
             <div>
-              <div className="eyebrow">Our capabilities</div>
-              <h2 className="h2">Technology engineered<br /><span className="ac">around your business.</span></h2>
-              <p className="lede">From intelligent AI systems and smart security to product engineering and digital transformation, we bring strategy, engineering, and execution together to solve complex technology challenges.</p>
+              <div className="eyebrow">{t.home_services_eyebrow}</div>
+              <h2 className="h2">{t.home_services_title}<br /><span className="ac">{t.home_services_accent}</span></h2>
+              <p className="lede">{t.home_services_lede}</p>
             </div>
           </div>
 
@@ -423,27 +419,27 @@ export default function Home() {
             <A className="bento bento--sec rvl" to={ROUTES.security}>
               <div className="bento__bg img-sec zoom" aria-hidden="true" />
               <div className="bento__shade" aria-hidden="true" />
-              <span className="badge tone-orange"><span className="live dot" />AI-DRIVEN SECURITY</span>
+              <span className="badge tone-orange"><span className="live dot" />{t.home_services_security_badge}</span>
               <div className="bento__body">
-                <h3>Smart Security Systems</h3>
-                <p>Our Cordon platform brings AI-powered vehicle recognition, facial recognition, access control, and visitor management into one intelligent security layer — reducing manual intervention across buildings, campuses, and critical infrastructure.</p>
-                <div className="bento__cta">Learn More<span className="circ"><Arrow /></span></div>
+                <h3>{t.home_services_security_title}</h3>
+                <p>{t.home_services_security_text}</p>
+                <div className="bento__cta">{t.home_services_learn_more}<span className="circ"><Arrow /></span></div>
               </div>
             </A>
 
             <A className="bento bento--eng rv" to={ROUTES.engineering}>
-              <div className="bento__label">PRODUCT ENGINEERING</div>
-              <h3>Product &amp; Application Engineering</h3>
-              <p>We design, engineer, and scale digital products and enterprise applications from concept to production — combining product thinking, software engineering, AI, and modern architecture.</p>
+              <div className="bento__label">{t.home_services_engineering_label}</div>
+              <h3>{t.home_services_engineering_title}</h3>
+              <p>{t.home_services_engineering_text}</p>
             </A>
 
             <A className="bento bento--ai rvr" to={ROUTES.ai}>
               <div className="bento__bg img-ai zoom" aria-hidden="true" />
               <div className="bento__shade" aria-hidden="true" />
-              <span className="badge badge--abs tone-purple"><span className="dot" />INTELLIGENT AI</span>
+              <span className="badge badge--abs tone-purple"><span className="dot" />{t.home_services_ai_badge}</span>
               <div className="bento__body bento__body--pt">
-                <h3>AI &amp; Intelligent Systems</h3>
-                <p>AI isn't an add-on to what we build. Predictive intelligence, computer vision, machine learning, and intelligent automation are engineered directly into the systems we ship.</p>
+                <h3>{t.home_services_ai_title}</h3>
+                <p>{t.home_services_ai_text}</p>
               </div>
             </A>
 
@@ -453,18 +449,18 @@ export default function Home() {
                 <div className="bento__shade" aria-hidden="true" />
               </div>
               <div className="bento__dtbody">
-                <span className="badge badge--mb tone-teal"><span className="dot" />CLOUD &amp; MODERNIZATION</span>
-                <h3>Digital Transformation &amp; Cloud</h3>
-                <p>We modernize technology landscapes, cloud infrastructure, systems, and architecture — aligning every layer with the business you are building next.</p>
+                <span className="badge badge--mb tone-teal"><span className="dot" />{t.home_services_cloud_badge}</span>
+                <h3>{t.home_services_cloud_title}</h3>
+                <p>{t.home_services_cloud_text}</p>
                 <div className="bento__row">
-                  <span className="bento__cta bento__cta--inline">Learn More<span className="circ circ--ghost"><Arrow /></span></span>
+                  <span className="bento__cta bento__cta--inline">{t.home_services_learn_more}<span className="circ circ--ghost"><Arrow /></span></span>
                 </div>
               </div>
             </A>
           </div>
 
           <div className="more rv">
-            <A className="btn morelink" to={ROUTES.services}>Explore All Services <Arrow /></A>
+            <A className="btn morelink" to={ROUTES.services}>{t.home_services_explore_all} <Arrow /></A>
           </div>
         </div>
       </section>
@@ -473,12 +469,12 @@ export default function Home() {
       <section id="asz-stats" className="stats" ref={statsRef}>
         <div className="wrap statwrap stats__wrap">
           <div className="g4s">
-            {STATS.map((s) => (
-              <div className="dstat rvs" key={s.label}>
+            {STATS.map((s, i) => (
+              <div className="dstat rvs" key={s.target}>
                 <span className="glow" aria-hidden="true" />
                 <span className="edge" aria-hidden="true" />
                 <div className="dstat__num">{Math.round(s.target * p)}<span className="ac">{s.suffix}</span></div>
-                <div className="dstat__label">{s.label}</div>
+                <div className="dstat__label">{statLabels[i]}</div>
               </div>
             ))}
           </div>
@@ -490,9 +486,9 @@ export default function Home() {
         <div className="wrap sec products__wrap">
           <div className="split rv products__head">
             <div>
-              <div className="eyebrow">Our products</div>
-              <h2 className="h2">We ship our own products.<br /><span className="ac">Then we build yours.</span></h2>
-              <p className="lede">Our in-house products reflect the same engineering discipline we bring to client engagements — technology designed to solve real problems and operate in the real world.</p>
+              <div className="eyebrow">{t.home_products_eyebrow}</div>
+              <h2 className="h2">{t.home_products_title}<br /><span className="ac">{t.home_products_accent}</span></h2>
+              <p className="lede">{t.home_products_lede}</p>
             </div>
           </div>
 
@@ -501,18 +497,18 @@ export default function Home() {
             <div className="pimg-co zoom card__bg" aria-hidden="true" />
             <div className="card__shade" aria-hidden="true" />
             <div className="cordon__copy">
-              <div className="pill pill--card"><span className="live dot" />ASZ product · 01 · Intelligent Security</div>
+              <div className="pill pill--card"><span className="live dot" />{t.home_products_cordon_pill}</div>
               <h3>Cordon</h3>
-              <p>Cordon replaces manual security processes with a zero-touch, AI-driven access system for vehicle recognition, facial recognition, automated access control, and visitor management.</p>
+              <p>{t.home_products_cordon_text}</p>
               <div className="cordon__chips">
-                {CORDON_CHIPS.map((c) => (
-                  <span className="chip" key={c.label}>
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d={c.d} /></svg>
-                    {c.label}
+                {CORDON_CHIPS.map((d, i) => (
+                  <span className="chip" key={d}>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d={d} /></svg>
+                    {chipLabels[i]}
                   </span>
                 ))}
               </div>
-              <span className="btn btn-ac cordon__btn">Book a Demo <Arrow size={14} /></span>
+              <span className="btn btn-ac cordon__btn">{t.home_products_book_demo} <Arrow size={14} /></span>
             </div>
 
             <div className="cordonui floaty" aria-hidden="true">
@@ -542,10 +538,10 @@ export default function Home() {
               <div className="pimg-js zoom card__bg" aria-hidden="true" />
               <div className="card__shade card__shade--v" aria-hidden="true" />
               <div className="card__top">
-                <span className="card__meta">ASZ product · 02</span>
+                <span className="card__meta">{t.home_products_meta2}</span>
                 <span className="arrow"><ArrowUpRight /></span>
               </div>
-              <h3 className="card__name">JobScout</h3>
+              <h3 className="card__name">Mediq</h3>
             </A>
 
             {/* Safin */}
@@ -553,15 +549,15 @@ export default function Home() {
               <div className="pimg-sf zoom card__bg" aria-hidden="true" />
               <div className="card__shade card__shade--v" aria-hidden="true" />
               <div className="card__top">
-                <span className="card__meta">ASZ product · 03</span>
+                <span className="card__meta">{t.home_products_meta3}</span>
                 <span className="arrow"><ArrowUpRight /></span>
               </div>
-              <h3 className="card__name">Safin</h3>
+              <h3 className="card__name">JobScout</h3>
             </A>
           </div>
 
           <div className="more rv">
-            <a className="btn morelink" href="#contact">Book a Demo <Arrow /></a>
+            <a className="btn morelink" href="#contact">{t.home_products_book_demo} <Arrow /></a>
           </div>
         </div>
       </section>
@@ -571,14 +567,14 @@ export default function Home() {
         <div className="wrap sec industries__wrap">
           <div className="split rv industries__head">
             <div>
-              <div className="eyebrow">Industries we serve</div>
-              <h2 className="h2">Technology built for <span className="ac">every sector.</span></h2>
+              <div className="eyebrow">{t.home_industries_eyebrow}</div>
+              <h2 className="h2">{t.home_industries_title} <span className="ac">{t.home_industries_accent}</span></h2>
             </div>
           </div>
         </div>
         <div className="sectors-wrap rv" ref={sliderWrapRef}>
           <div className="sectors" ref={sliderTrackRef}>
-            {SECTORS.map((s) => (
+            {sectors.map((s) => (
               <a className="sector" href="#contact" draggable="false" key={s.id}>
                 <span className="indimg simg" aria-hidden="true" style={{ backgroundPosition: `center ${s.py}` }} />
                 <span className="shade" aria-hidden="true" />
@@ -596,18 +592,18 @@ export default function Home() {
         <div className="wrap sec process__wrap">
           <div className="g12">
             <div className="process__intro rvl">
-              <div className="eyebrow">How we work</div>
-              <h2 className="h2">Scoped. Built.<br /><span className="ac">Running.</span></h2>
-              <p>A clear path from the first conversation to technology running in production.</p>
-              <a className="tlink" href="#contact">Start a Conversation <Arrow /></a>
+              <div className="eyebrow">{t.home_process_eyebrow}</div>
+              <h2 className="h2">{t.home_process_line1}<br /><span className="ac">{t.home_process_accent}</span></h2>
+              <p>{t.home_process_text}</p>
+              <a className="tlink" href="#contact">{t.home_process_link} <Arrow /></a>
             </div>
 
             <div className="process__list">
-              {STEPS.map((s, i) => {
+              {steps.map((s, i) => {
                 const state = i < step ? 'is-done' : i === step ? 'is-current' : '';
                 return (
                   <div className={`tlrow rv ${state}`} key={s.title}>
-                    {i < STEPS.length - 1 && (
+                    {i < steps.length - 1 && (
                       <span className="tlline" aria-hidden="true"><span className="tlfill" /></span>
                     )}
                     <span className="tlmark">
@@ -616,8 +612,8 @@ export default function Home() {
                     </span>
                     <div className="tlbody">
                       <div className="tlmeta">
-                        Step {`0${i + 1}`}
-                        <span>{i < step ? 'Done' : i === step ? 'In progress' : ''}</span>
+                        {t.home_process_step} {`0${i + 1}`}
+                        <span>{i < step ? t.home_process_done : i === step ? t.home_process_in_progress : ''}</span>
                       </div>
                       <h3>{s.title}</h3>
                       <p>{s.text}</p>
@@ -636,11 +632,11 @@ export default function Home() {
         <div className="cta__shade" aria-hidden="true" />
         <div className="hero__frame" aria-hidden="true" />
         <div className="wrap cta__wrap">
-          <h2 className="rv">Ready to <span className="ac">build together?</span></h2>
-          <p className="rv">Tell us about your technology challenge. We'll help define the right approach, team, and path to production.</p>
+          <h2 className="rv">{t.home_cta_title} <span className="ac">{t.home_cta_accent}</span></h2>
+          <p className="rv">{t.home_cta_text}</p>
           <div className="cta__actions rv">
-            <a className="btn btn-ac" href="mailto:info@asztechnologies.com">Start a Conversation <Arrow size={15} /></a>
-            <A className="btn btn-ghost" to={ROUTES.services}>Explore Our Services</A>
+            <a className="btn btn-ac" href="mailto:info@asztechnologies.com">{t.home_cta_primary} <Arrow size={15} /></a>
+            <A className="btn btn-ghost" to={ROUTES.services}>{t.home_cta_secondary}</A>
           </div>
         </div>
       </section>

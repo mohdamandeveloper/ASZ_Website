@@ -177,7 +177,7 @@ export default function Service() {
         <div className="wrap sv-hero__wrap">
           <div className="pill up"><span className="live dot" />Our services</div>
           <h1 className="up">Six capabilities.<br /><span className="ac">One accountable technology partner.</span></h1>
-          <p className="up">From intelligent AI systems and smart security to cloud transformation, product engineering, technology talent, and enterprise platforms — we cover the technology stack from strategy to execution.</p>
+          <p className="up">From intelligent AI systems and smart security to cloud transformation, product engineering, technology talent, and enterprise platforms we cover the technology stack from strategy to execution.</p>
           <div className="sv-hero__cta up">
             <a className="btn btn-ac" href="#contact">Start a Conversation <Arrow /></a>
           </div>

@@ -425,3 +425,272 @@ $cube-img: url('../../assets/images/cordon-cubes.webp');
     }
   }
 }
+
+
+// =====================================================================
+//  Right-hand group: language switcher + CTA
+// =====================================================================
+.nav__end {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+@media (max-width: 900px) {
+  .nav__end { gap: 8px; }
+}
+
+
+// =====================================================================
+//  Language selector (inline in Header.jsx)
+// =====================================================================
+.btn_language {
+  position: relative;
+
+  .language_selector {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    min-width: 124px;
+    min-height: 44px;
+    padding: 0 20px;
+    border-radius: 999px;
+    border: 1px solid var(--color-primary);
+    background: transparent;
+    color: var(--color-primary);
+    font-size: 13px;
+    font-weight: 600;
+    white-space: nowrap;
+    opacity: .9;
+    transition: background .2s, border-color .2s, opacity .2s;
+
+    // &:hover,
+    // &:focus-visible {
+    //   opacity: 1;
+    //   background: rgba(255, 255, 255, .1);
+    //   border-color: rgba(255, 255, 255, .32);
+    //   outline: none;
+    // }
+
+    &__flag { font-size: 16px; line-height: 1; }
+    &__chev { transition: transform .2s; }
+  }
+
+  .lang-dropdown {
+    position: absolute;
+    top: calc(100% + 14px);
+    inset-inline-end: 0;
+    min-width: 170px;
+    background: #0f0f0ffc;
+    border: 1px solid rgba(255, 255, 255, .12);
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, .5);
+    z-index: 9999;
+
+    &__item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      width: 100%;
+      min-height: 44px;
+      padding: 10px 16px;
+      background: transparent;
+      border: 0;
+      color: #fff;
+      font-size: 13px;
+      text-align: start;
+      transition: background .15s;
+
+      &:hover,
+      &:focus-visible { background: rgba(255, 255, 255, .08); outline: none; }
+      &.active { background: rgba(255, 255, 255, .1); }
+    }
+  }
+}
+
+@media (max-width: 900px) {
+  .btn_language .language_selector { min-width: 0; padding: 0 12px; }
+}
+
+// =====================================================================
+//  Mobile: hamburger + left-sliding side navigation (MobileNav in Header.jsx)
+// =====================================================================
+.nav__burger {
+  display: none;               // desktop: hidden
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--ac);
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+@media (max-width: 900px) {
+  .nav__end .nav__cta { display: none; }   // hide "Start a conversation" on mobile
+  .nav__burger { display: inline-flex; }
+}
+
+@media (min-width: 901px) {
+  .mnav { display: none; }
+}
+
+.mnav {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  visibility: hidden;
+  // keep visible until the slide-out finishes, then hide (so closed links aren't focusable)
+  transition: visibility 0s .38s;
+
+  &.is-open {
+    visibility: visible;
+    transition: visibility 0s;
+  }
+
+  &__overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, .55);
+    opacity: 0;
+    transition: opacity .38s ease;
+
+    .mnav.is-open & { opacity: 1; }
+  }
+
+  &__panel {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    inset-inline-start: 0;
+    width: min(300px, 82vw);
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    padding-bottom: 24px;
+    box-sizing: border-box;
+    background: #000;
+    color: #fff;
+    border-inline-end: 1px solid rgba(255, 255, 255, .08);
+    box-shadow: 24px 0 60px rgba(0, 0, 0, .5);
+    transform: translateX(-100%);              // slide in from the left
+    transition: transform .38s $ease;
+
+    .mnav.is-open & { transform: translateX(0); }
+
+    [dir='rtl'] & { transform: translateX(100%); }
+    [dir='rtl'] .mnav.is-open & { transform: translateX(0); }
+  }
+
+  &__top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 76px;
+    padding: 0 14px 0 20px;
+    flex: none;
+  }
+
+  &__brand img {
+    display: block;
+    height: 50px;
+    width: auto;
+  }
+
+  &__close {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: var(--ac);
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  &__nav { display: flex; flex-direction: column; margin-top: 6px; }
+
+  &__item { border-bottom: 1px solid rgba(255, 255, 255, .12); }
+
+  &__row { display: flex; align-items: stretch; }
+
+  &__link {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    min-height: 52px;
+    padding: 0 20px;
+    font-size: 15px;
+    font-weight: 500;
+    color: #fff;
+    transition: color .2s;
+
+    &.active { color: var(--ac); }
+  }
+
+  &__toggle {
+    flex: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 56px;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: #fff;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+
+    svg { transition: transform .3s $ease; }
+    &.is-open svg { transform: rotate(180deg); }
+  }
+
+  // Accordion: animates height 0 → auto
+  &__sub {
+    display: grid;
+    grid-template-rows: 0fr;
+    visibility: hidden;
+    background: rgba(255, 255, 255, .04);
+    transition: grid-template-rows .32s $ease, visibility 0s .32s;
+
+    &.is-open {
+      grid-template-rows: 1fr;
+      visibility: visible;
+      transition: grid-template-rows .32s $ease, visibility 0s;
+    }
+  }
+
+  &__subin { min-height: 0; overflow: hidden; }
+
+  &__sublink {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-height: 46px;
+    padding: 0 20px 0 32px;
+    font-size: 14px;
+    color: rgba(255, 255, 255, .8);
+    transition: color .2s, background .2s;
+
+    svg { flex: none; color: var(--ac); }
+
+    &:hover,
+    &:focus-visible { color: #fff; background: rgba(255, 255, 255, .06); outline: none; }
+  }
+
+  &__num {
+    flex: none;
+    width: 18px;
+    font-size: 10.5px;
+    letter-spacing: .1em;
+    color: var(--ac);
+  }
+}

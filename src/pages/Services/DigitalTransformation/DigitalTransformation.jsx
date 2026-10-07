@@ -35,7 +35,7 @@ const DELIVERABLES = [
   },
   {
     title: 'Technology Risk & Governance',
-    text: 'Embed security, compliance, governance, and resilience into the technology architecture from the beginning — not after the system is built.',
+    text: 'Embed security, compliance, governance, and resilience into the technology architecture from the beginning not after the system is built.',
     tags: ['IT Governance', 'Technology Risk', 'Compliance'],
   },
 ];
@@ -60,7 +60,7 @@ const DigitalTransformation = () => (
           </h1>
 
           <p className="up svc-hero__text">
-            Transformation starts with clarity. We align technology, architecture, cloud, automation, and governance with where your business is going — creating a modern technology foundation that is scalable, secure, and built for continuous change.
+            Transformation starts with clarity. We align technology, architecture, cloud, automation, and governance with where your business is going creating a modern technology foundation that is scalable, secure, and built for continuous change.
           </p>
 
           <div className="up svc-hero__actions">
