@@ -357,8 +357,8 @@ export default function Home() {
               <h1 className="up"><span className="nw">{t.home_hero_line1}</span><br /><span className="ac nw">{t.home_hero_line2}</span></h1>
               <p className="up">{t.home_hero_text}</p>
               <div className="hero__actions up">
-                <a className="btn btn-ac" href="#contact">{t.home_hero_primary} <Arrow size={15} /></a>
-                <a className="btn btn-ghost" href="#services">{t.home_hero_secondary} <Arrow /></a>
+                <Link to={'/contact'} className="btn btn-ac">{t.home_hero_primary} <Arrow size={15} /></Link>
+                <Link to={'/service'} className="btn btn-ghost">{t.home_hero_secondary} <Arrow /></Link>
               </div>
             </div>
 
@@ -635,8 +635,8 @@ export default function Home() {
           <h2 className="rv">{t.home_cta_title} <span className="ac">{t.home_cta_accent}</span></h2>
           <p className="rv">{t.home_cta_text}</p>
           <div className="cta__actions rv">
-            <a className="btn btn-ac" href="mailto:info@asztechnologies.com">{t.home_cta_primary} <Arrow size={15} /></a>
-            <A className="btn btn-ghost" to={ROUTES.services}>{t.home_cta_secondary}</A>
+            <Link to={'/contact'} className="btn btn-ac">{t.home_cta_primary} <Arrow size={15} /></Link>
+            <Link to={'/service'} className="btn btn-ghost">{t.home_cta_secondary}</Link>
           </div>
         </div>
       </section>

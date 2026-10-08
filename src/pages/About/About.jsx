@@ -102,7 +102,7 @@ export default function About() {
                     </h1>
                     <p className="up">{t.about_hero_text}</p>
                     <div className="a-hero__cta up">
-                        <Link className="btn btn-ac" to="/services">{t.about_hero_cta} <Arrow /></Link>
+                        <Link className="btn btn-ac" to="/service">{t.about_hero_cta} <Arrow /></Link>
                     </div>
                 </div>
 
@@ -267,8 +267,8 @@ export default function About() {
                     <h2 className="h2">{t.about_cta_title} <span className="ac">{t.about_cta_accent}</span></h2>
                     <p>{t.about_cta_text}</p>
                     <div className="a-cta__actions">
-                        <a className="btn btn-ac a-cta__btn" href="mailto:info@asztechnologies.com">{t.about_cta_primary} <Arrow /></a>
-                        <Link className="btn a-cta__ghost" to="/services">{t.about_cta_secondary}</Link>
+                        <Link to="/contact" className="btn btn-ac a-cta__btn">{t.about_cta_primary} <Arrow /></Link>
+                        <Link className="btn a-cta__ghost" to="/service">{t.about_cta_secondary}</Link>
                     </div>
                 </div>
             </section>

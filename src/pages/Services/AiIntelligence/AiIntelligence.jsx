@@ -39,10 +39,10 @@ export default function AiIntelligence() {
             <p className="up ai-intel__lead">{t.ai_intel_lead}</p>
 
             <div className="up ai-intel__actions">
-              <a className="btn btn-ac" href="#contact">
+              <Link to={'/contact'} className="btn btn-ac" href="#contact">
                 {t.ai_intel_cta}
                 {ArrowRight}
-              </a>
+              </Link>
               <Link className="btn btn-ghost ai-intel__ghost" to={SERVICES_ROUTE}>{t.ai_intel_all_services}</Link>
             </div>
           </div>
@@ -88,10 +88,10 @@ export default function AiIntelligence() {
           </h2>
           <p className="ai-intel__cta-lead">{t.ai_intel_cta_text}</p>
           <div className="ai-intel__cta-actions">
-            <a className="btn btn-ac ai-intel__cta-btn" href={`mailto:${CONTACT_EMAIL}`}>
+            <Link to={'/contact'} className="btn btn-ac ai-intel__cta-btn">
               {t.ai_intel_cta}
               {ArrowRight}
-            </a>
+            </Link>
             <Link className="btn ai-intel__cta-btn ai-intel__cta-ghost" to={SERVICES_ROUTE}>{t.ai_intel_all_services}</Link>
           </div>
         </div>

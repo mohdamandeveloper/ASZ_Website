@@ -15,6 +15,7 @@ import DigitalTransformation from './pages/Services/DigitalTransformation/Digita
 import TechnologyTalent from './pages/Services/TechnologyTalent/TechnologyTalent';
 import Products from './pages/Products/Products';
 import Work from './pages/Work/Work';
+import Contact from './pages/Contact/Contact';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -33,7 +34,7 @@ const router = createBrowserRouter(
       </Route>
       <Route path='products' element={<Products />} />
       <Route path='work' element={<Work />} />
-      {/* <Route path='contact' element={<ContactUs />} /> */}
+      <Route path='contact' element={<Contact />} />
       {/* <Route path="case-study/:id" element={<CaseStudyDetail />} /> */}
     </Route>
   )

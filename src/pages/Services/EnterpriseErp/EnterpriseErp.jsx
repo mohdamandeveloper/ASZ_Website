@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { useTranslation } from '../../../Context/LanguageContext';
 import './EnterpriseErp.scss';
+import { Link } from 'react-router-dom';
 
 // ---- Shared bits (page text lives in the locale files) ---------------------
 const ARROW_RIGHT = 'M5 12h14M13 6l6 6-6 6';
@@ -59,13 +60,13 @@ export default function EnterpriseErp() {
             <p className="svc__hero-text up">{t.erp_text}</p>
 
             <div className="svc__hero-actions up">
-              <a className="btn btn-ac" href="#contact">
+              <Link to={'/contact'} className="btn btn-ac">
                 {t.svc_cta_start}
                 <ArrowIcon />
-              </a>
-              <a className="btn btn-ghost svc__btn-semibold" href="/services">
+              </Link>
+              <Link className="btn btn-ghost svc__btn-semibold" to="/service">
                 {t.svc_all_services}
-              </a>
+              </Link>
             </div>
           </div>
         </div>
@@ -112,13 +113,13 @@ export default function EnterpriseErp() {
           </h2>
           <p className="svc__cta-text">{t.svc_cta_text}</p>
           <div className="svc__cta-actions">
-            <a className="btn btn-ac svc__cta-btn" href="mailto:info@asztechnologies.com">
+            <Link to={'/contact'} className="btn btn-ac svc__cta-btn">
               {t.svc_cta_start}
               <ArrowIcon />
-            </a>
-            <a className="btn svc__cta-btn svc__cta-ghost" href="/services">
+            </Link>
+            <Link className="btn svc__cta-btn svc__cta-ghost" to="/service">
               {t.svc_all_services}
-            </a>
+            </Link>
           </div>
         </div>
       </section>

@@ -7,7 +7,7 @@ import './Footer.scss';
 const A = ({ href, ...p }) => (href.startsWith('/') ? <Link to={href} {...p} /> : <a href={href} {...p} />);
 
 // Edit hrefs to match your router. Labels come from `t` (Context/Translation.js).
-const COMPANY_HREFS = ['/', '/about', '/products', '/work', '#contact'];
+const COMPANY_HREFS = ['/', '/about', '/products', '/work', '/contact'];
 
 // Same order as `t.hdr_service_items`
 const SERVICE_HREFS = [

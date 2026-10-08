@@ -9,27 +9,27 @@ import './Service.scss';
 // Title / sub / desc / tags live in the locale files (services_page_items, same order)
 const SERVICES = [
   {
-    href: '/services/ai',
+    href: '/service/ai-intelligence',
     icon: 'M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8zM19 16v4M17 18h4',
   },
   {
-    href: '/services/security',
+    href: '/service/smart-security',
     icon: 'M12 3l7 3v5c0 4.5-3 8.3-7 10-4-1.7-7-5.5-7-10V6zM9 12l2 2 4-4',
   },
   {
-    href: '/services/erp',
+    href: '/service/enterprise-erp',
     icon: 'M12 3l9 5-9 5-9-5zM3 12.5l9 5 9-5M3 17l9 5 9-5',
   },
   {
-    href: '/services/product-engineering',
+    href: '/service/product-application',
     icon: 'M8 7l-5 5 5 5M16 7l5 5-5 5M13.5 4l-3 16',
   },
   {
-    href: '/services/cloud',
+    href: '/service/digital-transformation',
     icon: 'M7 18a4 4 0 0 1-.5-7.97A6 6 0 0 1 18 9.5 4.25 4.25 0 0 1 17.5 18z',
   },
   {
-    href: '/services/talent',
+    href: '/service/technology-talent',
     icon: 'M16 19v-1a4 4 0 0 0-4-4H7a4 4 0 0 0-4 4v1M9.5 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM21 19v-1a4 4 0 0 0-3-3.87M15.5 4.13a3 3 0 0 1 0 5.74',
   },
 ];
@@ -163,7 +163,7 @@ export default function Service() {
           <h1 className="up">{t.services_page_line1}<br /><span className="ac">{t.services_page_accent}</span></h1>
           <p className="up">{t.services_page_text}</p>
           <div className="sv-hero__cta up">
-            <a className="btn btn-ac" href="#contact">{t.services_page_cta} <Arrow /></a>
+            <Link to={'/contact'} className="btn btn-ac">{t.services_page_cta} <Arrow /></Link>
           </div>
         </div>
 
@@ -255,7 +255,7 @@ export default function Service() {
           <h2>{t.services_page_cta_title} <span className="ac">{t.services_page_cta_accent}</span></h2>
           <p>{t.services_page_cta_text}</p>
           <div className="sv-cta__actions">
-            <a className="btn btn-ac" href="mailto:info@asztechnologies.com">{t.services_page_cta} <Arrow /></a>
+            <Link to={'/contact'} className="btn btn-ac">{t.services_page_cta} <Arrow /></Link>
           </div>
         </div>
       </section>
