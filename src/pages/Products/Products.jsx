@@ -81,10 +81,10 @@ const Products = () => {
             <p className="up pg-hero__text">{t.prod_text}</p>
 
             <div className="up pg-hero__actions">
-              <a className="btn btn-ac" href="#products">
+              <Link to={'/products'} className="btn btn-ac">
                 {t.prod_explore}
                 {arrowRight}
-              </a>
+              </Link>
             </div>
           </div>
         </div>
@@ -126,10 +126,10 @@ const Products = () => {
                   </ul>
                   <span className="products-card__category">{txt.category}</span>
                   <div className="products-card__actions">
-                    <a className="btn btn-ac" href={ROUTES.contact}>
+                    <Link to={'/contact'} className="btn btn-ac" href={ROUTES.contact}>
                       {t.prod_book_demo}
                       {arrowRight}
-                    </a>
+                    </Link>
                     <a className="tlink" href={ROUTES.contact}>
                       {t.prod_learn_more} {arrowUpRight}
                     </a>
@@ -150,10 +150,10 @@ const Products = () => {
           </h2>
           <p className="pg-cta__text">{t.svc_cta_text}</p>
           <div className="pg-cta__actions">
-            <a className="btn btn-ac" href={ROUTES.email}>
+            <Link to={'/contact'} className="btn btn-ac">
               {t.svc_cta_start}
               {arrowRight}
-            </a>
+            </Link>
             <Link className="btn pg-cta__ghost" to={ROUTES.services}>
               {t.pg_cta_explore}
             </Link>

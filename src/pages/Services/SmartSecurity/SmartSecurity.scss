@@ -133,12 +133,7 @@ $bp-phone: 640px;
   }
 
   &__deliver-wrap {
-    padding: 124px 32px 120px;
-
-    @media (max-width: $bp-mobile) {
-      padding-top: 80px;
-      padding-bottom: 80px;
-    }
+    padding: 70px 32px 70px;
   }
 
   &__split {
@@ -267,13 +262,8 @@ $bp-phone: 640px;
   }
 
   &__cta-wrap {
-    padding: 128px 32px 136px;
+    padding: 70px 32px 70px;
     text-align: center;
-
-    @media (max-width: $bp-mobile) {
-      padding-top: 80px;
-      padding-bottom: 80px;
-    }
   }
 
   &__cta-title {

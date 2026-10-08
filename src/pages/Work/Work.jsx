@@ -88,7 +88,7 @@ const Work = () => {
 
             <p className="up pg-hero__text">{t.work_text}</p>
             <div className="sv-hero__cta up">
-              <a className="btn btn-ac" href="#contact">{t.svc_cta_start} <Arrow /></a>
+              <Link to={'/contact'} className="btn btn-ac">{t.svc_cta_start} <Arrow /></Link>
             </div>
           </div>
         </div>
@@ -160,10 +160,10 @@ const Work = () => {
           </h2>
           <p className="pg-cta__text">{t.svc_cta_text}</p>
           <div className="pg-cta__actions">
-            <a className="btn btn-ac" href={ROUTES.email}>
+            <Link to={'/contact'} className="btn btn-ac">
               {t.svc_cta_start}
               {arrowRight}
-            </a>
+            </Link>
             <Link className="btn pg-cta__ghost" to={ROUTES.services}>
               {t.pg_cta_explore}
             </Link>

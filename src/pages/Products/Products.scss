@@ -52,7 +52,7 @@ $ease: cubic-bezier(0.2, 0.7, 0.2, 1);
       content: '';
       position: absolute;
       inset: 12px;
-      border: 1px solid rgba(255, 255, 255, 0.14);
+      // border: 1px solid rgba(255, 255, 255, 0.14);
       border-radius: 30px;
       pointer-events: none;
     }
@@ -227,8 +227,8 @@ $ease: cubic-bezier(0.2, 0.7, 0.2, 1);
     display: flex;
     flex-direction: column;
     gap: 20px;
-    padding-top: 96px;
-    padding-bottom: 64px;
+    padding-top: 70px;
+    padding-bottom: 70px;
   }
 
   .products-card {

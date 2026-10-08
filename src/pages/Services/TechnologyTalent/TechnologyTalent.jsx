@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { useTranslation } from '../../../Context/LanguageContext';
 import './TechnologyTalent.scss';
 
@@ -39,13 +40,13 @@ const TechnologyTalent = () => {
           <p className="up svc-hero__text">{t.tt_text}</p>
 
           <div className="up svc-hero__actions">
-            <a className="btn btn-ac" href={ROUTES.contact}>
+            <Link to={'/contact'} className="btn btn-ac">
               {t.svc_cta_start}
               {arrow}
-            </a>
-            <a className="btn btn-ghost" href={ROUTES.services}>
+            </Link>
+            <Link to={'/service'} className="btn btn-ghost">
               {t.svc_all_services}
-            </a>
+            </Link>
           </div>
         </div>
       </div>
@@ -92,13 +93,13 @@ const TechnologyTalent = () => {
         </h2>
         <p className="svc-cta__text">{t.svc_cta_text}</p>
         <div className="svc-cta__actions">
-          <a className="btn btn-ac" href={ROUTES.email}>
+          <Link to={'/contact'} className="btn btn-ac">
             {t.svc_cta_start}
             {arrow}
-          </a>
-          <a className="btn svc-cta__ghost" href={ROUTES.services}>
+          </Link>
+          <Link to={'/service'} className="btn svc-cta__ghost">
             {t.svc_all_services}
-          </a>
+          </Link>
         </div>
       </div>
     </section>
