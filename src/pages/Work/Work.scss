@@ -460,7 +460,33 @@ $ease: cubic-bezier(0.2, 0.7, 0.2, 1);
 
     .work-filter__inner {
       flex-direction: column;
-      align-items: flex-start;
+      align-items: stretch;
+      gap: 14px;
+      padding: 18px 20px;
+    }
+
+    // Filter pills: one row, swipe / scroll sideways.
+    // Flex follows the page direction, so it starts at the left in LTR and at the right in
+    // Arabic (RTL), and the user scrolls left → right / right → left accordingly.
+    .work-filter__pills {
+      flex-wrap: nowrap;
+      min-width: 0;
+      overflow-x: auto;
+      overflow-y: hidden;
+      overscroll-behavior-x: contain;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none; // Firefox
+      // bleed to the screen edges so the pills scroll under the page padding
+      margin-inline: -20px;
+      padding-inline: 20px;
+      padding-block: 2px;
+
+      &::-webkit-scrollbar { display: none; }
+
+      .work-pill {
+        flex: none;
+        white-space: nowrap;
+      }
     }
 
     .work-grid {

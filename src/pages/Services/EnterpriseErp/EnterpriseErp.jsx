@@ -1,54 +1,14 @@
 import { useEffect } from 'react';
-
+import { useTranslation } from '../../../Context/LanguageContext';
 import './EnterpriseErp.scss';
 
-// ---- Page content ----------------------------------------------------------
-const PAGE_TITLE = 'ASZ Technologies, Enterprise Systems and ERP';
-const BREADCRUMB = 'Enterprise Systems & ERP';
-
-const CARDS = [
-  {
-    number: '01',
-    title: 'ERP Implementation & Transformation',
-    text:
-      'Plan, implement, integrate, and optimize enterprise resource planning systems around your business processes, data, and operating model.',
-    tags: ['ERP Implementation', 'ERP Transformation', 'ERP Integration'],
-  },
-  {
-    number: '02',
-    title: 'CRM & Customer Platforms',
-    text:
-      'Connect sales, service, marketing, and customer data through integrated CRM solutions that give teams a unified view of every customer relationship.',
-    tags: ['CRM Solutions', 'Customer Platforms', 'CRM Integration'],
-  },
-  {
-    number: '03',
-    title: 'Enterprise Systems Integration',
-    text:
-      'Connect ERP, CRM, applications, data, and operational systems to eliminate disconnected workflows and create one connected technology ecosystem.',
-    tags: ['Enterprise Integration', 'System Integration', 'Data Integration'],
-  },
-  {
-    number: '04',
-    title: 'Supply Chain & Operations',
-    text:
-      'Integrate the systems behind procurement, inventory, logistics, and operations to improve visibility, coordination, and execution across the value chain.',
-    tags: ['Supply Chain', 'Logistics', 'Operations'],
-  },
-  {
-    number: '05',
-    title: 'Enterprise Platform Support',
-    text:
-      'Keep critical enterprise systems performing through optimization, technical support, integration, upgrades, and ongoing platform management.',
-    tags: ['Managed Support', 'Platform Optimization', 'Enterprise Applications'],
-  },
-];
-
+// ---- Shared bits (page text lives in the locale files) ---------------------
 const ARROW_RIGHT = 'M5 12h14M13 6l6 6-6 6';
 
 function ArrowIcon() {
   return (
     <svg
+      className="rtl-flip"
       width="16"
       height="16"
       viewBox="0 0 24 24"
@@ -66,9 +26,13 @@ function ArrowIcon() {
 
 // ---- Page ------------------------------------------------------------------
 export default function EnterpriseErp() {
+  const t = useTranslation();
+  const cards = t.erp_items;
+  const docTitle = t.erp_doc_title;
+
   useEffect(() => {
-    document.title = PAGE_TITLE;
-  }, []);
+    document.title = docTitle;
+  }, [docTitle]);
 
   return (
     <main className="svc">
@@ -81,28 +45,26 @@ export default function EnterpriseErp() {
           <div className="svc__hero-inner">
             <div className="svc__crumb up">
               <span className="svc__crumb-dot live" />
-              <a href="/services">Services</a>
+              <a href="/services">{t.svc_crumb_services}</a>
               <span className="svc__crumb-sep">/</span>
-              <span>{BREADCRUMB}</span>
+              <span>{t.erp_crumb}</span>
             </div>
 
             <h1 className="svc__hero-title up">
-              Connect the Systems
+              {t.erp_h1_line1}
               <br />
-              <span className="ac">That Run Your Business.</span>
+              <span className="ac">{t.erp_h1_accent}</span>
             </h1>
 
-            <p className="svc__hero-text up">
-              We help organizations implement, integrate, modernize, and optimize the enterprise platforms that power finance, operations, sales, supply chains, and customer relationships. The goal is simple: connected systems, reliable data, and a technology foundation your business can grow on.
-            </p>
+            <p className="svc__hero-text up">{t.erp_text}</p>
 
             <div className="svc__hero-actions up">
               <a className="btn btn-ac" href="#contact">
-                Start a Conversation
+                {t.svc_cta_start}
                 <ArrowIcon />
               </a>
               <a className="btn btn-ghost svc__btn-semibold" href="/services">
-                All Services
+                {t.svc_all_services}
               </a>
             </div>
           </div>
@@ -114,18 +76,18 @@ export default function EnterpriseErp() {
         <div className="svc__wrap svc__deliver-wrap">
           <div className="svc__split rv">
             <div>
-              <div className="eyebrow">What we deliver</div>
+              <div className="eyebrow">{t.svc_deliver_eyebrow}</div>
               <h2 className="svc__title">
-                Inside <span className="ac">Enterprise Systems & ERP.</span>
+                {t.svc_deliver_inside} <span className="ac">{t.erp_deliver_accent}</span>
               </h2>
             </div>
           </div>
 
           <div className="svc__cards">
-            {CARDS.map((card) => (
-              <div className="svc__card rvs" key={card.number}>
+            {cards.map((card, i) => (
+              <div className="svc__card rvs" key={i}>
                 <span className="svc__card-bar" aria-hidden="true" />
-                <span className="svc__card-num">{card.number}</span>
+                <span className="svc__card-num">{`0${i + 1}`}</span>
                 <h3 className="svc__card-title">{card.title}</h3>
                 <p className="svc__card-text">{card.text}</p>
                 <span className="svc__tags">
@@ -144,21 +106,18 @@ export default function EnterpriseErp() {
       {/* 3. Call to action */}
       <section id="contact" className="svc__cta">
         <div className="svc__wrap svc__cta-wrap rv">
-          <div className="eyebrow svc__cta-eyebrow">Ready to build?</div>
+          <div className="eyebrow svc__cta-eyebrow">{t.svc_cta_eyebrow}</div>
           <h2 className="svc__cta-title">
-            Let&apos;s build this <span className="ac">together.</span>
+            {t.svc_cta_title} <span className="ac">{t.svc_cta_accent}</span>
           </h2>
-          <p className="svc__cta-text">
-            Tell us what you&apos;re trying to solve. We&apos;ll help define the right technology
-            approach, scope the work, and build toward the outcome.
-          </p>
+          <p className="svc__cta-text">{t.svc_cta_text}</p>
           <div className="svc__cta-actions">
             <a className="btn btn-ac svc__cta-btn" href="mailto:info@asztechnologies.com">
-              Start a Conversation
+              {t.svc_cta_start}
               <ArrowIcon />
             </a>
             <a className="btn svc__cta-btn svc__cta-ghost" href="/services">
-              All Services
+              {t.svc_all_services}
             </a>
           </div>
         </div>

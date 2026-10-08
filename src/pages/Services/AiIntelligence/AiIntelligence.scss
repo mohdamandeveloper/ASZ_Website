@@ -186,6 +186,10 @@ $ease: cubic-bezier(.2, .7, .2, 1);
     transform: scaleX(0);
     transform-origin: left;
     transition: transform .55s $ease;
+
+    html[dir='rtl'] & {
+      transform-origin: right;
+    }
   }
 
   &__card-n {

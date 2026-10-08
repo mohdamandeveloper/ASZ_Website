@@ -71,16 +71,18 @@ $ease2: cubic-bezier(.23, 1, .32, 1);
         &__frame {
             position: absolute;
             inset: 12px;
-            border: 1px solid rgba(255, 255, 255, .14);
+            // border: 1px solid rgba(255, 255, 255, .14);
             border-radius: 30px;
             pointer-events: none;
         }
 
         &__wrap {
             max-width: 1180px;
-            padding: 70px 32px 0;
+            padding: 180px 32px 0;
             text-align: center;
-
+            @media (max-width: 600px){
+                padding-top: 150px;
+            }
             h1 {
                 margin: 26px 0 0;
                 font-size: clamp(44px, 4.2vw, 60px);

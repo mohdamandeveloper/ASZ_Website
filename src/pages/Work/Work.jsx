@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import { useTranslation } from '../../Context/LanguageContext';
 import './Work.scss';
 
 // ---- Route map: same values as Header.jsx ----
@@ -9,24 +10,20 @@ const ROUTES = {
   email: 'mailto:info@asztechnologies.com',
 };
 
-const FILTERS = [
-  'All',
-  'AI & Intelligent Systems',
-  'Smart Security Systems',
-  'Enterprise Systems & ERP',
-  'Product & Application Engineering',
-  'Digital Transformation & Cloud',
-  'Technology Talent & Engineering',
-];
+// Service ids, in the same order as `t.hdr_service_items` (Context/Translation.js),
+// so the filter labels are translated by the same entries the header uses.
+const SERVICE_IDS = ['ai', 'security', 'erp', 'product', 'digital', 'talent'];
+const FILTERS = ['all', ...SERVICE_IDS];
 
-// Placeholder projects – replace title / text / year / service with real case studies
+// Placeholder projects – replace with real case studies. Add `title`, `text` and `year`
+// per project (plain strings or per-language); until then the translated placeholders show.
 const PROJECTS = [
-  { title: '[CLIENT]: [WHAT WE BUILT]', text: '[ONE-LINE RESULT OR OUTCOME]', year: '[YEAR]', service: 'AI & Intelligent Systems' },
-  { title: '[CLIENT]: [WHAT WE BUILT]', text: '[ONE-LINE RESULT OR OUTCOME]', year: '[YEAR]', service: 'Product & Application Engineering' },
-  { title: '[CLIENT]: [WHAT WE BUILT]', text: '[ONE-LINE RESULT OR OUTCOME]', year: '[YEAR]', service: 'Product & Application Engineering' },
-  { title: '[CLIENT]: [WHAT WE BUILT]', text: '[ONE-LINE RESULT OR OUTCOME]', year: '[YEAR]', service: 'Digital Transformation & Cloud' },
-  { title: '[CLIENT]: [WHAT WE BUILT]', text: '[ONE-LINE RESULT OR OUTCOME]', year: '[YEAR]', service: 'Smart Security Systems' },
-  { title: '[CLIENT]: [WHAT WE BUILT]', text: '[ONE-LINE RESULT OR OUTCOME]', year: '[YEAR]', service: 'AI & Intelligent Systems' },
+  { service: 'ai' },
+  { service: 'product' },
+  { service: 'product' },
+  { service: 'digital' },
+  { service: 'security' },
+  { service: 'ai' },
 ];
 
 const arrowUpRight = (
@@ -48,18 +45,21 @@ const Arrow = ({ size = 16 }) => (
 );
 
 const Work = () => {
-  const [active, setActive] = useState('All');
+  const t = useTranslation();
+  const [active, setActive] = useState('all');
   const { hash, key } = useLocation();
 
-  const items = PROJECTS.filter((p) => active === 'All' || p.service === active);
+  const labelOf = (id) => (id === 'all' ? t.work_filter_all : t.hdr_service_items[SERVICE_IDS.indexOf(id)].title);
+  const items = PROJECTS.filter((p) => active === 'all' || p.service === active);
+  const countWord = items.length === 1 ? t.work_project_one : items.length === 2 ? t.work_project_two : t.work_project_many;
 
   // scroll to in-page hashes (e.g. /work#contact)
   useEffect(() => {
     if (!hash) return undefined;
     const target = document.getElementById(decodeURIComponent(hash.slice(1)));
     if (!target) return undefined;
-    const t = setTimeout(() => target.scrollIntoView({ behavior: 'smooth', block: 'start' }), 120);
-    return () => clearTimeout(t);
+    const timer = setTimeout(() => target.scrollIntoView({ behavior: 'smooth', block: 'start' }), 120);
+    return () => clearTimeout(timer);
   }, [hash, key]);
 
   return (
@@ -77,20 +77,18 @@ const Work = () => {
           <div className="pg-hero__grid">
             <div className="up pg-hero__badge">
               <span className="live dot" />
-              Our work
+              {t.work_badge}
             </div>
 
             <h1 className="up pg-hero__title">
-              Proof,
+              {t.work_h1_line1}
               <br />
-              <span className="ac">not promises.</span>
+              <span className="ac">{t.work_h1_accent}</span>
             </h1>
 
-            <p className="up pg-hero__text">
-              Our work spans industries and geographies real deployments, real clients, and real technology built to solve meaningful business challenges.
-            </p>
+            <p className="up pg-hero__text">{t.work_text}</p>
             <div className="sv-hero__cta up">
-              <a className="btn btn-ac" href="#contact">Start a Conversation <Arrow /></a>
+              <a className="btn btn-ac" href="#contact">{t.svc_cta_start} <Arrow /></a>
             </div>
           </div>
         </div>
@@ -99,21 +97,21 @@ const Work = () => {
       {/* 2 · FILTER BAR */}
       <div className="work-filter">
         <div className="pg-wrap work-filter__inner">
-          <div className="work-filter__pills" role="group" aria-label="Filter by service">
-            {FILTERS.map((name) => (
+          <div className="work-filter__pills" role="group" aria-label={t.work_filter_label}>
+            {FILTERS.map((id) => (
               <button
-                key={name}
+                key={id}
                 type="button"
-                className={`work-pill${name === active ? ' work-pill--on' : ''}`}
-                aria-pressed={name === active}
-                onClick={() => setActive(name)}
+                className={`work-pill${id === active ? ' work-pill--on' : ''}`}
+                aria-pressed={id === active}
+                onClick={() => setActive(id)}
               >
-                {name}
+                {labelOf(id)}
               </button>
             ))}
           </div>
           <div className="work-filter__count">
-            <span>{items.length}</span> {items.length === 1 ? 'project' : 'projects'}
+            <span>{items.length}</span> {countWord}
           </div>
         </div>
       </div>
@@ -127,14 +125,14 @@ const Work = () => {
                 // key includes the filter so the "pop" entrance replays when the filter changes
                 <a className="pg-pop work-card" href={ROUTES.contact} key={`${active}-${i}`}>
                   <div className="work-card__img">
-                    [PROJECT IMAGE]
+                    {t.work_ph_image}
                     <span className="work-card__go">{arrowUpRight}</span>
                   </div>
-                  <div className="work-card__title">{w.title}</div>
-                  <p className="work-card__text">{w.text}</p>
+                  <div className="work-card__title">{w.title || t.work_ph_title}</div>
+                  <p className="work-card__text">{w.text || t.work_ph_text}</p>
                   <div className="work-card__tags">
-                    <span className="work-card__tag">{w.service}</span>
-                    <span className="work-card__tag work-card__tag--year">{w.year}</span>
+                    <span className="work-card__tag">{labelOf(w.service)}</span>
+                    <span className="work-card__tag work-card__tag--year">{w.year || t.work_ph_year}</span>
                   </div>
                 </a>
               ))}
@@ -142,11 +140,11 @@ const Work = () => {
           ) : (
             <div className="pg-pop work-empty">
               <div className="work-empty__title">
-                No projects under <span className="ac">{active}</span> yet.
+                {t.work_empty_pre} <span className="ac">{labelOf(active)}</span> {t.work_empty_post}
               </div>
-              <p className="work-empty__text">Case studies for this service are on their way.</p>
-              <button type="button" className="work-pill" onClick={() => setActive('All')}>
-                Show all work
+              <p className="work-empty__text">{t.work_empty_text}</p>
+              <button type="button" className="work-pill" onClick={() => setActive('all')}>
+                {t.work_show_all}
               </button>
             </div>
           )}
@@ -156,20 +154,18 @@ const Work = () => {
       {/* CTA */}
       <section id="contact" className="pg-cta">
         <div className="rv pg-wrap pg-sec pg-cta__inner">
-          <div className="eyebrow">Ready to build?</div>
+          <div className="eyebrow">{t.svc_cta_eyebrow}</div>
           <h2 className="pg-cta__title">
-            Let&apos;s build this <span className="ac">together.</span>
+            {t.svc_cta_title} <span className="ac">{t.svc_cta_accent}</span>
           </h2>
-          <p className="pg-cta__text">
-            Tell us what you&apos;re trying to solve. We&apos;ll help define the right technology approach, scope the work, and build toward the outcome.
-          </p>
+          <p className="pg-cta__text">{t.svc_cta_text}</p>
           <div className="pg-cta__actions">
             <a className="btn btn-ac" href={ROUTES.email}>
-              Start a Conversation
+              {t.svc_cta_start}
               {arrowRight}
             </a>
             <Link className="btn pg-cta__ghost" to={ROUTES.services}>
-              Explore Our Services
+              {t.pg_cta_explore}
             </Link>
           </div>
         </div>

@@ -706,6 +706,10 @@ $ease: cubic-bezier(.2, .7, .2, 1);
     }
 
     .mqwrap {
+      /* Keep the marquee LTR even on <html dir="rtl">. In RTL a max-content flex
+         track starts at the right edge and overflows left, so translateX(-50%)
+         slides it off into empty space. Logos have no text, so nothing else changes. */
+      direction: ltr;
       display: flex;
       flex-direction: column;
       gap: 24px;
@@ -1386,8 +1390,9 @@ $ease: cubic-bezier(.2, .7, .2, 1);
   }
 
   .sectors-wrap {
+    direction: ltr; /* same RTL track-overflow issue as .mqwrap; text direction is restored on .sector */
     overflow: hidden;
-    padding: 0 0 104px;
+    padding: 0 0 70px;
     cursor: grab;
     touch-action: pan-y;
     user-select: none;
@@ -1410,6 +1415,10 @@ $ease: cubic-bezier(.2, .7, .2, 1);
   }
 
   .sector {
+    html[dir='rtl'] & {
+      direction: rtl;
+    }
+
     position: relative;
     flex: none;
     width: clamp(260px, 30vw, 440px);
@@ -1500,7 +1509,7 @@ $ease: cubic-bezier(.2, .7, .2, 1);
     background: #fafafa;
 
     &__wrap {
-      padding: 70px 32px 104px;
+      padding: 70px 32px 70px;
     }
 
     .g12 {
@@ -1761,7 +1770,7 @@ $ease: cubic-bezier(.2, .7, .2, 1);
       grid-template-columns: 1fr !important;
       padding: 28px !important;
       min-height: 0 !important;
-
+      
       >* {
         grid-column: 1 / -1 !important;
       }

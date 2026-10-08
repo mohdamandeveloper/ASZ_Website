@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import { useTranslation } from '../../Context/LanguageContext';
 import cordonCubes from '../../assets/images/cordon-cubes.webp'; // adjust path if your assets live elsewhere
 import './Products.scss';
 
@@ -10,37 +11,13 @@ const ROUTES = {
   email: 'mailto:info@asztechnologies.com',
 };
 
-// `id` must match the hash used in the header drop-down (/products#cordon, #jobscout, #safin)
+// `id` must match the hash used in the header drop-down (/products#cordon, #mediq, #jobscout)
+// Product names are brand names, so they stay in Latin. All other text comes from `t.prod_items`
+// (Context/Translation.js), in the same order as this array.
 const PRODUCTS = [
-  {
-    id: 'cordon',
-    label: 'ASZ PRODUCT · 01',
-    name: 'Cordon',
-    description:
-      'AI-powered security and access control for modern premises.',
-    features: ['Vehicle & Number Plate Recognition', 'Facial Recognition & Zero-Touch Entry', 'Visitor & Vendor Management'],
-    category: 'INTELLIGENT SECURITY',
-    shot: '[CORDON SCREENSHOT]',
-    image: cordonCubes,
-  },
-  {
-    id: 'mediq',
-    label: 'ASZ PRODUCT · 02',
-    name: 'MEDIQ',
-    description: 'Self-service technology that simplifies hospital registration, payments, and patient services.',
-    features: ['Patient Registration & Check-in', 'Payments & Billing', 'Appointments & Queue Management'],
-    category: 'SMART HEALTHCARE',
-    shot: cordonCubes,
-  },
-  {
-    id: 'jobscout',
-    label: 'ASZ PRODUCT · 03',
-    name: 'JobScout',
-    description: 'AI-powered career discovery that helps you find relevant opportunities and take the next step.',
-    features: ['AI-Powered Job Matching', 'Personalized Job & Internship Discovery', 'Career Guidance & Upskilling'],
-    category: 'AI CAREER PLATFORM',
-    shot: cordonCubes,
-  },
+  { id: 'cordon', name: 'Cordon', shot: '[CORDON SCREENSHOT]', image: cordonCubes },
+  { id: 'mediq', name: 'MEDIQ', shot: cordonCubes, image: undefined },
+  { id: 'jobscout', name: 'JobScout', shot: cordonCubes, image: undefined },
 ];
 
 const arrowRight = (
@@ -62,6 +39,8 @@ const check = (
 );
 
 const Products = () => {
+  const t = useTranslation();
+  const items = t.prod_items;
   const { hash, key } = useLocation();
 
   // Header links like /products#cordon: React Router doesn't scroll to hashes by itself,
@@ -71,8 +50,8 @@ const Products = () => {
     const target = document.getElementById(decodeURIComponent(hash.slice(1)));
     if (!target) return undefined;
     // small delay so it runs after any "scroll to top on route change" logic
-    const t = setTimeout(() => target.scrollIntoView({ behavior: 'smooth', block: 'start' }), 120);
-    return () => clearTimeout(t);
+    const timer = setTimeout(() => target.scrollIntoView({ behavior: 'smooth', block: 'start' }), 120);
+    return () => clearTimeout(timer);
   }, [hash, key]);
 
   return (
@@ -90,22 +69,20 @@ const Products = () => {
           <div className="pg-hero__grid">
             <div className="up pg-hero__badge">
               <span className="live dot" />
-              Our products
+              {t.prod_badge}
             </div>
 
             <h1 className="up pg-hero__title">
-              Products we&apos;ve built.
+              {t.prod_h1_line1}
               <br />
-              <span className="ac">Problems we&apos;ve solved.</span>
+              <span className="ac">{t.prod_h1_accent}</span>
             </h1>
 
-            <p className="up pg-hero__text">
-              Our in-house product line reflects the same engineering discipline we bring to every client build: real software designed to solve real problems and operate in production.
-            </p>
+            <p className="up pg-hero__text">{t.prod_text}</p>
 
             <div className="up pg-hero__actions">
               <a className="btn btn-ac" href="#products">
-                Explore Our Products
+                {t.prod_explore}
                 {arrowRight}
               </a>
             </div>
@@ -118,6 +95,7 @@ const Products = () => {
         <div className="pg-wrap pg-sec products-list">
           {PRODUCTS.map((p, i) => {
             const rev = i % 2 === 1;
+            const txt = items[i];
             return (
               <div id={p.id} className={`rv products-card${rev ? ' products-card--rev' : ''}`} key={p.id}>
                 <div className={`${rev ? 'rvr' : 'rvl'} products-card__media`}>
@@ -135,25 +113,25 @@ const Products = () => {
                 </div>
 
                 <div className={`${rev ? 'rvl' : 'rvr'} products-card__body`}>
-                  <div className="products-card__label">{p.label}</div>
+                  <div className="products-card__label">{`${t.prod_label} · ${String(i + 1).padStart(2, '0')}`}</div>
                   <h2 className="products-card__name">{p.name}</h2>
-                  <p className="products-card__desc">{p.description}</p>
+                  <p className="products-card__desc">{txt.description}</p>
                   <ul className="products-card__features">
-                    {p.features.map((f, idx) => (
+                    {txt.features.map((f, idx) => (
                       <li key={`${f}-${idx}`}>
                         <span className="products-card__check">{check}</span>
                         {f}
                       </li>
                     ))}
                   </ul>
-                  <span className="products-card__category">{p.category}</span>
+                  <span className="products-card__category">{txt.category}</span>
                   <div className="products-card__actions">
                     <a className="btn btn-ac" href={ROUTES.contact}>
-                      Book a Demo
+                      {t.prod_book_demo}
                       {arrowRight}
                     </a>
                     <a className="tlink" href={ROUTES.contact}>
-                      Learn More {arrowUpRight}
+                      {t.prod_learn_more} {arrowUpRight}
                     </a>
                   </div>
                 </div>
@@ -166,20 +144,18 @@ const Products = () => {
       {/* CTA */}
       <section id="contact" className="pg-cta">
         <div className="rv pg-wrap pg-sec pg-cta__inner">
-          <div className="eyebrow">Ready to build?</div>
+          <div className="eyebrow">{t.svc_cta_eyebrow}</div>
           <h2 className="pg-cta__title">
-            Let&apos;s build this <span className="ac">together.</span>
+            {t.svc_cta_title} <span className="ac">{t.svc_cta_accent}</span>
           </h2>
-          <p className="pg-cta__text">
-            Tell us what you&apos;re trying to solve. We&apos;ll help define the right technology approach, scope the work, and build toward the outcome.
-          </p>
+          <p className="pg-cta__text">{t.svc_cta_text}</p>
           <div className="pg-cta__actions">
             <a className="btn btn-ac" href={ROUTES.email}>
-              Start a Conversation
+              {t.svc_cta_start}
               {arrowRight}
             </a>
             <Link className="btn pg-cta__ghost" to={ROUTES.services}>
-              Explore Our Services
+              {t.pg_cta_explore}
             </Link>
           </div>
         </div>

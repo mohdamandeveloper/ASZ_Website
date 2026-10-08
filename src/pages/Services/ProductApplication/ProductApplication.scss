@@ -196,6 +196,10 @@ $ease: cubic-bezier(0.2, 0.7, 0.2, 1);
       transform: scaleX(0);
       transform-origin: left;
       transition: transform 0.55s $ease;
+
+      html[dir='rtl'] & {
+        transform-origin: right;
+      }
     }
 
     &__num {

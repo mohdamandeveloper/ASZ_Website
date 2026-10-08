@@ -10,7 +10,7 @@
 html[lang='ar'] body,
 html[lang='ar'] button,
 html[lang='ar'] input {
-  font-family: 'Poppins', 'Cairo', 'Tajawal', Helvetica, sans-serif;
+  font-family: 'Poppins', Helvetica, sans-serif;
 }
 
 // Letter-spacing breaks Arabic letter joining (the script is cursive), so
@@ -111,6 +111,14 @@ html[lang='ar'] input {
     .caps > * {
       border-right: 0 !important;
       padding-right: 0 !important;
+    }
+  }
+}
+
+[dir=rtl]{
+  .site-footer__contact{
+    .flink{
+      justify-content: end;
     }
   }
 }
