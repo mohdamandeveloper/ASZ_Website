@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 import { useTranslation } from '../../Context/LanguageContext';
+import imageBanner from '../../assets/images/contact-map.webp';
 import './Contact.scss';
 
 // ---- Contact details (mailto fallback + "Prefer email?" link) ----
@@ -275,7 +276,7 @@ const Contact = () => {
     <main className="contact-page">
       {/* 1 HERO */}
       <section id="top" className="ct-hero">
-        <img className="ct-hero__map" src="../src/assets/images/contact-map.webp" alt="" aria-hidden="true" />
+        <img className="ct-hero__map" src={imageBanner} alt="" aria-hidden="true" />
         <div className="wrap ct-hero__wrap">
           <div className="ct-hero__badge up"><span />{t.cf_badge}</div>
           <h1 className="up">{t.cf_h1_line1}<br /><span className="ac">{t.cf_h1_accent}</span></h1>
