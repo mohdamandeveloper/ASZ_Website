@@ -59,12 +59,12 @@ const Products = () => {
     <div className="products-page">
       {/* 1 · HERO */}
       <section id="top" className="pg-hero">
-        <div className="fadein pg-hero__orb pg-hero__orb--lg" aria-hidden="true">
+        {/* <div className="fadein pg-hero__orb pg-hero__orb--lg" aria-hidden="true">
           <div className="pg-hero__ring" />
-        </div>
-        <div className="fadein pg-hero__orb pg-hero__orb--sm" aria-hidden="true">
+        </div> */}
+        {/* <div className="fadein pg-hero__orb pg-hero__orb--sm" aria-hidden="true">
           <div className="pg-hero__ring" />
-        </div>
+        </div> */}
 
         <div className="pg-wrap pg-wrap--hero">
           <div className="pg-hero__grid">

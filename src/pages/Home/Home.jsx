@@ -360,7 +360,7 @@ export default function Home() {
       {/* 1 HERO */}
       <section id="top" className="hero">
         <div className="hero__grid-lines" aria-hidden="true" />
-        <div className="hero__ring fadein" aria-hidden="true"><div className="spin" /></div>
+        {/* <div className="hero__ring fadein" aria-hidden="true"><div className="spin" /></div> */}
         <div className="hero__frame" aria-hidden="true" />
 
         <div className="wrap hero__wrap">

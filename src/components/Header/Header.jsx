@@ -483,13 +483,13 @@ export default function Header() {
         </div>
 
         <div className="nav__end">
+          <LanguageSelector />
           <Link to={'/contact'} className="btn btn-ac nav__cta">
             {t.hdr_cta}
             <svg className="rtl-flip" width="14" height="14" strokeWidth="2" {...svgProps}>
               <path d="M5 12h14M13 6l6 6-6 6" />
             </svg>
           </Link>
-          <LanguageSelector />
           {/* Mobile only: opens the side navigation */}
           <button
             type="button"

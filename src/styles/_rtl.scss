@@ -22,22 +22,36 @@ html[lang='ar'] input {
 }
 
 // Arabic glyphs are taller than Latin: give display text more line height.
-[dir='rtl'] .home :is(h1, h2, h3) { line-height: 1.3; }
-[dir='rtl'] .home :is(p, .lede) { line-height: 1.8; }
+[dir='rtl'] .home :is(h1, h2, h3) {
+  line-height: 1.3;
+}
+
+[dir='rtl'] .home :is(p, .lede) {
+  line-height: 1.8;
+}
 
 // ---------- Shared: arrows that point "forward" ----------
 // `scale` is applied separately from `transform`, so existing hover
 // translateX() nudges keep working and now move in the reading direction.
-[dir='rtl'] .rtl-flip { scale: -1 1; }
+[dir='rtl'] .rtl-flip {
+  scale: -1 1;
+}
 
 // ---------- Header ----------
 [dir='rtl'] {
-  .nav { padding: 0 22px 0 12px; }
+  .nav {
+    padding: 0 22px 0 12px;
+  }
 
-  .navlink .chev { margin-left: 0; margin-right: 6px; }
+  .navlink .chev {
+    margin-left: 0;
+    margin-right: 6px;
+  }
 
   .sddbox,
-  .pddbox { text-align: right; }
+  .pddbox {
+    text-align: right;
+  }
 
   .sitem {
     padding: 14px 14px 14px 38px;
@@ -49,7 +63,9 @@ html[lang='ar'] input {
     }
 
     &:hover .go,
-    &:focus-visible .go { transform: translate(0, 0); }
+    &:focus-visible .go {
+      transform: translate(0, 0);
+    }
   }
 
   .pitem {
@@ -60,28 +76,43 @@ html[lang='ar'] input {
     }
 
     &:hover .go,
-    &:focus-visible .go { transform: translate(0, 0); }
+    &:focus-visible .go {
+      transform: translate(0, 0);
+    }
 
-    &.pall .pgo { right: auto; left: 16px; }
+    &.pall .pgo {
+      right: auto;
+      left: 16px;
+    }
   }
 }
 
 // ---------- Home ----------
 [dir='rtl'] .home {
+
   // Hero: copy is on the right now, orb on the left, so mirror the decor
-  .hero__ring { left: auto; right: -280px; }
+  .hero__ring {
+    left: auto;
+    right: -280px;
+  }
 
   .hero__grid-lines {
     -webkit-mask-image: radial-gradient(circle at 28% 50%, #000, transparent 62%);
     mask-image: radial-gradient(circle at 28% 50%, #000, transparent 62%);
   }
 
-  .badge--abs { left: auto; right: 30px; }
+  .badge--abs {
+    left: auto;
+    right: 30px;
+  }
 
   .caps {
-    .cap > .ac { margin-right: 0; margin-left: 14px; }
+    .cap>.ac {
+      margin-right: 0;
+      margin-left: 14px;
+    }
 
-    .cap + .cap {
+    .cap+.cap {
       padding-left: 0;
       padding-right: 28px;
       border-left: 0;
@@ -90,34 +121,58 @@ html[lang='ar'] input {
   }
 
   // Image-side gradients: dark side must follow the (mirrored) text side
-  .bento--dt .bento__shade { background: linear-gradient(270deg, rgba(5, 5, 5, 0) 55%, rgba(8, 14, 13, .95) 100%); }
-  .card__shade:not(.card__shade--v) { background: linear-gradient(270deg, rgba(5, 5, 6, .96) 0%, rgba(5, 5, 6, .78) 40%, rgba(5, 5, 6, .15) 75%); }
+  .bento--dt .bento__shade {
+    background: linear-gradient(270deg, rgba(5, 5, 5, 0) 55%, rgba(8, 14, 13, .95) 100%);
+  }
+
+  .card__shade:not(.card__shade--v) {
+    background: linear-gradient(270deg, rgba(5, 5, 6, .96) 0%, rgba(5, 5, 6, .78) 40%, rgba(5, 5, 6, .15) 75%);
+  }
 
   // Decorative dashboard mock + animated tracks: keep their LTR geometry
   .cordonui,
   .sectors-wrap,
-  .mq { direction: ltr; }
+  .mq {
+    direction: ltr;
+  }
 
   // ...but text inside the industry cards should still read RTL
-  .sector { direction: rtl; }
-  .sector .snum { left: auto; right: 24px; }
-  .sector .sarrow { right: auto; left: 22px; }
+  .sector {
+    direction: rtl;
+  }
+
+  .sector .snum {
+    left: auto;
+    right: 24px;
+  }
+
+  .sector .sarrow {
+    right: auto;
+    left: 22px;
+  }
 
   // How we work timeline
-  .tlrow .tlline { left: auto; right: 21px; }
-  .tlmeta span { margin-left: 0; margin-right: 12px; }
+  .tlrow .tlline {
+    left: auto;
+    right: 21px;
+  }
+
+  .tlmeta span {
+    margin-left: 0;
+    margin-right: 12px;
+  }
 
   @media (max-width: 900px) {
-    .caps > * {
+    .caps>* {
       border-right: 0 !important;
       padding-right: 0 !important;
     }
   }
 }
 
-[dir=rtl]{
-  .site-footer__contact{
-    .flink{
+[dir=rtl] {
+  .site-footer__contact {
+    .flink {
       justify-content: end;
     }
   }
