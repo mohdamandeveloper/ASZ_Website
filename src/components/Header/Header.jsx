@@ -58,12 +58,22 @@ const getServiceItems = (t) =>
     desc: t.hdr_service_items[i].desc,
   }));
 
-// Product names are brand names, so they stay in Latin. Cordon's tagline is translated.
-const getProductItems = (t) => [
-  { to: '/products#cordon', n: '01', title: 'Cordon', desc: 'AI-powered security', dark: true },
-  { to: '/products#mediq', n: '02', title: 'Mediq', desc: 'Self-service technology', dark: true },
-  { to: '/products#jobscout', n: '03', title: 'JobScout', desc: 'AI-powered career discovery', dark: true },
+// Product names are brand names, so they stay in Latin. The tag line + description come from
+// `t.hdr_product_items` (Context/Translation.js), same order as PRODUCT_META.
+// `img` picks the thumbnail (see $img-* in Header.scss).
+const PRODUCT_META = [
+  { to: '/products#cordon', n: '01', title: 'Cordon', img: 'cordon' },
+  { to: '/products#mediq', n: '02', title: 'MEDIQ', img: 'mediq' },
+  { to: '/products#jobscout', n: '03', title: 'JobScout', img: 'jobscout' },
+  { to: '/products#safin', n: '04', title: 'Safin', img: 'safin' },
 ];
+
+const getProductItems = (t) =>
+  PRODUCT_META.map((m, i) => ({
+    ...m,
+    tag: t.hdr_product_items[i].tag,
+    desc: t.hdr_product_items[i].desc,
+  }));
 
 const svgProps = {
   viewBox: '0 0 24 24',
@@ -92,17 +102,13 @@ const ArrowRight = ({ size }) => (
   </svg>
 );
 
-// The active route gets the accent dot (NavLink adds the "active" class itself)
-const renderLabel = (label, withChevron) =>
-  function NavLabel({ isActive }) {
-    return (
-      <>
-        {isActive && <span className="navlink__dot" />}
-        {label}
-        {withChevron && <Chevron />}
-      </>
-    );
-  };
+// The active / hovered link is marked by the sliding pill (see useNavPill in Header()).
+const renderLabel = (label, withChevron) => (
+  <>
+    {label}
+    {withChevron && <Chevron />}
+  </>
+);
 
 // Drop-downs open on hover / focus-within (pure CSS). After a click on any link inside,
 // "is-closed" suppresses that so the panel shuts right away; it re-arms on the next
@@ -336,10 +342,70 @@ export default function Header() {
   const services = useDropdown('sdd');
   const products = useDropdown('pdd');
 
+  const { language } = useLanguage();
+  const linksRef = useRef(null);
+  const pillRef = useRef(null);
+
   const [menuOpen, setMenuOpen] = useState(false);
   const closeMenu = useCallback(() => setMenuOpen(false), []);
   const { pathname } = useLocation();
   useEffect(() => { setMenuOpen(false); }, [pathname]); // also covers browser back / forward
+
+  // Sliding orange pill: follows the hovered / focused link, and rests on the active route
+  // (NavLink sets aria-current="page" on it). Re-measured on route, language and resize,
+  // because translated labels change the link widths.
+  useEffect(() => {
+    const box = linksRef.current;
+    const pill = pillRef.current;
+    if (!box || !pill) return undefined;
+
+    const links = Array.from(box.querySelectorAll('.navlink'));
+    const activeLink = () => links.find((a) => a.getAttribute('aria-current') === 'page') || null;
+    let current = null;
+
+    const go = (el) => {
+      current = el;
+      links.forEach((a) => {
+        if (a === el) a.setAttribute('data-on', '');
+        else a.removeAttribute('data-on');
+      });
+      if (!el) { pill.style.opacity = '0'; return; }
+      const r = el.getBoundingClientRect();
+      const p = box.getBoundingClientRect();
+      pill.style.width = `${r.width}px`;
+      pill.style.transform = `translateX(${r.left - p.left}px)`;
+      pill.style.opacity = '1';
+    };
+    const rest = () => go(activeLink());
+    const onFocusOut = (e) => { if (!box.contains(e.relatedTarget)) rest(); };
+    const fix = () => go(current);
+
+    const bound = links.map((a) => {
+      const on = () => go(a);
+      a.addEventListener('mouseenter', on);
+      a.addEventListener('focus', on);
+      return [a, on];
+    });
+    box.addEventListener('mouseleave', rest);
+    box.addEventListener('focusout', onFocusOut);
+    window.addEventListener('resize', fix);
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(fix);
+    const t1 = setTimeout(fix, 60);
+    const t2 = setTimeout(fix, 700);
+    rest();
+
+    return () => {
+      bound.forEach(([a, on]) => {
+        a.removeEventListener('mouseenter', on);
+        a.removeEventListener('focus', on);
+      });
+      box.removeEventListener('mouseleave', rest);
+      box.removeEventListener('focusout', onFocusOut);
+      window.removeEventListener('resize', fix);
+      clearTimeout(t1);
+      clearTimeout(t2);
+    };
+  }, [pathname, language.code]);
 
   return (
     <header className="site-header">
@@ -348,7 +414,8 @@ export default function Header() {
           <img src={logo} alt="ASZ" />
         </Link>
 
-        <div className="nav__links">
+        <div className="nav__links" ref={linksRef}>
+          <span className="npill" ref={pillRef} aria-hidden="true" />
           <NavLink className="navlink" to={ROUTES.home}>
             {renderLabel(t.hdr_home)}
           </NavLink>
@@ -393,13 +460,13 @@ export default function Header() {
               <div className="pddbox">
                 {productItems.map((p) => (
                   <Link key={p.to} className="pitem" to={p.to}>
-                    <span className={'thumb' + (p.dark ? ' dark' : '')}>
-                      {p.dark ? <span className="cube" aria-hidden="true" /> : '[IMAGE]'}
+                    <span className="thumb dark">
+                      <span className={`pimg pimg--${p.img}`} aria-hidden="true" />
                     </span>
                     <span className="go"><ArrowUpRight size={13} /></span>
-                    <span className="n">{p.n}</span>
+                    <span className="n">{`${p.n} · ${p.tag}`}</span>
                     <span className="t">{p.title}</span>
-                    {p.desc && <span className="d">{p.desc}</span>}
+                    <span className="d">{p.desc}</span>
                   </Link>
                 ))}
                 <Link className="pitem pall" to={ROUTES.products}>
@@ -416,14 +483,13 @@ export default function Header() {
         </div>
 
         <div className="nav__end">
-          <LanguageSelector />
           <Link to={'/contact'} className="btn btn-ac nav__cta">
             {t.hdr_cta}
             <svg className="rtl-flip" width="14" height="14" strokeWidth="2" {...svgProps}>
               <path d="M5 12h14M13 6l6 6-6 6" />
             </svg>
           </Link>
-
+          <LanguageSelector />
           {/* Mobile only: opens the side navigation */}
           <button
             type="button"

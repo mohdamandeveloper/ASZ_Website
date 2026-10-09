@@ -1,6 +1,8 @@
 import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useLanguage, useTranslation } from '../../../Context/LanguageContext';
+import CaseStudies, { caseHref } from '../../../Data/CaseStudies';
+import { localizeCases } from '../../../Data/localizeCase';
 import './Service.scss';
 
 /* ------------------------------------------------------------------ */
@@ -34,7 +36,7 @@ const SERVICES = [
   },
 ];
 const N = SERVICES.length;
-const CASES = [{ cls: 'rvl' }, { cls: 'rvr' }]; // placeholder case-study cards
+const CASE_REVEAL = ['rvl', 'rv', 'rvr']; // scroll-reveal direction per card (left / up / right)
 
 const Arrow = ({ size = 16 }) => (
   <svg className="rtl-flip" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
@@ -228,22 +230,42 @@ export default function Service() {
       {/* 2 SELECTED WORK */}
       <section className="sv-work">
         <div className="wrap sec sv-work__wrap">
-          <div className="sv-work__box rv">
-            <div className="split sv-work__head">
-              <div>
-                <div className="eyebrow">{t.services_page_work_eyebrow}</div>
-                <h2>{t.services_page_work_title} <span className="ac">{t.services_page_work_accent}</span></h2>
-              </div>
+          <div className="split sv-work__head rv">
+            <div>
+              <div className="sv-work__eyebrow"><span />{t.services_page_work_eyebrow}</div>
+              <h2>{t.services_page_work_title} <span className="ac">{t.services_page_work_accent}</span></h2>
             </div>
-            <div className="g2">
-              {CASES.map((c, i) => (
-                <Link className={`sv-case ${c.cls}`} to="/work" key={i}>
-                  <div className="sv-case__img">{t.services_page_case_image}</div>
-                  <div className="sv-case__title">{t.services_page_case_title}</div>
-                  <div className="sv-case__meta">{t.services_page_case_meta}</div>
-                </Link>
-              ))}
-            </div>
+          </div>
+
+          <div className="sv-cases">
+            {localizeCases(CaseStudies, t).map((c, i) => (
+              <Link className={`ccard ${CASE_REVEAL[i % CASE_REVEAL.length]}`} to={caseHref(c.slug)} key={c.slug}>
+                <div className="ccard__media">
+                  <div
+                    className="cimg"
+                    style={{ background: `${c.image.bg} url(${c.image.src}) center / ${c.image.size} no-repeat` }}
+                    {...(c.image.label ? { role: 'img', 'aria-label': c.image.label } : { 'aria-hidden': true })}
+                  />
+                </div>
+                <div className="ccard__body">
+                  <div className="ccard__row">
+                    <span className="ccard__service">{c.service}</span>
+                    <span className="go">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8" /></svg>
+                    </span>
+                  </div>
+                  <div className="ccard__title">{c.client}</div>
+                  <div className="ccard__sub">{c.card.sub}</div>
+                  <div className="ccard__stat"><span>{c.card.value}</span><span>{c.card.label}</span></div>
+                </div>
+              </Link>
+            ))}
+          </div>
+
+          <div className="sv-work__more rv">
+            <Link className="btn morelink" to="/work">
+              {t.services_page_view_all} <Arrow />
+            </Link>
           </div>
         </div>
       </section>

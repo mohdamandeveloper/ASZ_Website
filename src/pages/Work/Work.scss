@@ -1,25 +1,26 @@
-$header-h: 68px; // height of your sticky header – hero slides underneath it
-$ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+$ease: cubic-bezier(.2, .7, .2, 1);
+$mono: 'Geist Mono', monospace;
 
-@keyframes pg-spin {
-  to {
-    transform: rotate(360deg);
-  }
-}
-
+// Reuses global utilities: .btn .btn-ac .ac .up .rv .live .dot
 .work-page {
+  // 1 in LTR, -1 in RTL: lets hover nudges and slides point the right way
+  --dir: 1;
+
+  html[dir='rtl'] & {
+    --dir: -1;
+  }
+
   width: 100%;
   color: #0e0e0f;
   background: #fafafa;
   -webkit-font-smoothing: antialiased;
   overflow-x: clip;
 
-  .pg-wrap {
+  .wrap {
+    position: relative;
     max-width: 1264px;
     margin: 0 auto;
     box-sizing: border-box;
-    padding-left: 32px;
-    padding-right: 32px;
   }
 
   // keep white label on hover (global a:hover { color: inherit } would override it)
@@ -28,95 +29,101 @@ $ease: cubic-bezier(0.2, 0.7, 0.2, 1);
     color: #fff;
   }
 
-  // ───────────────────────── HERO ─────────────────────────
-  .pg-hero {
+  // visible keyboard focus everywhere on this page
+  a:focus-visible,
+  button:focus-visible {
+    outline: 2px solid var(--ac);
+    outline-offset: 3px;
+  }
+
+  .wk-sr {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  /* ================= 1 HERO ================= */
+  .wk-hero {
     position: relative;
-    margin-top: -#{$header-h};
+    margin-top: -68px;
     background: #07070a;
     color: #fff;
     overflow: hidden;
 
-    &::before {
-      content: '';
+    &__grid {
       position: absolute;
       inset: 0;
-      opacity: 0.07;
-      background-image: linear-gradient(rgba(255, 255, 255, 0.16) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255, 255, 255, 0.16) 1px, transparent 1px);
+      opacity: .07;
+      background-image: linear-gradient(rgba(255, 255, 255, .16) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, .16) 1px, transparent 1px);
       background-size: 80px 80px;
-      -webkit-mask-image: radial-gradient(circle at 82% 50%, #000, transparent 60%);
-      mask-image: radial-gradient(circle at 82% 50%, #000, transparent 60%);
+      -webkit-mask-image: radial-gradient(circle at 80% 40%, #000, transparent 60%);
+      mask-image: radial-gradient(circle at 80% 40%, #000, transparent 60%);
+
+      html[dir='rtl'] & {
+        -webkit-mask-image: radial-gradient(circle at 20% 40%, #000, transparent 60%);
+        mask-image: radial-gradient(circle at 20% 40%, #000, transparent 60%);
+      }
     }
 
-    &::after {
-      content: '';
+    &__frame {
       position: absolute;
       inset: 12px;
-      // border: 1px solid rgba(255, 255, 255, 0.14);
+      border: 1px solid rgba(255, 255, 255, .14);
       border-radius: 30px;
       pointer-events: none;
     }
 
-    // dotted rotating orbs
-    &__orb {
-      position: absolute;
-
-      &--lg {
-        right: -300px;
-        top: -160px;
-        width: 860px;
-        height: 860px;
-
-        .pg-hero__ring {
-          border: 16px dotted var(--ac);
-          opacity: 0.13;
-          filter: blur(7px);
-          animation: pg-spin 120s linear infinite;
-        }
-      }
-
-      &--sm {
-        right: -60px;
-        top: 80px;
-        width: 380px;
-        height: 380px;
-
-        .pg-hero__ring {
-          border: 2px dotted rgba(255, 255, 255, 0.22);
-          animation: pg-spin 90s linear infinite reverse;
-        }
-      }
+    &__wrap {
+      padding: 0 48px;
     }
 
-    &__ring {
-      width: 100%;
-      height: 100%;
-      box-sizing: border-box;
-      border-radius: 50%;
-    }
-
-    &__grid {
+    &__body {
       display: flex;
       flex-direction: column;
       align-items: flex-start;
       justify-content: flex-end;
-      gap: 26px;
-      min-height: 600px;
-      max-width: 860px;
-      padding: 120px 0 96px;
+      gap: 24px;
+      min-height: 560px;
+      padding: 170px 0 80px;
       box-sizing: border-box;
+
+      h1 {
+        margin: 0;
+        max-width: 940px;
+        font-size: clamp(44px, 4.2vw, 60px);
+        line-height: .96;
+        font-weight: 700;
+        letter-spacing: -0.055em;
+        animation-delay: .08s;
+      }
+
+      p {
+        margin: 0;
+        max-width: 640px;
+        font-size: 19px;
+        line-height: 1.55;
+        color: #a9abb3;
+        animation-delay: .16s;
+      }
     }
 
-    &__badge {
+    &__pill {
       display: inline-flex;
       align-items: center;
       gap: 10px;
       height: 36px;
       padding: 0 16px;
       border-radius: 999px;
-      border: 1px solid rgba(255, 255, 255, 0.18);
+      border: 1px solid rgba(255, 255, 255, .18);
+      font-family: $mono;
       font-size: 11px;
-      letter-spacing: 0.16em;
+      letter-spacing: .16em;
       text-transform: uppercase;
       color: #d6d6d6;
 
@@ -128,150 +135,62 @@ $ease: cubic-bezier(0.2, 0.7, 0.2, 1);
       }
     }
 
-    &__title {
-      margin: 0;
-      font-size: clamp(44px, 4.2vw, 60px);
-      line-height: 1.02;
-      font-weight: 600;
-      letter-spacing: -0.045em;
-      animation-delay: 0.08s;
-    }
-
-    &__text {
-      margin: 0;
-      max-width: 640px;
-      font-size: 19px;
-      line-height: 1.55;
-      color: #a9abb3;
-      animation-delay: 0.16s;
-    }
-
-    &__actions {
-      animation-delay: 0.26s;
-    }
-  }
-
-  .pg-wrap--hero {
-    position: relative;
-    z-index: 1;
-    padding-left: 48px;
-    padding-right: 48px;
-  }
-
-  // ─────────────────────────── CTA ───────────────────────────
-  .pg-cta {
-    background: #fff;
-    border-top: 1px solid #e8e8e7;
-    text-align: center;
-
-    &__inner {
-      padding-top: 70px;
-      padding-bottom: 70px;
-    }
-
-    .eyebrow {
+    &__btn {
       display: inline-flex;
-      margin-bottom: 24px;
-    }
-
-    &__title {
-      margin: 0;
-      font-size: clamp(44px, 4.2vw, 80px);
-      line-height: 0.96;
-      font-weight: 800;
-      letter-spacing: -0.055em;
-    }
-
-    &__text {
-      margin: 28px auto 0;
-      max-width: 640px;
-      font-size: 19px;
-      line-height: 1.55;
-      color: #5c5c5c;
-    }
-
-    &__actions {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 14px;
-      margin-top: 44px;
-
-      .btn {
-        --h: 60px;
-        --px: 34px;
-        --fs: 17px;
-        font-weight: 600;
-      }
-    }
-
-    &__ghost,
-    &__ghost:hover {
-      color: #0e0e0f;
-    }
-
-    &__ghost {
-      background: #fff;
-      border: 1px solid #d5d5d4;
-      transition: border-color 0.2s, background 0.2s, transform 0.2s;
-
-      &:hover {
-        border-color: #0e0e0f;
-        background: #f3f3f2;
-      }
-    }
-  }
-
-  // ─────────────────────── FILTER BAR ───────────────────────
-  .work-filter {
-    position: sticky;
-    top: 108px; // sits just under your sticky header
-    z-index: 40;
-    background: rgba(250, 250, 250, 0.92);
-    -webkit-backdrop-filter: blur(14px);
-    backdrop-filter: blur(14px);
-    border-bottom: 1px solid #dcdcdb;
-
-    &__inner {
-      display: flex;
       align-items: center;
-      justify-content: space-between;
-      gap: 20px;
-      padding-top: 40px;
-      padding-bottom: 40px;
-    }
-
-    &__pills {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-    }
-
-    &__count {
-      font-size: 12px;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: #5c5c5c;
-      white-space: nowrap;
-
-      span {
-        color: var(--ac2);
-      }
+      gap: 14px;
+      height: 56px;
+      padding: 0 28px;
+      border-radius: 999px;
+      background: var(--ac2);
+      font-size: 16px;
+      font-weight: 600;
+      animation-delay: .26s;
     }
   }
 
-  .work-pill {
+  /* ================= 2 ALL STORIES ================= */
+  .wk-stories {
+    background: #fafafa;
+    scroll-margin-top: 100px;
+    outline: none; // focus target for the hero button only, not a tab stop
+
+    &__bar {
+      padding-top: 70px;
+    }
+
+    &__wrap {
+      padding: 32px 32px 104px;
+    }
+  }
+
+  .wk-bar {
+    padding: 4px 36px; // 4px gives the focus ring room inside the scroll container
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
+  .pill {
+    flex: none;
     display: inline-flex;
     align-items: center;
     height: 40px;
-    padding: 0 16px;
+    padding: 0 18px;
     border-radius: 999px;
     border: 1px solid #d4d4d3;
     background: #fff;
     color: #0e0e0f;
     font-size: 14px;
     font-weight: 500;
-    transition: background 0.25s, color 0.25s, border-color 0.25s, transform 0.2s;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: background .25s, color .25s, border-color .25s, transform .2s;
 
     &:hover {
       transform: translateY(-1px);
@@ -284,222 +203,305 @@ $ease: cubic-bezier(0.2, 0.7, 0.2, 1);
     }
   }
 
-  // ─────────────────────────── GRID ───────────────────────────
-  @keyframes pg-pop {
-    from {
-      opacity: 0;
-      translate: 0 18px;
-    }
-
-    to {
-      opacity: 1;
-      translate: 0 0;
-    }
-  }
-
-  .pg-pop {
-    animation: pg-pop 0.5s $ease both;
-  }
-
-  .work-grid-sec {
-    background: #fafafa;
-  }
-
-  .work-grid-wrap {
-    padding-top: 64px;
-    padding-bottom: 96px;
-  }
-
-  .work-grid {
+  .egrid {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    column-gap: 24px;
-    row-gap: 64px;
+    gap: 20px;
   }
 
-  .work-card {
-    display: block;
-    transition: transform 0.5s $ease;
+  .ecard {
+    display: flex;
+    flex-direction: column;
+    border-radius: 26px;
+    overflow: hidden;
+    background: #fff;
+    border: 1px solid #e6e6e5;
+    color: #0e0e0f;
+    transition: transform .5s $ease, box-shadow .5s;
 
-    &__img {
-      position: relative;
-      aspect-ratio: 3 / 2;
-      border-radius: 22px;
-      border: 1px dashed #bdbdbc;
-      background: #f0f0ef;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 11px;
-      letter-spacing: 0.14em;
-      color: #5c5c5c;
-      transition: border-color 0.3s, background 0.3s;
-    }
-
-    &__go {
-      position: absolute;
-      right: 18px;
-      top: 18px;
-      width: 44px;
-      height: 44px;
-      border-radius: 50%;
-      border: 1px solid #bdbdbc;
-      background: #fff;
-      color: #0e0e0f;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      transition: transform 0.3s, background 0.3s, color 0.3s, border-color 0.3s;
-    }
-
-    &__title {
-      margin-top: 22px;
-      font-size: 26px;
-      font-weight: 600;
-      letter-spacing: -0.03em;
-    }
-
-    &__text {
-      margin: 8px 0 0;
-      max-width: 480px;
-      font-size: 15px;
-      line-height: 1.55;
-      color: #5c5c5c;
-    }
-
-    &__tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-top: 14px;
-    }
-
-    &__tag {
-      display: inline-flex;
-      align-items: center;
-      height: 30px;
-      padding: 0 12px;
-      border-radius: 999px;
-      border: 1px solid #d4d4d3;
-      background: #fff;
-      font-size: 13px;
-
-      &--year {
-        border-style: dashed;
-        border-color: #bdbdbc;
-        background: transparent;
-        font-size: 11px;
-        letter-spacing: 0.1em;
-        color: #5c5c5c;
-      }
-    }
-
-    &:hover {
+    &:hover,
+    &:focus-visible {
       transform: translateY(-6px);
+      box-shadow: 0 40px 70px -44px rgba(14, 14, 15, .45);
 
-      .work-card__img {
-        border-color: var(--ac);
-        background: #fff;
+      .eimg {
+        transform: scale(1.05);
       }
 
-      .work-card__go {
+      .go {
         transform: translate(3px, -3px);
         background: var(--ac2);
         border-color: var(--ac2);
         color: #fff;
       }
     }
-  }
 
-  // ─────────────────────── EMPTY STATE ───────────────────────
-  .work-empty {
-    padding: 88px 32px;
-    border-radius: 26px;
-    border: 1px dashed #bdbdbc;
-    text-align: center;
+    &__media {
+      position: relative;
+      aspect-ratio: 16 / 9;
+      overflow: hidden;
+    }
+
+    .eimg {
+      position: absolute;
+      inset: 0;
+      transition: transform 1.2s $ease;
+    }
+
+    &__chip {
+      position: absolute;
+      inset-inline-start: 18px;
+      top: 18px;
+      display: inline-flex;
+      align-items: center;
+      height: 26px;
+      padding: 0 11px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, .92);
+      font-family: $mono;
+      font-size: 10px;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: #0e0e0f;
+    }
+
+    &__body {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      padding: 26px 28px;
+    }
+
+    &__industry {
+      font-family: $mono;
+      font-size: 10.5px;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--ac2);
+    }
+
+    &__row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
 
     &__title {
       font-size: 30px;
-      font-weight: 600;
-      letter-spacing: -0.035em;
+      font-weight: 700;
+      letter-spacing: -0.045em;
+      line-height: 1.05;
+    }
+
+    .go {
+      flex: none;
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      border: 1px solid #d4d4d3;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform .3s, background .3s, color .3s, border-color .3s;
     }
 
     &__text {
-      margin: 12px auto 28px;
-      max-width: 420px;
       font-size: 16px;
-      line-height: 1.6;
       color: #5c5c5c;
     }
 
-    .work-pill {
-      height: 48px;
-      padding: 0 24px;
-      border-color: #0e0e0f;
-      font-size: 15px;
+    &__stat {
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+      margin-top: 12px;
+      padding-top: 18px;
+      border-top: 1px solid #ececeb;
+
+      span:first-child {
+        font-size: 44px;
+        font-weight: 700;
+        letter-spacing: -0.06em;
+        line-height: .9;
+      }
+
+      span:last-child {
+        font-size: 14px;
+        color: #5c5c5c;
+      }
     }
   }
 
-  // ─────────────────────── Tablet & phone ───────────────────────
+  /* ================= CTA ================= */
+  .wk-cta {
+    background: #fff;
+    border-top: 1px solid #e8e8e7;
+
+    &__wrap {
+      padding: 70px 32px 70px;
+      text-align: center;
+
+      h2 {
+        margin: 0;
+        font-size: clamp(44px, 4.2vw, 80px);
+        line-height: .96;
+        font-weight: 800;
+        letter-spacing: -0.055em;
+      }
+
+      p {
+        margin: 28px auto 0;
+        max-width: 640px;
+        font-size: 19px;
+        line-height: 1.55;
+        color: #5c5c5c;
+      }
+    }
+
+    &__actions {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 14px;
+      margin-top: 44px;
+      --h: 60px;
+      --px: 34px;
+      --fs: 17px;
+    }
+  }
+
+  .wk-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 24px;
+    font-family: $mono;
+    font-size: 11px;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+    color: #5c5c5c;
+
+    span {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--ac);
+    }
+  }
+
+  .ctaghost {
+    display: inline-flex;
+    align-items: center;
+    height: 60px;
+    padding: 0 34px;
+    border-radius: 999px;
+    background: #fff;
+    border: 1px solid #d5d5d4;
+    color: #0e0e0f;
+    font-size: 17px;
+    font-weight: 600;
+    transition: border-color .2s, background .2s, transform .2s;
+
+    &:hover {
+      border-color: #0e0e0f;
+      background: #f3f3f2;
+      color: #0e0e0f;
+    }
+  }
+
+  /* ================= Phone and tablet ================= */
   @media (max-width: 900px) {
-    .pg-wrap {
+    .wrap {
       padding-left: 20px;
       padding-right: 20px;
     }
 
-    .pg-sec {
-      padding-top: 80px;
-      padding-bottom: 80px;
+    .wk-hero__wrap {
+      padding: 0 20px;
     }
 
-    .pg-hero__grid {
-      padding-top: 150px;
-      padding-bottom: 40px;
+    .wk-hero__body {
+      padding: 150px 0 40px;
       min-height: 0;
     }
 
-    .work-filter__inner {
-      flex-direction: column;
-      align-items: stretch;
-      gap: 14px;
-      padding: 18px 20px;
+    .wk-bar {
+      padding: 4px 20px;
     }
 
-    // Filter pills: one row, swipe / scroll sideways.
-    // Flex follows the page direction, so it starts at the left in LTR and at the right in
-    // Arabic (RTL), and the user scrolls left → right / right → left accordingly.
-    .work-filter__pills {
-      flex-wrap: nowrap;
-      min-width: 0;
-      overflow-x: auto;
-      overflow-y: hidden;
-      overscroll-behavior-x: contain;
-      -webkit-overflow-scrolling: touch;
-      scrollbar-width: none; // Firefox
-      // bleed to the screen edges so the pills scroll under the page padding
-      margin-inline: -20px;
-      padding-inline: 20px;
-      padding-block: 2px;
+    .wk-stories__wrap {
+      padding-left: 20px;
+      padding-right: 20px;
+    }
 
-      &::-webkit-scrollbar { display: none; }
+    .egrid {
+      grid-template-columns: 1fr;
+    }
+  }
 
-      .work-pill {
-        flex: none;
-        white-space: nowrap;
+  @media (max-width: 600px) {
+    .wk-hero__body {
+      padding-top: 124px;
+
+      h1 {
+        font-size: 44px;
+        line-height: 1;
+        letter-spacing: -0.05em;
+      }
+
+      p {
+        font-size: 16px;
+        line-height: 1.6;
+        max-width: none;
       }
     }
 
-    .work-grid {
-      grid-template-columns: 1fr;
+    .wk-hero__btn {
+      height: 50px;
+      font-size: 15px;
+      padding: 0 22px;
     }
 
+    .wk-stories__bar {
+      padding-top: 60px;
+    }
+
+    .wk-stories__wrap {
+      padding-bottom: 60px;
+    }
+
+    .wk-cta__wrap {
+      padding: 68px 20px 76px;
+
+      h2 {
+        font-size: 40px;
+        line-height: 1;
+      }
+
+      p {
+        font-size: 16px;
+        margin-top: 16px;
+      }
+    }
+
+    .wk-cta__actions {
+      margin-top: 28px;
+      gap: 10px;
+    }
+
+    .ecard__title {
+      font-size: 26px;
+    }
   }
 
   @media (prefers-reduced-motion: reduce) {
 
-    .pg-hero__ring,
-    .pg-pop {
-      animation: none !important;
+    .ecard,
+    .ecard .eimg,
+    .ecard .go,
+    .pill {
+      transition: none;
     }
   }
 }

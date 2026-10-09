@@ -1,240 +1,471 @@
 import { useEffect, useRef, useState } from 'react';
+import { Link, useSearchParams } from 'react-router-dom';
 import { useTranslation } from '../../Context/LanguageContext';
 import './Contact.scss';
 
-// ---- Contact details (shown on the page and used for the mailto fallback) ----
+// ---- Contact details (mailto fallback + "Prefer email?" link) ----
 const EMAIL = 'info@asztechnologies.com';
-const PHONE_DISPLAY = '+91 97407 03030';
-const PHONE_HREF = 'tel:+919740703030';
 
 // Where the form is posted (JSON). Point this at your API / Formspree / etc.
-// While it is empty, submitting opens the visitor's mail app with the message pre-filled.
+// While it is empty, sending opens the visitor's mail app with the message pre-filled.
 const FORM_ENDPOINT = '';
 
-const EMPTY = { firstName: '', lastName: '', email: '', phone: '', message: '' };
-const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
-const PHONE_RE = /^\+?[\d\s\-().]+$/;
+const PRIVACY_ROUTE = '/privacy-policy';
 
-const svgProps = {
-  viewBox: '0 0 24 24',
-  fill: 'none',
-  stroke: 'currentColor',
-  strokeLinecap: 'round',
-  strokeLinejoin: 'round',
-  'aria-hidden': 'true',
+const STEPS = [1, 2, 4]; // same step order as contact.html (step 3 is unused there)
+
+const TYPES = ['project', 'team', 'demo', 'partner', 'other'];
+const TYPE_EN = {
+  project: 'Start a project',
+  team: 'Hire a team',
+  demo: 'Book a product demo',
+  partner: 'Partnerships',
+  other: 'Something else',
 };
 
-const arrowRight = (
-  <svg className="rtl-flip" width="16" height="16" strokeWidth="2" {...svgProps}>
+// Option lists: [id, English label]. The UI text comes from `cf_o_<list>_<id>` in the locale
+// files; the English label is only used in the message that is sent to ASZ.
+const LISTS = {
+  svc: [['ai', 'AI & Intelligent Systems'], ['security', 'Smart Security Systems'], ['erp', 'Enterprise Systems & ERP'], ['product', 'Product & Application Engineering'], ['digital', 'Digital Transformation & Cloud'], ['notsure', 'Not sure yet']],
+  stage: [['exploring', 'Exploring ideas'], ['planning', 'Planning a project'], ['ready', 'Ready to start'], ['scaling', 'Replacing or scaling an existing system']],
+  skills: [['ai', 'AI & Machine Learning'], ['web', 'Web & Full-stack'], ['mobile', 'Mobile'], ['cloud', 'Cloud & DevOps'], ['erp', 'ERP & Enterprise Systems'], ['data', 'Data & Analytics'], ['qa', 'QA & Testing'], ['notsure', 'Not sure yet']],
+  model: [['dedicated', 'A dedicated team'], ['extend', 'Extend my existing team'], ['notsure', 'Not sure yet']],
+  prod: [['Cordon', 'Cordon'], ['MEDIQ', 'MEDIQ'], ['JobScout', 'JobScout'], ['Safin', 'Safin']], // product names are not translated
+  ptype: [['tech', 'Technology partnership'], ['reseller', 'Reseller or channel partner'], ['referral', 'Referral partner'], ['other', 'Something else']],
+};
+const MULTI = ['svc', 'skills', 'prod'];
+
+// What step 2 shows for each enquiry type
+const BLOCKS = {
+  project: { k: 'p', groups: [{ list: 'svc', label: 'p_areas', cols: 2 }, { list: 'stage', label: 'p_stage', cols: 2, optional: true }] },
+  team: { k: 't', groups: [{ list: 'skills', label: 't_skills', cols: 2 }, { list: 'model', label: 't_model', cols: 3, optional: true }] },
+  demo: { k: 'd', groups: [{ list: 'prod', label: 'd_prod', cols: 2 }] },
+  partner: { k: 'pt', groups: [{ list: 'ptype', label: 'pt_type', cols: 2 }] },
+  other: { k: 'o', groups: [] },
+};
+const REQUIRED = { project: ['svc', 'err_svc'], team: ['skills', 'err_skills'], demo: ['prod', 'err_prod'], partner: ['ptype', 'err_ptype'] };
+
+const PRODUCT_PARAM = { cordon: 'Cordon', mediq: 'MEDIQ', jobscout: 'JobScout', safin: 'Safin' };
+const EMAIL_RE = /^[^@\s]+@[^@\s]+\.[^@\s]+$/;
+const EMPTY_ANSWERS = { svc: [], stage: [], skills: [], model: [], prod: [], ptype: [] };
+const EMPTY_FIELDS = { first: '', last: '', email: '', company: '', role: '', phone: '' };
+
+const Arrow = () => (
+  <svg className="rtl-flip" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
     <path d="M5 12h14M13 6l6 6-6 6" />
   </svg>
 );
+const ArrowBack = () => (
+  <svg className="rtl-flip" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <path d="M19 12H5M11 6l-6 6 6 6" />
+  </svg>
+);
+const Check = ({ size = 11, sw = 3 }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={sw} strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <path d="M5 12.5l4.5 4.5L19 7.5" />
+  </svg>
+);
 
-const validate = (v, t) => {
-  const e = {};
-  Object.keys(EMPTY).forEach((k) => {
-    if (!v[k].trim()) e[k] = t.ct_err_required;
-  });
-  if (!e.email && !EMAIL_RE.test(v.email.trim())) e.email = t.ct_err_email;
-  if (!e.phone) {
-    const digits = v.phone.replace(/\D/g, '').length;
-    if (!PHONE_RE.test(v.phone.trim()) || digits < 7 || digits > 15) e.phone = t.ct_err_phone;
-  }
-  return e;
-};
+const fill = (str, vars) => Object.keys(vars).reduce((s, k) => s.split(`{${k}}`).join(vars[k]), str);
 
-async function sendMessage(v, t) {
+async function sendMessage(payload, subject) {
   if (FORM_ENDPOINT) {
     const res = await fetch(FORM_ENDPOINT, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-      body: JSON.stringify(v),
+      body: JSON.stringify(payload),
     });
     if (!res.ok) throw new Error(`Request failed: ${res.status}`);
     return;
   }
-  const body = [
-    `${t.ct_first_name}: ${v.firstName}`,
-    `${t.ct_last_name}: ${v.lastName}`,
-    `${t.ct_email}: ${v.email}`,
-    `${t.ct_phone}: ${v.phone}`,
-    '',
-    v.message,
-  ].join('\n');
-  window.location.href = `mailto:${EMAIL}?subject=${encodeURIComponent(t.ct_mail_subject)}&body=${encodeURIComponent(body)}`;
+  const body = Object.entries(payload)
+    .filter(([, v]) => (Array.isArray(v) ? v.length : v))
+    .map(([k, v]) => `${k}: ${Array.isArray(v) ? v.join(', ') : v}`)
+    .join('\n');
+  window.location.href = `mailto:${EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 }
 
 const Contact = () => {
   const t = useTranslation();
-  const [values, setValues] = useState(EMPTY);
-  const [errors, setErrors] = useState({});
-  const [status, setStatus] = useState('idle'); // idle | sending | sent | error
-  const doneRef = useRef(null);
+  const [params] = useSearchParams();
 
+  // ?enquiry=project|team|demo|partner|other  and  ?product=cordon|mediq|jobscout|safin
+  const [type, setType] = useState(() => {
+    const q = params.get('enquiry');
+    return TYPES.includes(q) ? q : '';
+  });
+  const [answers, setAnswers] = useState(() => {
+    const p = PRODUCT_PARAM[String(params.get('product') || '').toLowerCase()];
+    return p ? { ...EMPTY_ANSWERS, prod: [p] } : EMPTY_ANSWERS;
+  });
+  const [step, setStep] = useState(1); // 1 | 2 | 4 | 5 (done)
+  const [message, setMessage] = useState('');
+  const [fields, setFields] = useState(EMPTY_FIELDS);
+  const [consent, setConsent] = useState(false);
+  const [err, setErr] = useState('');
+  const [ddOpen, setDdOpen] = useState(false);
+  const [sending, setSending] = useState(false);
+  const [sent, setSent] = useState(null);
+
+  const cardRef = useRef(null);
+  const headingRef = useRef(null);
+  const ddRef = useRef(null);
+  const ddBtnRef = useRef(null);
+  const mounted = useRef(false);
+
+  const pos = Math.max(0, STEPS.indexOf(step));
+  const done = step === 5;
+  const block = BLOCKS[type || 'other'];
+
+  // After the visitor moves between steps, scroll the form into view and put keyboard focus on the
+  // new step's heading, so Tab continues from there and screen readers announce it.
   useEffect(() => {
-    if (status === 'sent' && doneRef.current) doneRef.current.focus();
-  }, [status]);
+    if (!mounted.current) { mounted.current = true; return; }
+    const el = document.getElementById('contact');
+    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    if (headingRef.current) headingRef.current.focus({ preventScroll: true });
+  }, [step]);
 
-  const onChange = (e) => {
-    const { name, value } = e.target;
-    setValues((cur) => ({ ...cur, [name]: value }));
-    if (errors[name]) setErrors((cur) => ({ ...cur, [name]: undefined }));
+  // close the drop-down on outside click / Escape
+  useEffect(() => {
+    if (!ddOpen) return undefined;
+    const onDown = (e) => { if (ddRef.current && !ddRef.current.contains(e.target)) setDdOpen(false); };
+    document.addEventListener('mousedown', onDown);
+    return () => document.removeEventListener('mousedown', onDown);
+  }, [ddOpen]);
+
+  const scrollToForm = (e) => {
+    e.preventDefault();
+    const el = document.getElementById('contact');
+    if (!el) return;
+    el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    if (cardRef.current) cardRef.current.focus({ preventScroll: true });
   };
+
+  const toggle = (list, id) => {
+    setErr('');
+    setAnswers((cur) => {
+      const has = cur[list].includes(id);
+      if (MULTI.includes(list)) return { ...cur, [list]: has ? cur[list].filter((x) => x !== id) : [...cur[list], id] };
+      return { ...cur, [list]: has ? [] : [id] };
+    });
+  };
+
+  const setField = (name) => (e) => { setErr(''); setFields((cur) => ({ ...cur, [name]: e.target.value })); };
+
+  const validate = (s) => {
+    if (s === 1 && !type) return t.cf_err_type;
+    if (s === 2) {
+      const req = REQUIRED[type];
+      if (req && !answers[req[0]].length) return t[`cf_${req[1]}`];
+    }
+    if (s === 4) {
+      if (!fields.first.trim()) return t.cf_err_first;
+      if (!EMAIL_RE.test(fields.email.trim())) return t.cf_err_email;
+      if (!fields.company.trim()) return t.cf_err_company;
+      if (!consent) return t.cf_err_consent;
+    }
+    return '';
+  };
+
+  const labelsOf = (list) => answers[list].map((id) => (LISTS[list].find(([i]) => i === id) || [, id])[1]);
+
+  const goTo = (n) => { setErr(''); setDdOpen(false); setStep(n); };
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    if (status === 'sending') return;
-    const found = validate(values, t);
-    setErrors(found);
-    if (Object.keys(found).length) {
-      const first = Object.keys(found)[0];
-      const el = document.getElementById(`ct-${first}`);
-      if (el) el.focus();
-      return;
-    }
-    setStatus('sending');
+    if (sending || done) return;
+    const problem = validate(step);
+    if (problem) { setErr(problem); return; }
+    if (step !== 4) { goTo(STEPS[pos + 1]); return; }
+
+    setSending(true);
     try {
-      await sendMessage(values, t);
-      setValues(EMPTY);
-      setStatus('sent');
-    } catch (err) {
-      setStatus('error');
+      await sendMessage(
+        {
+          enquiry: TYPE_EN[type],
+          areas: labelsOf('svc'),
+          stage: labelsOf('stage'),
+          skills: labelsOf('skills'),
+          working_model: labelsOf('model'),
+          products: labelsOf('prod'),
+          partnership: labelsOf('ptype'),
+          message: message.trim(),
+          first_name: fields.first.trim(),
+          last_name: fields.last.trim(),
+          email: fields.email.trim(),
+          company: fields.company.trim(),
+          role: fields.role.trim(),
+          phone: fields.phone.trim(),
+        },
+        t.ct_mail_subject,
+      );
+      setSent({ first: fields.first.trim(), email: fields.email.trim() });
+      goTo(5);
+    } catch (error) {
+      setErr(t.cf_err_send);
+    } finally {
+      setSending(false);
     }
   };
 
-  // One labelled field. `ltr` keeps emails / phone numbers left-to-right inside Arabic pages.
-  const field = ({ name, label, placeholder, type = 'text', autoComplete, ltr, wide, multiline }) => {
-    const id = `ct-${name}`;
-    const err = errors[name];
-    const common = {
-      id,
-      name,
-      value: values[name],
-      onChange,
-      placeholder,
-      autoComplete,
-      'aria-invalid': err ? 'true' : 'false',
-      'aria-describedby': err ? `${id}-err` : undefined,
-      dir: ltr ? 'ltr' : undefined,
-    };
+  /* ---- drop-down keyboard support: Esc closes, arrows move between options ---- */
+  const onDdKey = (e) => {
+    if (e.key === 'Escape' && ddOpen) {
+      e.preventDefault();
+      setDdOpen(false);
+      if (ddBtnRef.current) ddBtnRef.current.focus();
+      return;
+    }
+    if (e.key !== 'ArrowDown' && e.key !== 'ArrowUp') return;
+    e.preventDefault();
+    if (!ddOpen) { setDdOpen(true); return; }
+    const opts = Array.from(ddRef.current.querySelectorAll('[role="option"]'));
+    const i = opts.indexOf(document.activeElement);
+    const next = e.key === 'ArrowDown' ? (i + 1) % opts.length : (i <= 0 ? opts.length - 1 : i - 1);
+    opts[next].focus();
+  };
+  const onDdBlur = (e) => {
+    // relatedTarget is null when Safari doesn't focus a clicked button; the outside-click handler covers that
+    if (ddOpen && e.relatedTarget && !ddRef.current.contains(e.relatedTarget)) setDdOpen(false);
+  };
+
+  const pickType = (id) => {
+    setType(id);
+    setErr('');
+    setDdOpen(false);
+    if (ddBtnRef.current) ddBtnRef.current.focus();
+  };
+
+  const optLabel = (list, id, en) => (list === 'prod' ? en : t[`cf_o_${list}_${id}`]);
+
+  const chipGroup = ({ list, label, cols, optional }) => {
+    const multi = MULTI.includes(list);
+    const labelId = `cf-lbl-${list}`;
     return (
-      <div className={`ct-field${wide ? ' ct-field--wide' : ''}${err ? ' has-error' : ''}`}>
-        <label htmlFor={id}>
-          {label} <span className="ct-req" aria-hidden="true">*</span>
-        </label>
-        {multiline ? <textarea rows={6} {...common} /> : <input type={type} {...common} />}
-        {err && <span className="ct-err" id={`${id}-err`} role="alert">{err}</span>}
+      <div className="cf-group" key={list}>
+        <div className="cf-label" id={labelId}>
+          {t[`cf_${label}`]} {optional && <span className="cf-opt">{t.cf_optional}</span>}
+        </div>
+        <div className={`chips chips--${cols}`} role="group" aria-labelledby={labelId}>
+          {LISTS[list].map(([id, en]) => {
+            const on = answers[list].includes(id);
+            return (
+              <button
+                key={id}
+                type="button"
+                className={`chip${on ? ' is-on' : ''}${multi ? ' chip--sq' : ''}`}
+                aria-pressed={on}
+                onClick={() => toggle(list, id)}
+              >
+                <span>{optLabel(list, id, en)}</span>
+                <span className="chip__box"><Check /></span>
+              </button>
+            );
+          })}
+        </div>
       </div>
     );
   };
 
+  const typeLabel = type ? t[`cf_type_${type}`] : t.cf_s1_ph;
+  const doneText = fill(t.cf_done_text, { email: '\u0000' }).split('\u0000');
+
   return (
-    <div className="contact-page">
-      {/* 1 · HERO */}
-      <section id="top" className="pg-hero">
-        <div className="fadein pg-hero__orb pg-hero__orb--lg" aria-hidden="true">
-          <div className="pg-hero__ring" />
+    <main className="contact-page">
+      {/* 1 HERO */}
+      <section id="top" className="ct-hero">
+        <img className="ct-hero__map" src="../src/assets/images/contact-map.webp" alt="" aria-hidden="true" />
+        <div className="wrap ct-hero__wrap">
+          <div className="ct-hero__badge up"><span />{t.cf_badge}</div>
+          <h1 className="up">{t.cf_h1_line1}<br /><span className="ac">{t.cf_h1_accent}</span></h1>
+          <p className="up">{t.cf_text}</p>
+          <a className="btn btn-ac up ct-hero__btn" href="#contact" onClick={scrollToForm}>
+            {t.cf_cta} <Arrow />
+          </a>
         </div>
-        <div className="fadein pg-hero__orb pg-hero__orb--sm" aria-hidden="true">
-          <div className="pg-hero__ring" />
-        </div>
-
-        <div className="pg-wrap pg-wrap--hero">
-          <div className="pg-hero__grid">
-            <div className="up pg-hero__badge">
-              <span className="live dot" />
-              {t.ct_badge}
-            </div>
-
-            <h1 className="up pg-hero__title">
-              {t.ct_h1_line1}
-              <br />
-              <span className="ac">{t.ct_h1_accent}</span>
-            </h1>
-
-            <p className="up pg-hero__text">{t.ct_text}</p>
+        <div className="ct-hero__foot">
+          <div>
+            <span>{t.cf_cities}</span>
+            <a href="#contact" className="ct-scroll" onClick={scrollToForm}>
+              {t.cf_scroll}
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M12 5v14M6 13l6 6 6-6" /></svg>
+            </a>
+            <span>{t.cf_reply}</span>
           </div>
         </div>
       </section>
 
-      {/* 2 · CONTACT INFO + FORM */}
-      <section id="contact" className="pg-wrap ct-main">
-        <div className="ct-grid">
-          <div className="rvl ct-info">
-            <div className="eyebrow">{t.ct_info_eyebrow}</div>
-            <h2 className="h2">
-              {t.ct_info_title} <span className="ac">{t.ct_info_accent}</span>
-            </h2>
-            <p className="ct-info__text">{t.ct_info_text}</p>
-
-            <div className="ct-cards">
-              <a className="ct-card" href={`mailto:${EMAIL}`}>
-                <span className="ct-card__ic">
-                  <svg width="22" height="22" strokeWidth="1.7" {...svgProps}>
-                    <path d="M3 6.5A1.5 1.5 0 0 1 4.5 5h15A1.5 1.5 0 0 1 21 6.5v11a1.5 1.5 0 0 1-1.5 1.5h-15A1.5 1.5 0 0 1 3 17.5zM3.5 7l8.5 6 8.5-6" />
-                  </svg>
-                </span>
-                <span className="ct-card__body">
-                  <span className="ct-card__label">{t.footer_email_us_label}</span>
-                  <span className="ct-card__value" dir="ltr">{EMAIL}</span>
-                </span>
-                <span className="ct-card__go">{arrowRight}</span>
-              </a>
-
-              <a className="ct-card" href={PHONE_HREF}>
-                <span className="ct-card__ic">
-                  <svg width="22" height="22" strokeWidth="1.7" {...svgProps}>
-                    <path d="M5 4h3.5l1.8 4.5-2.3 1.5a11 11 0 0 0 5 5l1.5-2.3L20 14.5V18a2 2 0 0 1-2 2A14 14 0 0 1 4 6a2 2 0 0 1 1-2z" />
-                  </svg>
-                </span>
-                <span className="ct-card__body">
-                  <span className="ct-card__label">{t.footer_call_us_label}</span>
-                  <span className="ct-card__value" dir="ltr">{PHONE_DISPLAY}</span>
-                </span>
-                <span className="ct-card__go">{arrowRight}</span>
-              </a>
-            </div>
-          </div>
-
-          <div className="rvr ct-formcard">
-            {status === 'sent' ? (
-              <div className="ct-done" ref={doneRef} tabIndex={-1} role="status">
-                <span className="ct-done__ic">
-                  <svg width="26" height="26" strokeWidth="2.4" {...svgProps}>
-                    <path d="M5 12.5l4.5 4.5L19 7.5" />
-                  </svg>
-                </span>
-                <h3 className="ct-done__title">{t.ct_success_title}</h3>
-                <p className="ct-done__text">{t.ct_success_text}</p>
-                <button type="button" className="ct-done__again" onClick={() => setStatus('idle')}>
-                  {t.ct_success_again}
-                </button>
-              </div>
-            ) : (
-              <form className="ct-form" onSubmit={onSubmit} noValidate>
-                <h3 className="ct-form__title">{t.ct_form_title}</h3>
-                <p className="ct-form__text">{t.ct_form_text}</p>
-
-                <div className="ct-form__grid">
-                  {field({ name: 'firstName', label: t.ct_first_name, placeholder: t.ct_ph_first, autoComplete: 'given-name' })}
-                  {field({ name: 'lastName', label: t.ct_last_name, placeholder: t.ct_ph_last, autoComplete: 'family-name' })}
-                  {field({ name: 'email', label: t.ct_email, placeholder: t.ct_ph_email, type: 'email', autoComplete: 'email', ltr: true })}
-                  {field({ name: 'phone', label: t.ct_phone, placeholder: t.ct_ph_phone, type: 'tel', autoComplete: 'tel', ltr: true })}
-                  {field({ name: 'message', label: t.ct_message, placeholder: t.ct_ph_message, wide: true, multiline: true })}
+      {/* 2 FORM */}
+      <section id="contact" className="ct-form-sec">
+        <div className="ct-form-sec__in">
+          <div className="ct-track rv">
+            {[0, 1, 2].map((i) => {
+              const phase = done ? 2 : 0;
+              const isDone = i < phase || (phase === 2 && i <= 1);
+              const cur = i === phase;
+              return (
+                <div className="ct-track__item" key={i}>
+                  <div className="ct-track__top">
+                    <span className={`ct-track__dot${isDone ? ' is-done' : cur ? ' is-cur' : ''}`}>{`0${i + 1}`}</span>
+                    {i < 2 && <span className="ct-track__line" />}
+                  </div>
+                  <div>
+                    <div className="ct-track__ttl">{t[`cf_tk${i + 1}_t`]}</div>
+                    <div className="ct-track__desc">{t[`cf_tk${i + 1}_d`]}</div>
+                  </div>
                 </div>
-
-                {status === 'error' && <p className="ct-form__error" role="alert">{t.ct_err_send}</p>}
-
-                <button type="submit" className="btn btn-ac ct-form__submit" disabled={status === 'sending'}>
-                  {status === 'sending' ? t.ct_sending : t.ct_submit}
-                  {arrowRight}
-                </button>
-              </form>
-            )}
+              );
+            })}
           </div>
+
+          <div className="ct-card rv" ref={cardRef} tabIndex={-1}>
+            <form onSubmit={onSubmit} noValidate aria-label={t.cf_form_label}>
+              {!done && (
+                <div className="ct-progress">
+                  <span className="ct-progress__txt">{fill(t.cf_step, { n: pos + 1, total: STEPS.length })}</span>
+                  <span className="ct-progress__bar" role="progressbar" aria-valuemin={1} aria-valuemax={STEPS.length} aria-valuenow={pos + 1}>
+                    <span style={{ width: `${((pos + 1) / STEPS.length) * 100}%` }} />
+                  </span>
+                </div>
+              )}
+
+              {/* step 1: enquiry type */}
+              {step === 1 && (
+                <div>
+                  <h2 tabIndex={-1} ref={headingRef}>{t.cf_s1_title}</h2>
+                  <p className="ct-lead">{t.cf_s1_text}</p>
+                  <div className="ct-dd" ref={ddRef} onKeyDown={onDdKey} onBlur={onDdBlur}>
+                    <span className="cf-label" id="cf-dd-label">{t.cf_s1_label}</span>
+                    <button
+                      type="button"
+                      ref={ddBtnRef}
+                      className={`dd cin${type ? '' : ' is-empty'}`}
+                      aria-haspopup="listbox"
+                      aria-expanded={ddOpen}
+                      aria-labelledby="cf-dd-label cf-dd-value"
+                      onClick={() => setDdOpen((o) => !o)}
+                    >
+                      <span id="cf-dd-value">{typeLabel}</span>
+                      <svg className={ddOpen ? 'is-open' : ''} width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6" /></svg>
+                    </button>
+                    {ddOpen && (
+                      <div className="ct-dd__list" role="listbox" aria-labelledby="cf-dd-label">
+                        {TYPES.map((id) => {
+                          const on = id === type;
+                          return (
+                            <button key={id} type="button" role="option" aria-selected={on} className={`ddo${on ? ' is-on' : ''}`} onClick={() => pickType(id)}>
+                              <span>
+                                <span className="ddo__t">{t[`cf_type_${id}`]}</span>
+                                <span className="ddo__d">{t[`cf_type_${id}_d`]}</span>
+                              </span>
+                              <span className="ddo__tick"><Check size={16} /></span>
+                            </button>
+                          );
+                        })}
+                      </div>
+                    )}
+                  </div>
+                </div>
+              )}
+
+              {/* step 2: details by enquiry type */}
+              {step === 2 && (
+                <div>
+                  <h2 tabIndex={-1} ref={headingRef} className="ct-h2--s2">{t[`cf_${block.k}_title`]}</h2>
+                  <p className="ct-lead">{t[`cf_${block.k}_text`]}</p>
+                  {block.groups.map((g) => chipGroup(g))}
+                  <label className="cf-ta">
+                    <span className="cf-label">
+                      {type === 'other' ? t.cf_ta_msg : t.cf_ta_more} <span className="cf-opt">{t.cf_optional}</span>
+                    </span>
+                    <textarea
+                      className="cin"
+                      name="message"
+                      rows={4}
+                      value={message}
+                      placeholder={t[`cf_ph_${type || 'other'}`]}
+                      onChange={(e) => setMessage(e.target.value)}
+                    />
+                  </label>
+                </div>
+              )}
+
+              {/* step 4: contact details */}
+              {step === 4 && (
+                <div>
+                  <h2 tabIndex={-1} ref={headingRef} className="ct-h2--s2">{t.cf_c_title}</h2>
+                  <p className="ct-lead">{t.cf_c_text}</p>
+                  <div className="cf-fields">
+                    <div className="g2f">
+                      <label><span className="cf-label">{t.cf_f_first}</span>
+                        <input className="cin" type="text" name="first" autoComplete="given-name" value={fields.first} onChange={setField('first')} placeholder={t.cf_ph_first} /></label>
+                      <label><span className="cf-label">{t.cf_f_last} <span className="cf-opt">{t.cf_optional}</span></span>
+                        <input className="cin" type="text" name="last" autoComplete="family-name" value={fields.last} onChange={setField('last')} placeholder={t.cf_ph_last} /></label>
+                    </div>
+                    <div className="g2f">
+                      <label><span className="cf-label">{t.cf_f_email}</span>
+                        <input className="cin" type="email" name="email" dir="ltr" autoComplete="email" value={fields.email} onChange={setField('email')} placeholder={t.cf_ph_email} /></label>
+                      <label><span className="cf-label">{t.cf_f_company}</span>
+                        <input className="cin" type="text" name="company" autoComplete="organization" value={fields.company} onChange={setField('company')} placeholder={t.cf_ph_company} /></label>
+                    </div>
+                    <div className="g2f">
+                      <label><span className="cf-label">{t.cf_f_role} <span className="cf-opt">{t.cf_optional}</span></span>
+                        <input className="cin" type="text" name="role" autoComplete="organization-title" value={fields.role} onChange={setField('role')} placeholder={t.cf_ph_role} /></label>
+                      <label><span className="cf-label">{t.cf_f_phone} <span className="cf-opt">{t.cf_optional}</span></span>
+                        <input className="cin" type="tel" name="phone" dir="ltr" autoComplete="tel" value={fields.phone} onChange={setField('phone')} placeholder={t.cf_ph_phone} /></label>
+                    </div>
+                  </div>
+                  <label className="cf-consent">
+                    <input type="checkbox" checked={consent} onChange={(e) => { setConsent(e.target.checked); setErr(''); }} />
+                    <span>{t.cf_consent_pre}<Link to={PRIVACY_ROUTE}>{t.cf_consent_link}</Link>{t.cf_consent_post}</span>
+                  </label>
+                </div>
+              )}
+
+              {/* actions */}
+              {!done && (
+                <div>
+                  {err && <div className="ct-err" role="alert">{err}</div>}
+                  <div className="ct-actions">
+                    {step > 1 && (
+                      <button type="button" className="ct-back" onClick={() => goTo(STEPS[Math.max(0, pos - 1)])}>
+                        <ArrowBack />{t.cf_back}
+                      </button>
+                    )}
+                    {step === 1 && (
+                      <span className="ct-alt">{t.cf_alt} <a href={`mailto:${EMAIL}`} dir="ltr">{EMAIL}</a></span>
+                    )}
+                    <button type="submit" className="btn btn-ac ct-next" disabled={sending}>
+                      {sending ? t.cf_sending : step === 4 ? t.cf_send : t.cf_continue}
+                      <Arrow />
+                    </button>
+                  </div>
+                </div>
+              )}
+
+              {/* done */}
+              {done && (
+                <div className="ct-done">
+                  <span className="ct-done__ic"><Check size={26} sw={3} /></span>
+                  <h2 tabIndex={-1} ref={headingRef} role="status">{fill(t.cf_done_title, { name: (sent && sent.first) || t.cf_done_name })}</h2>
+                  <p>{doneText[0]}<b dir="ltr">{(sent && sent.email) || t.cf_done_email}</b>{doneText[1]}</p>
+                  <div className="ct-done__btns">
+                    <Link className="btn btn-ac ct-done__a" to="/work">{t.cf_done_work} <Arrow /></Link>
+                    <Link className="btn ct-done__b" to="/service">{t.cf_done_services}</Link>
+                  </div>
+                </div>
+              )}
+            </form>
+          </div>
+
+          <p className="ct-note rv">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2" /><path d="M8 11V7a4 4 0 0 1 8 0v4" /></svg>
+            {t.cf_privacy_note}
+          </p>
         </div>
       </section>
-    </div>
+    </main>
   );
 };
 

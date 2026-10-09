@@ -1,57 +1,40 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { useTranslation } from '../../Context/LanguageContext';
+import { useLanguage, useTranslation } from '../../Context/LanguageContext';
+import CaseStudies, { caseHref } from '../../Data/CaseStudies';
+import { localizeCases } from '../../Data/localizeCase';
 import './Work.scss';
 
-// ---- Route map: same values as Header.jsx ----
-const ROUTES = {
-  services: '/service',
-  contact: '#contact',
-  email: 'mailto:info@asztechnologies.com',
-};
+// Labels come from the locale files (wk_filter_<id>)
+const FILTERS = ['all', 'product', 'security', 'enterprise'];
 
-// Service ids, in the same order as `t.hdr_service_items` (Context/Translation.js),
-// so the filter labels are translated by the same entries the header uses.
-const SERVICE_IDS = ['ai', 'security', 'erp', 'product', 'digital', 'talent'];
-const FILTERS = ['all', ...SERVICE_IDS];
+const Arrow = ({ size = 16 }) => (
+  <svg className="rtl-flip" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <path d="M5 12h14M13 6l6 6-6 6" />
+  </svg>
+);
 
-// Placeholder projects – replace with real case studies. Add `title`, `text` and `year`
-// per project (plain strings or per-language); until then the translated placeholders show.
-const PROJECTS = [
-  { service: 'ai' },
-  { service: 'product' },
-  { service: 'product' },
-  { service: 'digital' },
-  { service: 'security' },
-  { service: 'ai' },
-];
-
-const arrowUpRight = (
+const ArrowUpRight = () => (
   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
     <path d="M7 17L17 7M9 7h8v8" />
   </svg>
 );
 
-const arrowRight = (
-  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-    <path d="M5 12h14M13 6l6 6-6 6" />
-  </svg>
-);
-
-const Arrow = ({ size = 16 }) => (
-  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-    <path d="M5 12h14M13 6l6 6-6 6" />
-  </svg>
-);
-
 const Work = () => {
   const t = useTranslation();
+  const { language } = useLanguage();
   const [active, setActive] = useState('all');
   const { hash, key } = useLocation();
+  const storiesRef = useRef(null);
 
-  const labelOf = (id) => (id === 'all' ? t.work_filter_all : t.hdr_service_items[SERVICE_IDS.indexOf(id)].title);
-  const items = PROJECTS.filter((p) => active === 'all' || p.service === active);
-  const countWord = items.length === 1 ? t.work_project_one : items.length === 2 ? t.work_project_two : t.work_project_many;
+  const items = localizeCases(CaseStudies, t).filter((c) => active === 'all' || c.category === active);
+
+  // "3 case studies" / Arabic has dual, few and many forms, so pick the label by plural category
+  const countLabel = (n) => {
+    let cat = 'other';
+    try { cat = new Intl.PluralRules(String(language.code || 'en').toLowerCase()).select(n); } catch (e) { /* keep 'other' */ }
+    return (t[`wk_count_${cat}`] || t.wk_count_other).replace('{n}', n);
+  };
 
   // scroll to in-page hashes (e.g. /work#contact)
   useEffect(() => {
@@ -62,115 +45,98 @@ const Work = () => {
     return () => clearTimeout(timer);
   }, [hash, key]);
 
+  // "Explore Case Studies": scroll down AND move keyboard focus to the stories section,
+  // so the next Tab lands on the first filter pill instead of back in the hero.
+  const goToStories = (e) => {
+    e.preventDefault();
+    const el = storiesRef.current;
+    if (!el) return;
+    el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    el.focus({ preventScroll: true });
+  };
+
   return (
-    <div className="work-page">
-      {/* 1 · HERO */}
-      <section id="top" className="pg-hero">
-        <div className="fadein pg-hero__orb pg-hero__orb--lg" aria-hidden="true">
-          <div className="pg-hero__ring" />
-        </div>
-        <div className="fadein pg-hero__orb pg-hero__orb--sm" aria-hidden="true">
-          <div className="pg-hero__ring" />
-        </div>
-
-        <div className="pg-wrap pg-wrap--hero">
-          <div className="pg-hero__grid">
-            <div className="up pg-hero__badge">
-              <span className="live dot" />
-              {t.work_badge}
-            </div>
-
-            <h1 className="up pg-hero__title">
-              {t.work_h1_line1}
-              <br />
-              <span className="ac">{t.work_h1_accent}</span>
-            </h1>
-
-            <p className="up pg-hero__text">{t.work_text}</p>
-            <div className="sv-hero__cta up">
-              <Link to={'/contact'} className="btn btn-ac">{t.svc_cta_start} <Arrow /></Link>
-            </div>
+    <main className="work-page">
+      {/* 1 HERO */}
+      <section id="top" className="wk-hero">
+        <div className="wk-hero__grid" aria-hidden="true" />
+        <div className="wk-hero__frame" aria-hidden="true" />
+        <div className="wrap wk-hero__wrap">
+          <div className="wk-hero__body">
+            <div className="wk-hero__pill up"><span className="live dot" />{t.wk_pill}</div>
+            <h1 className="up">{t.wk_h1_line1}<br /><span className="ac">{t.wk_h1_accent}</span></h1>
+            <p className="up">{t.wk_text}</p>
+            <a className="btn btn-ac up wk-hero__btn" href="#stories" onClick={goToStories}>
+              {t.wk_explore} <Arrow />
+            </a>
           </div>
         </div>
       </section>
 
-      {/* 2 · FILTER BAR */}
-      <div className="work-filter">
-        <div className="pg-wrap work-filter__inner">
-          <div className="work-filter__pills" role="group" aria-label={t.work_filter_label}>
+      {/* 2 ALL STORIES */}
+      <section id="stories" className="wk-stories" ref={storiesRef} tabIndex={-1}>
+        <div className="wk-stories__bar">
+          <div className="wrap wk-bar" role="group" aria-label={t.wk_filter_label}>
             {FILTERS.map((id) => (
               <button
                 key={id}
                 type="button"
-                className={`work-pill${id === active ? ' work-pill--on' : ''}`}
+                className={`pill${id === active ? ' pill--on' : ''}`}
                 aria-pressed={id === active}
                 onClick={() => setActive(id)}
               >
-                {labelOf(id)}
+                {t[`wk_filter_${id}`]}
               </button>
             ))}
           </div>
-          <div className="work-filter__count">
-            <span>{items.length}</span> {countWord}
-          </div>
         </div>
-      </div>
 
-      {/* 3 · GRID + EMPTY STATE */}
-      <section className="work-grid-sec">
-        <div className="pg-wrap pg-sec work-grid-wrap">
-          {items.length > 0 ? (
-            <div className="work-grid">
-              {items.map((w, i) => (
-                // key includes the filter so the "pop" entrance replays when the filter changes
-                <a className="pg-pop work-card" href={ROUTES.contact} key={`${active}-${i}`}>
-                  <div className="work-card__img">
-                    {t.work_ph_image}
-                    <span className="work-card__go">{arrowUpRight}</span>
+        <div className="wrap sec wk-stories__wrap">
+          {/* aria-live: screen readers hear how many stories match the chosen filter */}
+          <p className="wk-sr" role="status" aria-live="polite">
+            {countLabel(items.length)}
+          </p>
+
+          <div className="egrid">
+            {items.map((c) => (
+              // key includes the filter so the entrance animation replays when it changes
+              <Link className="ecard rv" to={caseHref(c.slug)} key={`${active}-${c.slug}`}>
+                <div className="ecard__media">
+                  <div
+                    className="eimg"
+                    style={{ background: `${c.image.bg} url(${c.image.src}) center / ${c.image.size} no-repeat` }}
+                    {...(c.image.label ? { role: 'img', 'aria-label': c.image.label } : { 'aria-hidden': true })}
+                  />
+                  <span className="ecard__chip">{t.wk_chip}</span>
+                </div>
+                <div className="ecard__body">
+                  <div className="ecard__industry">{c.industry}</div>
+                  <div className="ecard__row">
+                    <span className="ecard__title">{c.client}</span>
+                    <span className="go" aria-hidden="true"><ArrowUpRight /></span>
                   </div>
-                  <div className="work-card__title">{w.title || t.work_ph_title}</div>
-                  <p className="work-card__text">{w.text || t.work_ph_text}</p>
-                  <div className="work-card__tags">
-                    <span className="work-card__tag">{labelOf(w.service)}</span>
-                    <span className="work-card__tag work-card__tag--year">{w.year || t.work_ph_year}</span>
-                  </div>
-                </a>
-              ))}
-            </div>
-          ) : (
-            <div className="pg-pop work-empty">
-              <div className="work-empty__title">
-                {t.work_empty_pre} <span className="ac">{labelOf(active)}</span> {t.work_empty_post}
-              </div>
-              <p className="work-empty__text">{t.work_empty_text}</p>
-              <button type="button" className="work-pill" onClick={() => setActive('all')}>
-                {t.work_show_all}
-              </button>
-            </div>
-          )}
+                  <div className="ecard__text">{c.teaser}</div>
+                  <div className="ecard__stat"><span>{c.teaserStat.value}</span><span>{c.teaserStat.label}</span></div>
+                </div>
+              </Link>
+            ))}
+          </div>
         </div>
       </section>
 
       {/* CTA */}
-      <section id="contact" className="pg-cta">
-        <div className="rv pg-wrap pg-sec pg-cta__inner">
-          <div className="eyebrow">{t.svc_cta_eyebrow}</div>
-          <h2 className="pg-cta__title">
-            {t.svc_cta_title} <span className="ac">{t.svc_cta_accent}</span>
-          </h2>
-          <p className="pg-cta__text">{t.svc_cta_text}</p>
-          <div className="pg-cta__actions">
-            <Link to={'/contact'} className="btn btn-ac">
-              {t.svc_cta_start}
-              {arrowRight}
-            </Link>
-            <Link className="btn pg-cta__ghost" to={ROUTES.services}>
-              {t.pg_cta_explore}
-            </Link>
+      <section id="contact" className="wk-cta">
+        <div className="wrap sec wk-cta__wrap rv">
+          <div className="wk-eyebrow"><span />{t.svc_cta_eyebrow}</div>
+          <h2>{t.svc_cta_title} <span className="ac">{t.svc_cta_accent}</span></h2>
+          <p>{t.svc_cta_text}</p>
+          <div className="wk-cta__actions">
+            <Link to="/contact" className="btn btn-ac">{t.svc_cta_start} <Arrow /></Link>
+            <Link to="/service" className="ctaghost">{t.pg_cta_explore}</Link>
           </div>
         </div>
       </section>
-    </div>
+    </main>
   );
 };
 

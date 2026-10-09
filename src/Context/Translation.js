@@ -1,6 +1,50 @@
 const translations = {
 
   EN: {
+
+    // ---- Work page (Work.jsx) ----
+    wk_pill: "Our work · Case studies",
+    wk_h1_line1: "Built for real operations.",
+    wk_h1_accent: "Proven in production.",
+    wk_text: "See how organizations across 15+ industries replaced manual processes with AI, security and enterprise systems built by ASZ. The challenge, what we built, and the results that followed.",
+    wk_explore: "Explore Case Studies",
+    wk_filter_label: "Filter case studies",
+    wk_filter_all: "All",
+    wk_filter_product: "AI & Digital Products",
+    wk_filter_security: "Smart Security",
+    wk_filter_enterprise: "Enterprise & Cloud",
+    wk_count_one: "{n} case study",
+    wk_count_other: "{n} case studies",
+    wk_chip: "Case study",
+
+    // ---- Case study page (CaseStudy.jsx) ----
+    cs_crumb: "Case study",
+    cs_all: "All case studies",
+    cs_story_eyebrow: "The story, in three chapters",
+    cs_story_title: "Built around",
+    cs_story_accent: "what comes next.",
+    cs_client: "Client:",
+    cs_industry: "Industry:",
+    cs_service: "Service:",
+    cs_ch_challenge: "The challenge",
+    cs_ch_solution: "The ASZ solution",
+    cs_ch_impact: "The impact",
+    cs_more_eyebrow: "More stories",
+    cs_more_title: "Keep",
+    cs_more_accent: "reading.",
+    cs_prev: "PREVIOUS CASE STUDY",
+    cs_next: "NEXT CASE STUDY",
+
+    // ---- Home: Cordon product mock-up ----
+    home_cordon_ui_gate: "Main Gate",
+    home_cordon_ui_live: "LIVE",
+    home_cordon_ui_cam: "CAM 02 · VEHICLE RECOGNITION",
+    home_cordon_ui_r1: "Vehicle recognised",
+    home_cordon_ui_r1v: "Access granted",
+    home_cordon_ui_r2: "Facial Recognition",
+    home_cordon_ui_r2v: "Verified",
+    home_cordon_ui_r3: "Paper log entry",
+    home_cordon_ui_r3v: "Not needed",
     // Header nav
     nav_home: "Home",
     nav_about: "About Us",
@@ -200,6 +244,12 @@ const translations = {
       { title: "Digital Transformation & Cloud", desc: "Technology Strategy · Cloud Transformation" },
       { title: "Technology Talent & Engineering", desc: "Dedicated Engineering Teams · Staff Augmentation" },
     ],
+    hdr_product_items: [
+      { tag: "Intelligent Security", desc: "AI-powered security and access control for modern premises." },
+      { tag: "Smart Healthcare", desc: "Self-service technology for hospital registration, payments, and patient services." },
+      { tag: "AI Career Platform", desc: "AI-powered career discovery for finding relevant jobs and opportunities." },
+      { tag: "Smart Water Intelligence", desc: "Smart water monitoring for real-time tank levels and water quality." },
+    ],
     hdr_cordon_desc: "Zero-touch intelligent security",
 
     // home_hero
@@ -257,7 +307,7 @@ const translations = {
     home_products_eyebrow: "Our products",
     home_products_title: "We ship our own products.",
     home_products_accent: "Then we build yours.",
-    home_products_lede: "Our in-house products reflect the same engineering discipline we bring to client engagements technology designed to solve real problems and operate in the real world.",
+    home_products_lede: "Our in-house products reflect the same engineering discipline we bring to client engagements — technology designed to solve real problems and operate in the real world.",
     home_products_cordon_pill: "ASZ product · 01 · Intelligent Security",
     home_products_cordon_text: "AI-powered security and access control for modern premises.",
     home_products_chips: [
@@ -266,6 +316,11 @@ const translations = {
       "Visitor & Vendor Management",
     ],
     home_products_book_demo: "Book a Demo",
+    home_products_cards: [
+      { meta: "ASZ product · 02", tag: "Smart Healthcare", text: "Self-service technology for hospital registration, payments, and patient services." },
+      { meta: "ASZ product · 03", tag: "AI Career Platform", text: "AI-powered career discovery for finding relevant jobs and opportunities." },
+      { meta: "ASZ product · 04", tag: "Smart Water Intelligence", text: "Smart water monitoring for real-time tank levels and water quality." },
+    ],
     home_products_meta2: "ASZ product · 02",
     home_products_meta3: "ASZ product · 03",
 
@@ -319,7 +374,7 @@ const translations = {
     about_hero_cta: "Explore Services",
 
     // about_locations (offices: same order as OFFICES in About.jsx)
-    about_loc_eyebrow: "Locations",
+    about_loc_eyebrow: "GLOBAL PRESENCE",
     about_loc_title: "Built for where",
     about_loc_accent: "you do business.",
     about_loc_text: "With teams in Singapore, Dubai, Sydney and Bangalore, ASZ Technologies stays close to the markets we serve, bringing local insight and hands-on delivery to every engagement.",
@@ -399,6 +454,7 @@ const translations = {
     services_page_case_image: "[PROJECT IMAGE]",
     services_page_case_title: "[CLIENT]: [WHAT WE BUILT]",
     services_page_case_meta: "[SERVICE] · [YEAR]",
+    services_page_view_all: "View All Case Studies",
     services_page_cta_eyebrow: "Ready to build?",
     services_page_cta_title: "Let's build this",
     services_page_cta_accent: "together.",
@@ -521,10 +577,259 @@ const translations = {
     prod_book_demo: "Book a Demo",
     prod_learn_more: "Learn More",
     prod_items: [
-      { description: "AI-powered security and access control for modern premises.", features: ["Vehicle & Number Plate Recognition", "Facial Recognition & Zero-Touch Entry", "Visitor & Vendor Management"], category: "INTELLIGENT SECURITY" },
-      { description: "Self-service technology that simplifies hospital registration, payments, and patient services.", features: ["Patient Registration & Check-in", "Payments & Billing", "Appointments & Queue Management"], category: "SMART HEALTHCARE" },
-      { description: "AI-powered career discovery that helps you find relevant opportunities and take the next step.", features: ["AI-Powered Job Matching", "Personalized Job & Internship Discovery", "Career Guidance & Upskilling"], category: "AI CAREER PLATFORM" },
+      {
+        "description": "AI-powered security and access control for modern premises.",
+        "features": [
+          "Vehicle & Number Plate Recognition",
+          "Facial Recognition & Zero-Touch Entry",
+          "Visitor & Vendor Management"
+        ],
+        "category": "INTELLIGENT SECURITY"
+      },
+      {
+        "description": "Self-service technology that simplifies hospital registration, payments, and patient services.",
+        "features": [
+          "Patient Registration & Check-in",
+          "Payments & Billing",
+          "Appointments & Queue Management"
+        ],
+        "category": "SMART HEALTHCARE"
+      },
+      {
+        "description": "AI-powered career discovery that helps you find relevant opportunities and take the next step.",
+        "features": [
+          "AI-Powered Job Matching",
+          "Personalized Job & Internship Discovery",
+          "Career Guidance & Upskilling"
+        ],
+        "category": "AI CAREER PLATFORM",
+        "cta": "Visit JobScout"
+      },
+      {
+        "description": "Smart water monitoring that tracks tank levels and water quality in real time.",
+        "features": [
+          "Water Level Monitoring",
+          "pH & TDS Water Quality Tracking",
+          "WiFi + 4G Connectivity"
+        ],
+        "category": "SMART WATER INTELLIGENCE"
+      }
     ],
+    prod_sec_eyebrow: "Four products",
+    prod_sec_title: "Built in-house.",
+    prod_sec_accent: "Running in production.",
+    prod_coming_soon: "Coming soon",
+    prod_shot_ph: "[{name} PRODUCT SCREENSHOT]",
+    pd_how_btn: "How It Works",
+    pd_notify: "Get Notified",
+    pd_all_products: "All Products",
+    pd_problem: "The problem",
+    pd_how: "How it works",
+    pd_capabilities: "Key capabilities",
+    pd_see_live: "See it live",
+    pd_built_for: "Built for",
+    prod_detail: {
+      "cordon": {
+        "category": "Intelligent Security",
+        "tag_a": "Secure every entry.",
+        "tag_b": "Automate every check.",
+        "intro": "Cordon replaces manual security processes with an intelligent, connected access-control system designed for modern premises. From vehicle entry and facial recognition to visitor management and restricted-area access, Cordon brings critical security operations together in one platform.",
+        "chips": [
+          "Vehicle & Number Plate Recognition",
+          "Facial Recognition & Zero-Touch Entry",
+          "Visitor & Vendor Management"
+        ],
+        "problem_a": "Manual security can't keep up",
+        "problem_b": "with modern premises.",
+        "problems": [
+          {
+            "title": "Manual gate checks",
+            "text": "Guards manually verify vehicles, residents, staff, and visitors, slowing entry and creating room for human error."
+          },
+          {
+            "title": "Paper-based visitor logs",
+            "text": "Manual registers are difficult to search, easy to mismanage, and provide limited visibility when you need to trace an entry."
+          },
+          {
+            "title": "Disconnected security systems",
+            "text": "Cameras, gates, visitor records, and access systems often operate separately, leaving teams without one connected view of the premises."
+          },
+          {
+            "title": "Reactive security",
+            "text": "Without real-time intelligence, unusual activity may only be identified after an incident has already occurred."
+          }
+        ],
+        "how_a": "Three steps.",
+        "how_b": "One intelligent security platform.",
+        "steps": [
+          {
+            "title": "Register",
+            "text": "Residents, employees, vehicles, visitors, and vendors are registered and authorized through one connected system."
+          },
+          {
+            "title": "Recognise",
+            "text": "At entry, Cordon automatically recognizes vehicles and authorized individuals, reducing manual verification."
+          },
+          {
+            "title": "Allow & Monitor",
+            "text": "Approved access is granted, every movement is recorded, and real-time alerts help security teams respond as events happen."
+          }
+        ],
+        "cap_a": "Everything Cordon does,",
+        "cap_b": "in one place.",
+        "caps": [
+          {
+            "title": "Vehicle & Number Plate Recognition",
+            "text": "Automatically identify and record vehicles entering and leaving the premises using intelligent number-plate recognition, creating a searchable and auditable access history."
+          },
+          {
+            "title": "Facial Recognition & Zero-Touch Entry",
+            "text": "Verify authorized individuals through AI-powered facial recognition, enabling secure, frictionless entry without unnecessary manual checks."
+          },
+          {
+            "title": "Automated Access Control",
+            "text": "Manage access across gates, doors, and restricted areas from one centralized system, with permissions controlled according to authorization."
+          },
+          {
+            "title": "Visitor & Vendor Management",
+            "text": "Register, approve, and manage visitors and vendors before they arrive, creating a smoother entry experience while maintaining security controls."
+          },
+          {
+            "title": "Real-Time Security Monitoring",
+            "text": "Monitor entries, exits, access activity, and security alerts through a connected view of the premises, allowing teams to identify and respond to events in real time."
+          }
+        ],
+        "live_title": "See Cordon in action.",
+        "live_text": "Bring intelligent, connected security to your premises.",
+        "built_a": "Security that scales across",
+        "built_b": "every type of premises.",
+        "built_items": [
+          "Residential Communities",
+          "Corporate Offices",
+          "Industrial Sites",
+          "Educational Campuses",
+          "Critical Infrastructure"
+        ],
+        "band_a": "Secure every entry.",
+        "band_b": "Automate every check."
+      },
+      "mediq": {
+        "category": "Smart Healthcare",
+        "tag_a": "Register. Pay.",
+        "tag_b": "Move on.",
+        "intro": "MEDIQ brings essential hospital front-office services into one self-service experience. From patient registration and appointments to payments, reports, and queue management, MEDIQ helps patients complete routine tasks faster while reducing pressure on manual counters.",
+        "chips": [
+          "Patient Registration & Check-in",
+          "Payments & Billing",
+          "Appointments & Queue Management"
+        ],
+        "problem_a": "Hospital front desks weren't built",
+        "problem_b": "for today's patient volumes.",
+        "problems": [
+          {
+            "title": "Long registration queues",
+            "text": "Patients often spend valuable time waiting at reception for routine registration, verification, and check-in."
+          },
+          {
+            "title": "Too many manual processes",
+            "text": "Registration, payments, appointments, and token generation often require separate counter-based interactions."
+          },
+          {
+            "title": "Front-desk bottlenecks",
+            "text": "High patient volumes put pressure on staff, creating congestion and taking teams away from higher-value patient interactions."
+          },
+          {
+            "title": "Fragmented patient services",
+            "text": "When routine services are spread across different counters and systems, the patient journey becomes slower and harder to navigate."
+          }
+        ],
+        "how_a": "Three steps.",
+        "how_b": "One self-service experience.",
+        "steps": [
+          {
+            "title": "Register",
+            "text": "Patients enter or verify their information through the kiosk and complete the required registration or onboarding process."
+          },
+          {
+            "title": "Select & Complete",
+            "text": "Patients can access available services such as appointments, payments, check-in, reports, and other authorized healthcare services."
+          },
+          {
+            "title": "Receive & Proceed",
+            "text": "MEDIQ provides the required confirmation, token, receipt, or information so patients can continue their journey without unnecessary counter visits."
+          }
+        ],
+        "cap_a": "Essential hospital services,",
+        "cap_b": "in one place.",
+        "caps": [
+          {
+            "title": "Patient Registration & Onboarding",
+            "text": "Allow patients to register and complete essential onboarding steps through a self-service interface, reducing repetitive work at reception."
+          },
+          {
+            "title": "Payments & Billing",
+            "text": "Enable patients to complete supported payments and billing interactions directly through the kiosk, reducing queues at payment counters."
+          },
+          {
+            "title": "Appointments & Check-in",
+            "text": "Patients can manage appointments and complete check-in through a self-service workflow, helping hospitals handle patient arrivals more efficiently."
+          },
+          {
+            "title": "Reports & Records",
+            "text": "Provide authorized access to relevant reports and records through the kiosk, giving patients a faster way to retrieve available information."
+          },
+          {
+            "title": "Token & Queue Management",
+            "text": "Generate tokens and guide patients through queue workflows, helping reduce congestion and create a more organized patient experience."
+          },
+          {
+            "title": "Insurance & Healthcare Services",
+            "text": "Support additional healthcare and insurance-related workflows through the same self-service platform, depending on the hospital's configured services and integrations."
+          }
+        ],
+        "live_title": "See MEDIQ in action.",
+        "live_text": "Give patients a faster way to complete routine hospital services while giving your teams more room to focus on care.",
+        "conn_eyebrow": "Connected to your existing systems",
+        "conn_a": "One patient experience.",
+        "conn_b": "Connected to your hospital technology.",
+        "conn_text": "MEDIQ is designed to work alongside existing hospital systems rather than forcing hospitals to replace the technology they already use.",
+        "conn_items": [
+          "HIS / HMIS",
+          "EMR / EHR",
+          "LIS",
+          "RIS",
+          "PACS",
+          "Payment Systems",
+          "ABDM / ABHA",
+          "Insurance & TPA"
+        ],
+        "built_a": "Designed for modern",
+        "built_b": "healthcare environments.",
+        "built_items": [
+          "Multi-Specialty Hospitals",
+          "Diagnostic & OP Clinics",
+          "Government & Public Hospitals"
+        ],
+        "band_a": "Less waiting.",
+        "band_b": "Better patient experience."
+      },
+      "safin": {
+        "category": "Smart Water Intelligence",
+        "tag_a": "Know your water.",
+        "tag_b": "In real time.",
+        "intro": "Safin is smart water monitoring that tracks tank levels and water quality in real time, with pH and TDS sensing over WiFi and 4G connectivity.",
+        "chips": [
+          "Water Level Monitoring",
+          "pH & TDS Water Quality Tracking",
+          "WiFi + 4G Connectivity"
+        ],
+        "soon_a": "Smart water monitoring,",
+        "soon_b": "arriving soon.",
+        "soon_text": "We're putting the finishing touches on Safin. Get in touch and we'll let you know as soon as it's ready.",
+        "band_a": "Safin is on its way.",
+        "band_b": "Be the first to know."
+      }
+    },
 
     // work (Work.jsx). Filter labels reuse hdr_service_items titles.
     work_badge: "Our work",
@@ -586,6 +891,124 @@ const translations = {
     ct_success_text: "We've received your message and will get back to you soon.",
     ct_success_again: "Send another message",
     ct_mail_subject: "New enquiry from the website",
+    cf_badge: "START A CONVERSATION",
+    cf_h1_line1: "Tell us what you're solving.",
+    cf_h1_accent: "We'll take it from there.",
+    cf_text: "Share a few details about your project, your team or the product you're interested in. We'll review them and reply within 1 business day.",
+    cf_cta: "Start a Conversation",
+    cf_cities: "Singapore · Dubai · Sydney · Bangalore",
+    cf_scroll: "Scroll",
+    cf_reply: "We reply within 1 business day.",
+    cf_tk1_t: "You share",
+    cf_tk1_d: "Three short steps about what you need.",
+    cf_tk2_t: "We review it",
+    cf_tk2_d: "The right people on our team read your answers.",
+    cf_tk3_t: "We get back to you",
+    cf_tk3_d: "Usually by email, within 1 business day.",
+    cf_form_label: "Contact form",
+    cf_step: "STEP {n} / {total}",
+    cf_optional: "(optional)",
+    cf_s1_title: "What can we help you with?",
+    cf_s1_text: "Pick the closest option. The next questions will match it.",
+    cf_s1_label: "I'd like to",
+    cf_s1_ph: "Choose an option",
+    cf_type_project: "Start a project",
+    cf_type_project_d: "Build something new, or modernise a system you already run.",
+    cf_type_team: "Hire a team",
+    cf_type_team_d: "Add engineers or a dedicated team to your roadmap.",
+    cf_type_demo: "Book a product demo",
+    cf_type_demo_d: "See Cordon, MEDIQ, JobScout or Safin in action.",
+    cf_type_partner: "Partnerships",
+    cf_type_partner_d: "Technology, reseller or referral partnerships.",
+    cf_type_other: "Something else",
+    cf_type_other_d: "A general question, or anything not listed here.",
+    cf_p_title: "Which areas are involved?",
+    cf_p_text: "Choose all that apply. Not sure? That is fine, we will help you work it out.",
+    cf_p_areas: "Areas",
+    cf_p_stage: "Where are you today?",
+    cf_t_title: "What kind of team do you need?",
+    cf_t_text: "Tell us the skills and how you would like to work with us.",
+    cf_t_skills: "Skills needed",
+    cf_t_model: "How would you like to work?",
+    cf_d_title: "Which product would you like to see?",
+    cf_d_text: "Choose one or more. JobScout and Safin also have their own websites.",
+    cf_d_prod: "Products",
+    cf_pt_title: "What kind of partnership?",
+    cf_pt_text: "Pick the closest match, then add any details below.",
+    cf_pt_type: "Partnership type",
+    cf_o_title: "How can we help?",
+    cf_o_text: "Share your question and the right person will reply.",
+    cf_o_svc_ai: "AI & Intelligent Systems",
+    cf_o_svc_security: "Smart Security Systems",
+    cf_o_svc_erp: "Enterprise Systems & ERP",
+    cf_o_svc_product: "Product & Application Engineering",
+    cf_o_svc_digital: "Digital Transformation & Cloud",
+    cf_o_svc_notsure: "Not sure yet",
+    cf_o_stage_exploring: "Exploring ideas",
+    cf_o_stage_planning: "Planning a project",
+    cf_o_stage_ready: "Ready to start",
+    cf_o_stage_scaling: "Replacing or scaling an existing system",
+    cf_o_skills_ai: "AI & Machine Learning",
+    cf_o_skills_web: "Web & Full-stack",
+    cf_o_skills_mobile: "Mobile",
+    cf_o_skills_cloud: "Cloud & DevOps",
+    cf_o_skills_erp: "ERP & Enterprise Systems",
+    cf_o_skills_data: "Data & Analytics",
+    cf_o_skills_qa: "QA & Testing",
+    cf_o_skills_notsure: "Not sure yet",
+    cf_o_model_dedicated: "A dedicated team",
+    cf_o_model_extend: "Extend my existing team",
+    cf_o_model_notsure: "Not sure yet",
+    cf_o_ptype_tech: "Technology partnership",
+    cf_o_ptype_reseller: "Reseller or channel partner",
+    cf_o_ptype_referral: "Referral partner",
+    cf_o_ptype_other: "Something else",
+    cf_ta_more: "Anything else we should know?",
+    cf_ta_msg: "Your message",
+    cf_ph_project: "e.g. Our visitor check-in is manual across three buildings and we need a single, auditable system.",
+    cf_ph_team: "e.g. We need two senior backend engineers and a QA lead to join our product team for six months.",
+    cf_ph_demo: "e.g. We run a 400-bed hospital and want to reduce queues at registration and billing.",
+    cf_ph_partner: "e.g. We are a systems integrator in the Middle East and would like to offer Cordon to our clients.",
+    cf_ph_other: "How can we help?",
+    cf_c_title: "Where should we reply?",
+    cf_c_text: "We usually reply by email within 1 business day.",
+    cf_f_first: "First name",
+    cf_f_last: "Last name",
+    cf_f_email: "Work email",
+    cf_f_company: "Company",
+    cf_f_role: "Your role",
+    cf_f_phone: "Phone",
+    cf_ph_first: "Jane",
+    cf_ph_last: "Tan",
+    cf_ph_email: "jane@company.com",
+    cf_ph_company: "Company name",
+    cf_ph_role: "e.g. Head of Operations",
+    cf_ph_phone: "Include country code",
+    cf_consent_pre: "I agree that ASZ Technologies may contact me about this enquiry and store my details in line with its ",
+    cf_consent_link: "Privacy Policy",
+    cf_consent_post: ".",
+    cf_err_type: "Please choose what we can help you with.",
+    cf_err_svc: "Please choose an area.",
+    cf_err_skills: "Please choose at least one skill.",
+    cf_err_prod: "Please choose a product.",
+    cf_err_ptype: "Please choose a partnership type.",
+    cf_err_first: "Please add your first name.",
+    cf_err_email: "Please add a valid work email.",
+    cf_err_company: "Please add your company name.",
+    cf_err_consent: "Please agree to the Privacy Policy so we can reply.",
+    cf_err_send: "Something went wrong. Please try again or email us directly.",
+    cf_continue: "Continue",
+    cf_send: "Send message",
+    cf_sending: "Sending…",
+    cf_back: "Back",
+    cf_alt: "Prefer email?",
+    cf_done_title: "Thank you, {name}.",
+    cf_done_text: "We've received your message. A member of our team will reply to {email} within 1 business day.",
+    cf_done_name: "there",
+    cf_done_email: "your email",
+    cf_done_work: "See our work",
+    cf_done_services: "Explore Our Services",
+    cf_privacy_note: "Your details are only used to reply to this enquiry.",
   },
 
   FR: {
@@ -939,6 +1362,186 @@ const translations = {
   },
 
   AR: {
+
+    // ---- دراسات الحالة (تُدمج فوق بيانات Data/CaseStudies.js؛ أسماء العملاء التجارية تبقى بالحروف اللاتينية) ----
+    case_studies: {
+      "mega-adventure-park": {
+        client: "Mega Adventure Park",
+        industry: "الترفيه والتسلية",
+        service: "هندسة المنتجات والتطبيقات",
+        image: { label: "شعار Mega Adventure Park" },
+        card: {
+          sub: "تجارة وسائط ذاتية الخدمة لمتنزه مغامرات",
+          value: "35%",
+          label: "ارتفاع في معدل الشراء",
+        },
+        teaser: "من المبيعات اليدوية إلى الخدمة الذاتية.",
+        teaserStat: { value: "35%", label: "ارتفاع في معدل شراء الوسائط" },
+        hero: {
+          line1: "تجارة وسائط ذاتية الخدمة",
+          accent: "لصور المغامرات ومقاطع الفيديو.",
+          text: "منصة مركزية تتيح للزوار تصفّح صور ومقاطع فيديو مغامراتهم وشراءها واستلامها فورًا، بينما يدير المتنزه الأسعار والعروض ومبيعات الموظفين من مكان واحد.",
+        },
+        stats: [
+          { value: "35%", label: "ارتفاع في معدل شراء الوسائط" },
+          { value: "25%", label: "زيادة في إيرادات مبيعات الوسائط" },
+          { value: "2x", label: "ضعف عدد الزوار دون زيادة الموظفين" },
+        ],
+        challenge: {
+          text: "يقدّم المتنزه الزلاجات المعلّقة وحبال التسلق والقفزات وتجارب العائلة. وكان الزوار يشترون صور مغامراتهم ومقاطع الفيديو عبر تعاملات يدوية يقودها الموظفون. ومع ازدياد أعداد الزوار، حدّ ذلك من راحتهم، وقلّص فرص العروض الترويجية، وترك المديرين برؤية محدودة لأداء المبيعات.",
+          bullets: [
+            "اعتماد مبيعات الصور والفيديو على تعاملات يدوية يقودها الموظفون",
+            "مجال محدود للعروض والخصومات والبيع الإضافي",
+            "رؤية محدودة لمبيعات الموظفين وعمولاتهم",
+          ],
+        },
+        solution: {
+          text: "صمّمنا ونفّذنا منصة مركزية لتجارة الوسائط تغطي رحلة الزائر كاملة، من النشاط إلى الشراء والتسليم. يتصفّح الزوار صورهم ومقاطع الفيديو ويختارونها ويشترونها عبر أكشاك الخدمة الذاتية والقنوات الرقمية. ويدير المتنزه الأسعار والعروض والخصومات مركزيًا، ويتتبّع مبيعات الموظفين وعمولاتهم في مكان واحد.",
+          chips: ["أكشاك الخدمة الذاتية", "التسليم الرقمي للوسائط", "محرك العروض والأسعار", "تتبّع مبيعات الموظفين والعمولات"],
+        },
+        impact: [
+          { value: "35%", text: "ارتفاع في معدل شراء الزوار للوسائط" },
+          { value: "60%", text: "أسرع في اختيار الصور ومقاطع الفيديو وإتمام الدفع" },
+          { value: "70%", text: "أسرع في التسليم الرقمي، شبه فوري بعد الشراء" },
+          { value: "25%", text: "زيادة في إيرادات مبيعات الوسائط عبر العروض المستهدفة والبيع الإضافي" },
+          { value: "50%", text: "أقل في المعالجة اليدوية بفضل الأتمتة وأكشاك الخدمة الذاتية" },
+          { value: "100%", text: "رؤية كاملة لأداء مبيعات الموظفين وعمولاتهم" },
+          { value: "20%", text: "ارتفاع في المبيعات المرتبطة بالحملات" },
+          { value: "2x", text: "حجم الزوار المُستوعَب دون موظفين إضافيين" },
+        ],
+      },
+      "faith-based-organization": {
+        client: "منظمة دينية متنامية",
+        industry: "القطاع غير الربحي والمجتمعي",
+        service: "أنظمة المؤسسات وتخطيط الموارد (ERP)",
+        card: {
+          sub: "نظام ERP مركزي لمنظمة دينية",
+          value: "90%",
+          label: "جهد إداري أقل",
+        },
+        teaser: "من أنظمة متفرقة إلى مصدر واحد للحقيقة.",
+        teaserStat: { value: "90%", label: "أقل في الإدارة اليدوية" },
+        hero: {
+          line1: "منصة ERP واحدة للأعضاء",
+          accent: "والتبرعات والمالية.",
+          text: "مصدر واحد للحقيقة حلّ محل الأنظمة المتفرقة، وأتمت الإدارة اليومية، ومنح القيادة معلومات دقيقة ومحدّثة.",
+        },
+        stats: [
+          { value: "90%", label: "أقل في الإدارة اليدوية" },
+          { value: "95%+", label: "دقة البيانات واكتمالها" },
+          { value: "70%", label: "أسرع في إعداد التقارير" },
+        ],
+        challenge: {
+          text: "كانت منظمة دينية متنامية تدير سجلات الأعضاء ومعلومات الأسر والزوار والتبرعات والشؤون المالية عبر عدة أنظمة متفرقة. وكثيرًا ما كانت البيانات مكررة أو ناقصة وصعبة المطابقة، مما خلق عبئًا إداريًا كبيرًا. ومع توسّع المنظمة، أصبحت العمليات اليدوية صعبة الإدارة والتوسّع.",
+          bullets: [
+            "بيانات الأعضاء والتبرعات والمالية موزعة على أنظمة متفرقة",
+            "سجلات مكررة وناقصة ومطابقة يدوية",
+            "رؤية محدودة مع نمو المنظمة",
+          ],
+        },
+        solution: {
+          text: "نفّذنا منصة ERP مركزية تجمع العضوية وسجلات الأسر وتتبّع الزوار والتبرعات والحملات والتقارير المالية في نظام واحد. وبالعمل الوثيق مع أصحاب المصلحة، رسمنا مسارات العمل القائمة ودمجناها في مصدر واحد للحقيقة، مع أتمتة الإدارة والمطابقة.",
+          chips: ["تنفيذ نظام ERP", "العضوية وسجلات الأسر", "التبرعات والحملات", "التقارير المالية"],
+        },
+        impact: [
+          { value: "100%", text: "من بيانات الأعضاء والزوار والتبرعات والمالية في منصة واحدة" },
+          { value: "90%", text: "أقل في الإدارة والمطابقة اليدوية" },
+          { value: "95%+", text: "تحسّن في دقة البيانات واكتمال السجلات" },
+          { value: "70%", text: "أسرع في إعداد التقارير للقرارات المالية والتشغيلية" },
+          { value: "2x", text: "نمو المنظمة المدعوم دون أعباء إدارية إضافية" },
+        ],
+      },
+      "78-shenton-way": {
+        client: "78 Shenton Way",
+        industry: "العقارات التجارية",
+        service: "أنظمة الأمن الذكية",
+        card: {
+          sub: "نظام إدارة الزوار لبرج 78 Shenton Way",
+          value: "60%",
+          label: "أسرع في معالجة الزوار",
+        },
+        teaser: "من التسجيل اليدوي إلى الدخول الآلي.",
+        teaserStat: { value: "60%", label: "أسرع في معالجة الزوار" },
+        hero: {
+          line1: "دخول آمن وذاتي الخدمة للزوار",
+          accent: "لبرج عالي الأمان.",
+          text: "نظام مركزي لإدارة الزوار في 78 Shenton Way يؤتمت تسجيل الدخول والتحقق من التصاريح وإصدار بطاقات الدخول، مع رؤية تدقيق كاملة لفرق الأمن.",
+        },
+        stats: [
+          { value: "60%", label: "أسرع في معالجة الزوار" },
+          { value: "75%", label: "أقل في الإدارة اليدوية" },
+          { value: "100%", label: "رؤية تدقيق مركزية" },
+        ],
+        challenge: {
+          text: "تطلّبت إدارة الزوار والمقاولين في برج تجاري عالي الأمان عملية أكثر ضبطًا وكفاءة وامتثالًا. فقد أدّى التسجيل اليدوي وفحص التصاريح وإصدار بطاقات الدخول وحفظ السجلات إلى اختناقات وزيادة في العبء الإداري، وأضاف مخاطر أمنية ومخاطر امتثال مع تزايد الأعداد.",
+          bullets: [
+            "التسجيل اليدوي وفحص التصاريح وإصدار بطاقات الدخول",
+            "اختناقات وعبء إداري متزايد",
+            "مخاطر الأمن والامتثال مع ازدياد الأعداد",
+          ],
+        },
+        solution: {
+          text: "صمّمنا ونفّذنا نظامًا مركزيًا لإدارة الزوار يغطي رحلة الزائر والمقاول كاملة. تبسّط مسارات الخدمة الذاتية والمدعومة بالموظفين تسجيل الدخول، وتؤتمت التحقق من التصاريح، وتدير إصدار بطاقات الدخول. ويخضع كل زائر لقواعد الامتثال نفسها، وتحصل فرق الأمن على رؤية وتحكم فوريين من منصة واحدة.",
+          chips: ["تسجيل دخول الزوار والمقاولين", "التحقق الآلي من التصاريح", "إصدار بطاقات الدخول", "سجل تدقيق مركزي"],
+        },
+        impact: [
+          { value: "60%", text: "أسرع في تسجيل دخول الزوار والمقاولين" },
+          { value: "75%", text: "أقل في التسجيل اليدوي وإدارة الدخول" },
+          { value: "100%", text: "تتبّع مركزي لسجلات الزوار والمقاولين والدخول" },
+          { value: "آلي", text: "التحقق من التصاريح وتطبيق السياسات" },
+          { value: "أقوى", text: "في التحكم بالدخول وقابلية التدقيق وحوكمة الأمن" },
+          { value: "قابلة للتوسّع", text: "منصة للنمو دون أعباء إدارية إضافية" },
+        ],
+      },
+    },
+
+    // ---- صفحة الأعمال (Work.jsx) ----
+    wk_pill: "أعمالنا · دراسات الحالة",
+    wk_h1_line1: "صُمّمت للعمليات الحقيقية.",
+    wk_h1_accent: "ومُثبتة في بيئة الإنتاج.",
+    wk_text: "اكتشف كيف استبدلت مؤسسات من أكثر من 15 قطاعًا العمليات اليدوية بأنظمة الذكاء الاصطناعي والأمن وأنظمة المؤسسات التي بنتها ASZ: التحدي، وما بنيناه، والنتائج التي تحققت.",
+    wk_explore: "استكشف دراسات الحالة",
+    wk_filter_label: "تصفية دراسات الحالة",
+    wk_filter_all: "الكل",
+    wk_filter_product: "الذكاء الاصطناعي والمنتجات الرقمية",
+    wk_filter_security: "الأمن الذكي",
+    wk_filter_enterprise: "المؤسسات والسحابة",
+    wk_count_zero: "لا توجد دراسات حالة",
+    wk_count_one: "دراسة حالة واحدة",
+    wk_count_two: "دراستا حالة",
+    wk_count_few: "{n} دراسات حالة",
+    wk_count_many: "{n} دراسة حالة",
+    wk_count_other: "{n} دراسة حالة",
+    wk_chip: "دراسة حالة",
+
+    // ---- صفحة دراسة الحالة (CaseStudy.jsx) ----
+    cs_crumb: "دراسة حالة",
+    cs_all: "جميع دراسات الحالة",
+    cs_story_eyebrow: "القصة في ثلاثة فصول",
+    cs_story_title: "مبنيّة حول",
+    cs_story_accent: "ما سيأتي لاحقًا.",
+    cs_client: "العميل:",
+    cs_industry: "القطاع:",
+    cs_service: "الخدمة:",
+    cs_ch_challenge: "التحدي",
+    cs_ch_solution: "حل ASZ",
+    cs_ch_impact: "الأثر",
+    cs_more_eyebrow: "المزيد من القصص",
+    cs_more_title: "تابع",
+    cs_more_accent: "القراءة.",
+    cs_prev: "دراسة الحالة السابقة",
+    cs_next: "دراسة الحالة التالية",
+
+    // ---- الرئيسية: واجهة منتج Cordon التوضيحية ----
+    home_cordon_ui_gate: "البوابة الرئيسية",
+    home_cordon_ui_live: "مباشر",
+    home_cordon_ui_cam: "الكاميرا 02 · التعرّف على المركبات",
+    home_cordon_ui_r1: "تم التعرّف على المركبة",
+    home_cordon_ui_r1v: "تم السماح بالدخول",
+    home_cordon_ui_r2: "التعرّف على الوجه",
+    home_cordon_ui_r2v: "تم التحقق",
+    home_cordon_ui_r3: "تسجيل ورقي",
+    home_cordon_ui_r3v: "غير مطلوب",
     // Header nav
     nav_home: "الرئيسية",
     nav_about: "من نحن",
@@ -1134,6 +1737,12 @@ const translations = {
       { title: "التحول الرقمي والحوسبة السحابية", desc: "استراتيجية التقنية · التحول إلى السحابة" },
       { title: "الكفاءات التقنية والهندسة", desc: "فرق هندسية مخصصة · توفير الكفاءات" },
     ],
+    hdr_product_items: [
+      { tag: "الأمن الذكي", desc: "أمن وتحكّم في الدخول مدعومان بالذكاء الاصطناعي للمنشآت الحديثة." },
+      { tag: "الرعاية الصحية الذكية", desc: "تقنية خدمة ذاتية لتسجيل المرضى والمدفوعات وخدمات المستشفى." },
+      { tag: "منصة المسار المهني بالذكاء الاصطناعي", desc: "اكتشاف مسار مهني مدعوم بالذكاء الاصطناعي لإيجاد الوظائف والفرص المناسبة." },
+      { tag: "إدارة المياه الذكية", desc: "مراقبة ذكية للمياه لمتابعة مستويات الخزانات وجودة المياه في الوقت الفعلي." },
+    ],
     hdr_cordon_desc: "أمن ذكي بدون تدخّل بشري",
 
     // home_hero
@@ -1193,13 +1802,18 @@ const translations = {
     home_products_accent: "ثم نبني منتجاتك.",
     home_products_lede: "تعكس منتجاتنا الداخلية نفس الانضباط الهندسي الذي نقدّمه لعملائنا، فهي تقنيات صُمّمت لحل مشكلات حقيقية والعمل في الواقع.",
     home_products_cordon_pill: "منتج ASZ · 01 · الأمن الذكي",
-    home_products_cordon_text: "تستبدل Cordon العمليات الأمنية اليدوية بنظام دخول ذكي بدون تدخّل بشري، يعمل بالذكاء الاصطناعي للتعرّف على المركبات والوجوه، والتحكم الآلي في الدخول، وإدارة الزوار.",
+    home_products_cordon_text: "أمن وتحكّم في الدخول مدعومان بالذكاء الاصطناعي للمنشآت الحديثة.",
     home_products_chips: [
-      "التعرّف على المركبات",
-      "التعرّف على الوجه",
-      "الدخول الآلي",
+      "التعرّف على المركبات ولوحات الأرقام",
+      "التعرّف على الوجه والدخول دون تلامس",
+      "إدارة الزوار والموردين",
     ],
     home_products_book_demo: "احجز عرضًا تجريبيًا",
+    home_products_cards: [
+      { meta: "منتج ASZ · 02", tag: "الرعاية الصحية الذكية", text: "تقنية خدمة ذاتية لتسجيل المرضى والمدفوعات وخدمات المستشفى." },
+      { meta: "منتج ASZ · 03", tag: "منصة المسار المهني بالذكاء الاصطناعي", text: "اكتشاف مسار مهني مدعوم بالذكاء الاصطناعي لإيجاد الوظائف والفرص المناسبة." },
+      { meta: "منتج ASZ · 04", tag: "إدارة المياه الذكية", text: "مراقبة ذكية للمياه لمتابعة مستويات الخزانات وجودة المياه في الوقت الفعلي." },
+    ],
     home_products_meta2: "منتج ASZ · 02",
     home_products_meta3: "منتج ASZ · 03",
 
@@ -1253,7 +1867,7 @@ const translations = {
     about_hero_cta: "استكشف الخدمات",
 
     // about_locations (offices: same order as OFFICES in About.jsx)
-    about_loc_eyebrow: "المواقع",
+    about_loc_eyebrow: "حضور عالمي",
     about_loc_title: "مبنيّون حيث",
     about_loc_accent: "تمارس أعمالك.",
     about_loc_text: "بفرق في سنغافورة ودبي وسيدني وبنغالور، تبقى ASZ Technologies قريبة من الأسواق التي نخدمها، لنقدّم رؤية محلية وتنفيذًا عمليًا في كل مشروع.",
@@ -1333,6 +1947,7 @@ const translations = {
     services_page_case_image: "[صورة المشروع]",
     services_page_case_title: "[العميل]: [ما بنيناه]",
     services_page_case_meta: "[الخدمة] · [السنة]",
+    services_page_view_all: "عرض جميع دراسات الحالة",
     services_page_cta_eyebrow: "جاهز للبناء؟",
     services_page_cta_title: "لنبنِ هذا",
     services_page_cta_accent: "معًا.",
@@ -1455,10 +2070,259 @@ const translations = {
     prod_book_demo: "احجز عرضًا تجريبيًا",
     prod_learn_more: "اعرف المزيد",
     prod_items: [
-      { description: "أمن وتحكّم في الدخول مدعومان بالذكاء الاصطناعي للمنشآت الحديثة.", features: ["التعرّف على المركبات ولوحات الأرقام", "التعرّف على الوجه والدخول دون تلامس", "إدارة الزوار والموردين"], category: "الأمن الذكي" },
-      { description: "تقنية خدمة ذاتية تبسّط تسجيل المرضى والمدفوعات وخدمات المستشفى.", features: ["تسجيل المرضى وتسجيل الوصول", "المدفوعات والفوترة", "المواعيد وإدارة الطوابير"], category: "الرعاية الصحية الذكية" },
-      { description: "اكتشاف مسار مهني مدعوم بالذكاء الاصطناعي يساعدك على إيجاد الفرص المناسبة واتخاذ الخطوة التالية.", features: ["مطابقة الوظائف بالذكاء الاصطناعي", "اكتشاف وظائف وتدريب مخصّص لك", "التوجيه المهني ورفع المهارات"], category: "منصة المسار المهني بالذكاء الاصطناعي" },
+      {
+        "description": "أمن وتحكّم في الدخول مدعومان بالذكاء الاصطناعي للمنشآت الحديثة.",
+        "features": [
+          "التعرّف على المركبات ولوحات الأرقام",
+          "التعرّف على الوجه والدخول دون تلامس",
+          "إدارة الزوار والموردين"
+        ],
+        "category": "الأمن الذكي"
+      },
+      {
+        "description": "تقنية خدمة ذاتية تبسّط تسجيل المرضى والمدفوعات وخدمات المستشفى.",
+        "features": [
+          "تسجيل المرضى وتسجيل الوصول",
+          "المدفوعات والفوترة",
+          "المواعيد وإدارة الطوابير"
+        ],
+        "category": "الرعاية الصحية الذكية"
+      },
+      {
+        "description": "اكتشاف مسار مهني مدعوم بالذكاء الاصطناعي يساعدك على إيجاد الفرص المناسبة واتخاذ الخطوة التالية.",
+        "features": [
+          "مطابقة الوظائف بالذكاء الاصطناعي",
+          "اكتشاف وظائف وتدريب مخصّص لك",
+          "التوجيه المهني ورفع المهارات"
+        ],
+        "category": "منصة المسار المهني بالذكاء الاصطناعي",
+        "cta": "زيارة JobScout"
+      },
+      {
+        "description": "مراقبة ذكية للمياه تتتبّع مستويات الخزانات وجودة المياه لحظيًا.",
+        "features": [
+          "مراقبة مستوى المياه",
+          "تتبّع جودة المياه (pH وTDS)",
+          "اتصال WiFi و4G"
+        ],
+        "category": "ذكاء المياه الذكي"
+      }
     ],
+    prod_sec_eyebrow: "أربعة منتجات",
+    prod_sec_title: "بُنيت داخليًا.",
+    prod_sec_accent: "وتعمل في بيئات الإنتاج.",
+    prod_coming_soon: "قريبًا",
+    prod_shot_ph: "[لقطة شاشة منتج {name}]",
+    pd_how_btn: "كيف يعمل",
+    pd_notify: "أبلغني عند الإطلاق",
+    pd_all_products: "جميع المنتجات",
+    pd_problem: "المشكلة",
+    pd_how: "كيف يعمل",
+    pd_capabilities: "القدرات الرئيسية",
+    pd_see_live: "شاهده مباشرة",
+    pd_built_for: "صُمّم لـ",
+    prod_detail: {
+      "cordon": {
+        "category": "الأمن الذكي",
+        "tag_a": "أمّن كل مدخل.",
+        "tag_b": "وأتمت كل فحص.",
+        "intro": "يستبدل Cordon عمليات الأمن اليدوية بنظام ذكي ومتصل للتحكّم في الدخول مصمَّم للمنشآت الحديثة. من دخول المركبات والتعرّف على الوجه إلى إدارة الزوار والدخول إلى المناطق المقيَّدة، يجمع Cordon عمليات الأمن الحيوية في منصة واحدة.",
+        "chips": [
+          "التعرّف على المركبات ولوحات الأرقام",
+          "التعرّف على الوجه والدخول دون تلامس",
+          "إدارة الزوار والموردين"
+        ],
+        "problem_a": "الأمن اليدوي لا يستطيع مواكبة",
+        "problem_b": "المنشآت الحديثة.",
+        "problems": [
+          {
+            "title": "فحص البوابات يدويًا",
+            "text": "يتحقق الحراس يدويًا من المركبات والسكان والموظفين والزوار، مما يُبطئ الدخول ويفتح المجال للخطأ البشري."
+          },
+          {
+            "title": "سجلات الزوار الورقية",
+            "text": "يصعب البحث في السجلات اليدوية ويسهل سوء إدارتها، وتوفّر رؤية محدودة عندما تحتاج إلى تتبّع عملية دخول."
+          },
+          {
+            "title": "أنظمة أمنية غير مترابطة",
+            "text": "غالبًا ما تعمل الكاميرات والبوابات وسجلات الزوار وأنظمة الدخول بشكل منفصل، فيفتقر الفريق إلى رؤية موحّدة للمنشأة."
+          },
+          {
+            "title": "أمن تفاعلي متأخر",
+            "text": "من دون معلومات لحظية، قد لا تُكتشف الأنشطة غير المعتادة إلا بعد وقوع الحادث."
+          }
+        ],
+        "how_a": "ثلاث خطوات.",
+        "how_b": "منصة أمنية ذكية واحدة.",
+        "steps": [
+          {
+            "title": "سجّل",
+            "text": "يتم تسجيل السكان والموظفين والمركبات والزوار والموردين وتفويضهم عبر نظام واحد متصل."
+          },
+          {
+            "title": "تعرّف",
+            "text": "عند المدخل، يتعرّف Cordon تلقائيًا على المركبات والأفراد المصرّح لهم، مما يقلّل التحقق اليدوي."
+          },
+          {
+            "title": "اسمح وراقب",
+            "text": "يُمنح الدخول المعتمد، وتُسجَّل كل حركة، وتساعد التنبيهات اللحظية فرق الأمن على الاستجابة فور وقوع الأحداث."
+          }
+        ],
+        "cap_a": "كل ما يقدّمه Cordon،",
+        "cap_b": "في مكان واحد.",
+        "caps": [
+          {
+            "title": "التعرّف على المركبات ولوحات الأرقام",
+            "text": "تعرّف على المركبات الداخلة والخارجة من المنشأة وسجّلها تلقائيًا باستخدام تقنية ذكية للتعرّف على لوحات الأرقام، مع سجل دخول قابل للبحث والتدقيق."
+          },
+          {
+            "title": "التعرّف على الوجه والدخول دون تلامس",
+            "text": "تحقق من الأفراد المصرّح لهم عبر التعرّف على الوجه المدعوم بالذكاء الاصطناعي، لدخول آمن وسلس دون فحوصات يدوية غير ضرورية."
+          },
+          {
+            "title": "التحكّم الآلي في الدخول",
+            "text": "أدِر الدخول عبر البوابات والأبواب والمناطق المقيَّدة من نظام مركزي واحد، مع صلاحيات تُضبط وفق التفويض."
+          },
+          {
+            "title": "إدارة الزوار والموردين",
+            "text": "سجّل الزوار والموردين واعتمدهم وأدِرهم قبل وصولهم، لتجربة دخول أسلس مع الحفاظ على ضوابط الأمن."
+          },
+          {
+            "title": "المراقبة الأمنية اللحظية",
+            "text": "راقب الدخول والخروج ونشاط الوصول والتنبيهات الأمنية عبر رؤية متصلة للمنشأة، لتتمكن الفرق من رصد الأحداث والاستجابة لها لحظيًا."
+          }
+        ],
+        "live_title": "شاهد Cordon أثناء العمل.",
+        "live_text": "اجلب أمنًا ذكيًا ومتصلًا إلى منشأتك.",
+        "built_a": "أمن يتوسّع عبر",
+        "built_b": "كل أنواع المنشآت.",
+        "built_items": [
+          "المجمعات السكنية",
+          "المكاتب المؤسسية",
+          "المواقع الصناعية",
+          "الحرم التعليمية",
+          "البنية التحتية الحيوية"
+        ],
+        "band_a": "أمّن كل مدخل.",
+        "band_b": "وأتمت كل فحص."
+      },
+      "mediq": {
+        "category": "الرعاية الصحية الذكية",
+        "tag_a": "سجّل. ادفع.",
+        "tag_b": "وانطلق.",
+        "intro": "يجمع MEDIQ خدمات الواجهة الأمامية الأساسية في المستشفى ضمن تجربة خدمة ذاتية واحدة. من تسجيل المرضى والمواعيد إلى المدفوعات والتقارير وإدارة الطوابير، يساعد MEDIQ المرضى على إنجاز المهام الروتينية بسرعة أكبر مع تخفيف الضغط عن العدادات اليدوية.",
+        "chips": [
+          "تسجيل المرضى وتسجيل الوصول",
+          "المدفوعات والفوترة",
+          "المواعيد وإدارة الطوابير"
+        ],
+        "problem_a": "لم تُصمَّم مكاتب الاستقبال في المستشفيات",
+        "problem_b": "لأحجام المرضى اليوم.",
+        "problems": [
+          {
+            "title": "طوابير تسجيل طويلة",
+            "text": "غالبًا ما يقضي المرضى وقتًا ثمينًا في الانتظار عند الاستقبال لإتمام التسجيل والتحقق وتسجيل الوصول الروتيني."
+          },
+          {
+            "title": "عمليات يدوية كثيرة",
+            "text": "كثيرًا ما تتطلب عمليات التسجيل والمدفوعات والمواعيد وإصدار الرموز التعامل مع عدادات منفصلة."
+          },
+          {
+            "title": "اختناقات في مكتب الاستقبال",
+            "text": "يضغط ازدحام المرضى على الموظفين، فيخلق زحامًا ويُبعد الفرق عن التفاعلات الأعلى قيمة مع المرضى."
+          },
+          {
+            "title": "خدمات مرضى مجزّأة",
+            "text": "عندما تتوزع الخدمات الروتينية على عدادات وأنظمة مختلفة، تصبح رحلة المريض أبطأ وأصعب في التنقّل."
+          }
+        ],
+        "how_a": "ثلاث خطوات.",
+        "how_b": "تجربة خدمة ذاتية واحدة.",
+        "steps": [
+          {
+            "title": "سجّل",
+            "text": "يُدخل المرضى معلوماتهم أو يتحققون منها عبر الكشك ويُكملون التسجيل أو الإعداد المطلوب."
+          },
+          {
+            "title": "اختر وأنجز",
+            "text": "يستطيع المرضى الوصول إلى الخدمات المتاحة مثل المواعيد والمدفوعات وتسجيل الوصول والتقارير وغيرها من الخدمات الصحية المصرّح بها."
+          },
+          {
+            "title": "استلم وتابع",
+            "text": "يوفّر MEDIQ التأكيد أو الرمز أو الإيصال أو المعلومات اللازمة ليتابع المرضى رحلتهم دون زيارات غير ضرورية للعدادات."
+          }
+        ],
+        "cap_a": "خدمات المستشفى الأساسية،",
+        "cap_b": "في مكان واحد.",
+        "caps": [
+          {
+            "title": "تسجيل المرضى والإعداد",
+            "text": "أتح للمرضى التسجيل وإكمال خطوات الإعداد الأساسية عبر واجهة خدمة ذاتية، لتقليل العمل المتكرر عند الاستقبال."
+          },
+          {
+            "title": "المدفوعات والفوترة",
+            "text": "مكّن المرضى من إتمام المدفوعات والفوترة المدعومة مباشرة عبر الكشك، لتقليل الطوابير عند عدادات الدفع."
+          },
+          {
+            "title": "المواعيد وتسجيل الوصول",
+            "text": "يستطيع المرضى إدارة المواعيد وإكمال تسجيل الوصول عبر مسار خدمة ذاتية، مما يساعد المستشفيات على استقبال المرضى بكفاءة أعلى."
+          },
+          {
+            "title": "التقارير والسجلات",
+            "text": "وفّر وصولًا مصرّحًا إلى التقارير والسجلات ذات الصلة عبر الكشك، ليحصل المرضى على المعلومات المتاحة بسرعة أكبر."
+          },
+          {
+            "title": "إدارة الرموز والطوابير",
+            "text": "أصدر الرموز ووجّه المرضى عبر مسارات الطوابير، للمساعدة في تقليل الازدحام وتنظيم تجربة المريض."
+          },
+          {
+            "title": "التأمين والخدمات الصحية",
+            "text": "ادعم مسارات صحية وتأمينية إضافية عبر المنصة نفسها، بحسب الخدمات والتكاملات التي تضبطها المستشفى."
+          }
+        ],
+        "live_title": "شاهد MEDIQ أثناء العمل.",
+        "live_text": "امنح المرضى طريقة أسرع لإنجاز الخدمات الروتينية في المستشفى، وامنح فرقك مساحة أكبر للتركيز على الرعاية.",
+        "conn_eyebrow": "متصل بأنظمتك الحالية",
+        "conn_a": "تجربة مريض واحدة.",
+        "conn_b": "متصلة بتقنيات مستشفاك.",
+        "conn_text": "صُمّم MEDIQ للعمل جنبًا إلى جنب مع أنظمة المستشفى الحالية بدلًا من إجبار المستشفيات على استبدال التقنيات التي تستخدمها.",
+        "conn_items": [
+          "HIS / HMIS",
+          "EMR / EHR",
+          "LIS",
+          "RIS",
+          "PACS",
+          "أنظمة الدفع",
+          "ABDM / ABHA",
+          "التأمين وإدارة المطالبات (TPA)"
+        ],
+        "built_a": "مصمَّم لبيئات",
+        "built_b": "الرعاية الصحية الحديثة.",
+        "built_items": [
+          "المستشفيات متعددة التخصصات",
+          "العيادات التشخيصية والعيادات الخارجية",
+          "المستشفيات الحكومية والعامة"
+        ],
+        "band_a": "انتظار أقل.",
+        "band_b": "وتجربة مريض أفضل."
+      },
+      "safin": {
+        "category": "ذكاء المياه الذكي",
+        "tag_a": "اعرف مياهك.",
+        "tag_b": "لحظةً بلحظة.",
+        "intro": "Safin نظام ذكي لمراقبة المياه يتتبّع مستويات الخزانات وجودة المياه لحظيًا، عبر استشعار pH وTDS واتصال WiFi و4G.",
+        "chips": [
+          "مراقبة مستوى المياه",
+          "تتبّع جودة المياه (pH وTDS)",
+          "اتصال WiFi و4G"
+        ],
+        "soon_a": "مراقبة ذكية للمياه،",
+        "soon_b": "قادمة قريبًا.",
+        "soon_text": "نضع اللمسات الأخيرة على Safin. تواصل معنا وسنُعلمك فور أن يصبح جاهزًا.",
+        "band_a": "Safin في الطريق إليك.",
+        "band_b": "كن أول من يعلم."
+      }
+    },
 
     // work (Work.jsx). Filter labels reuse hdr_service_items titles.
     work_badge: "أعمالنا",
@@ -1520,6 +2384,124 @@ const translations = {
     ct_success_text: "استلمنا رسالتك وسنعاود التواصل معك قريبًا.",
     ct_success_again: "إرسال رسالة أخرى",
     ct_mail_subject: "استفسار جديد من الموقع",
+    cf_badge: "ابدأ محادثة",
+    cf_h1_line1: "أخبرنا بما تعمل على حلّه.",
+    cf_h1_accent: "ونتولّى الباقي.",
+    cf_text: "شاركنا بعض التفاصيل عن مشروعك أو فريقك أو المنتج الذي يهمّك. سنراجعها ونردّ عليك خلال يوم عمل واحد.",
+    cf_cta: "ابدأ محادثة",
+    cf_cities: "سنغافورة · دبي · سيدني · بنغالور",
+    cf_scroll: "مرّر للأسفل",
+    cf_reply: "نردّ خلال يوم عمل واحد.",
+    cf_tk1_t: "أنت تشاركنا",
+    cf_tk1_d: "ثلاث خطوات قصيرة عمّا تحتاجه.",
+    cf_tk2_t: "نراجع طلبك",
+    cf_tk2_d: "الأشخاص المناسبون في فريقنا يقرؤون إجاباتك.",
+    cf_tk3_t: "نعاود التواصل معك",
+    cf_tk3_d: "غالبًا عبر البريد الإلكتروني، خلال يوم عمل واحد.",
+    cf_form_label: "نموذج التواصل",
+    cf_step: "الخطوة {n} / {total}",
+    cf_optional: "(اختياري)",
+    cf_s1_title: "كيف يمكننا مساعدتك؟",
+    cf_s1_text: "اختر الخيار الأقرب. وستتوافق الأسئلة التالية معه.",
+    cf_s1_label: "أودّ أن",
+    cf_s1_ph: "اختر خيارًا",
+    cf_type_project: "بدء مشروع",
+    cf_type_project_d: "بناء شيء جديد، أو تحديث نظام تعمل عليه حاليًا.",
+    cf_type_team: "توظيف فريق",
+    cf_type_team_d: "أضف مهندسين أو فريقًا مخصصًا إلى خارطة طريقك.",
+    cf_type_demo: "حجز عرض توضيحي لمنتج",
+    cf_type_demo_d: "شاهد Cordon أو MEDIQ أو JobScout أو Safin أثناء العمل.",
+    cf_type_partner: "الشراكات",
+    cf_type_partner_d: "شراكات تقنية أو إعادة بيع أو إحالة.",
+    cf_type_other: "شيء آخر",
+    cf_type_other_d: "سؤال عام، أو أي أمر غير مذكور هنا.",
+    cf_p_title: "ما المجالات المعنية؟",
+    cf_p_text: "اختر كل ما ينطبق. غير متأكد؟ لا بأس، سنساعدك على تحديده.",
+    cf_p_areas: "المجالات",
+    cf_p_stage: "أين أنت اليوم؟",
+    cf_t_title: "ما نوع الفريق الذي تحتاجه؟",
+    cf_t_text: "أخبرنا بالمهارات المطلوبة وكيف ترغب في العمل معنا.",
+    cf_t_skills: "المهارات المطلوبة",
+    cf_t_model: "كيف تودّ العمل معنا؟",
+    cf_d_title: "أي منتج تودّ مشاهدته؟",
+    cf_d_text: "اختر منتجًا أو أكثر. لدى JobScout وSafin أيضًا مواقعهما الخاصة.",
+    cf_d_prod: "المنتجات",
+    cf_pt_title: "ما نوع الشراكة؟",
+    cf_pt_text: "اختر الأقرب، ثم أضف أي تفاصيل أدناه.",
+    cf_pt_type: "نوع الشراكة",
+    cf_o_title: "كيف يمكننا مساعدتك؟",
+    cf_o_text: "شاركنا سؤالك وسيردّ عليك الشخص المناسب.",
+    cf_o_svc_ai: "الذكاء الاصطناعي والأنظمة الذكية",
+    cf_o_svc_security: "أنظمة الأمن الذكية",
+    cf_o_svc_erp: "أنظمة المؤسسات وتخطيط الموارد (ERP)",
+    cf_o_svc_product: "هندسة المنتجات والتطبيقات",
+    cf_o_svc_digital: "التحول الرقمي والحوسبة السحابية",
+    cf_o_svc_notsure: "لست متأكدًا بعد",
+    cf_o_stage_exploring: "أستكشف الأفكار",
+    cf_o_stage_planning: "أخطط لمشروع",
+    cf_o_stage_ready: "جاهز للبدء",
+    cf_o_stage_scaling: "استبدال نظام قائم أو توسيعه",
+    cf_o_skills_ai: "الذكاء الاصطناعي وتعلّم الآلة",
+    cf_o_skills_web: "تطوير الويب المتكامل",
+    cf_o_skills_mobile: "تطبيقات الجوال",
+    cf_o_skills_cloud: "الحوسبة السحابية وDevOps",
+    cf_o_skills_erp: "أنظمة ERP والمؤسسات",
+    cf_o_skills_data: "البيانات والتحليلات",
+    cf_o_skills_qa: "ضمان الجودة والاختبار",
+    cf_o_skills_notsure: "لست متأكدًا بعد",
+    cf_o_model_dedicated: "فريق مخصص",
+    cf_o_model_extend: "دعم فريقي الحالي",
+    cf_o_model_notsure: "لست متأكدًا بعد",
+    cf_o_ptype_tech: "شراكة تقنية",
+    cf_o_ptype_reseller: "موزّع أو شريك قنوات",
+    cf_o_ptype_referral: "شريك إحالة",
+    cf_o_ptype_other: "شيء آخر",
+    cf_ta_more: "هل هناك أي شيء آخر يجب أن نعرفه؟",
+    cf_ta_msg: "رسالتك",
+    cf_ph_project: "مثال: تسجيل دخول الزوار لدينا يدوي في ثلاثة مبانٍ ونحتاج إلى نظام موحّد قابل للتدقيق.",
+    cf_ph_team: "مثال: نحتاج مهندسَي واجهة خلفية كبيرَين ومسؤول جودة للانضمام إلى فريق منتجنا لمدة ستة أشهر.",
+    cf_ph_demo: "مثال: ندير مستشفى بسعة 400 سرير ونريد تقليل الطوابير عند التسجيل والفوترة.",
+    cf_ph_partner: "مثال: نحن شركة تكامل أنظمة في الشرق الأوسط ونود تقديم Cordon لعملائنا.",
+    cf_ph_other: "كيف يمكننا مساعدتك؟",
+    cf_c_title: "أين نردّ عليك؟",
+    cf_c_text: "نردّ عادةً عبر البريد الإلكتروني خلال يوم عمل واحد.",
+    cf_f_first: "الاسم الأول",
+    cf_f_last: "اسم العائلة",
+    cf_f_email: "البريد الإلكتروني للعمل",
+    cf_f_company: "الشركة",
+    cf_f_role: "منصبك",
+    cf_f_phone: "رقم الهاتف",
+    cf_ph_first: "محمد",
+    cf_ph_last: "العلي",
+    cf_ph_email: "name@company.com",
+    cf_ph_company: "اسم الشركة",
+    cf_ph_role: "مثال: رئيس العمليات",
+    cf_ph_phone: "أضف رمز الدولة",
+    cf_consent_pre: "أوافق على أن تتواصل معي ASZ Technologies بخصوص هذا الاستفسار وأن تحتفظ ببياناتي وفق ",
+    cf_consent_link: "سياسة الخصوصية",
+    cf_consent_post: ".",
+    cf_err_type: "يُرجى اختيار ما يمكننا مساعدتك فيه.",
+    cf_err_svc: "يُرجى اختيار مجال.",
+    cf_err_skills: "يُرجى اختيار مهارة واحدة على الأقل.",
+    cf_err_prod: "يُرجى اختيار منتج.",
+    cf_err_ptype: "يُرجى اختيار نوع الشراكة.",
+    cf_err_first: "يُرجى إدخال اسمك الأول.",
+    cf_err_email: "يُرجى إدخال بريد إلكتروني صالح للعمل.",
+    cf_err_company: "يُرجى إدخال اسم شركتك.",
+    cf_err_consent: "يُرجى الموافقة على سياسة الخصوصية حتى نتمكن من الردّ.",
+    cf_err_send: "حدث خطأ ما. يُرجى المحاولة مرة أخرى أو مراسلتنا مباشرة عبر البريد الإلكتروني.",
+    cf_continue: "متابعة",
+    cf_send: "إرسال الرسالة",
+    cf_sending: "جارٍ الإرسال…",
+    cf_back: "رجوع",
+    cf_alt: "تفضّل البريد الإلكتروني؟",
+    cf_done_title: "شكرًا لك، {name}.",
+    cf_done_text: "استلمنا رسالتك. سيردّ عليك أحد أعضاء فريقنا على {email} خلال يوم عمل واحد.",
+    cf_done_name: "عزيزي العميل",
+    cf_done_email: "بريدك الإلكتروني",
+    cf_done_work: "اطّلع على أعمالنا",
+    cf_done_services: "استكشف خدماتنا",
+    cf_privacy_note: "تُستخدم بياناتك فقط للردّ على هذا الاستفسار.",
   },
 };
 

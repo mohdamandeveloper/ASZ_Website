@@ -10,15 +10,19 @@ const ORB_COLOR = '#FFC08F'; // keep in sync with --orb
 const ACCENT = '#F2440F';    // keep in sync with --ac
 
 // Edit these to match your router. Anything starting with "/" renders a <Link>.
+// These match the routes used by Service.jsx / Products.jsx (the hero buttons already used /service).
 const ROUTES = {
   work: '/work',
-  services: '/services',
-  security: '/services/security',
-  engineering: '/services/product-engineering',
-  ai: '/services/ai',
-  cloud: '/services/cloud',
-  jobscout: '/products#jobscout',
-  safin: '/products#safin',
+  services: '/service',
+  security: '/service/smart-security',
+  engineering: '/service/product-application',
+  ai: '/service/ai-intelligence',
+  cloud: '/service/digital-transformation',
+  products: '/products',
+  cordon: '/products/cordon',
+  mediq: '/products/mediq',
+  jobscout: '/products#jobscout', // external product: no detail page, lands on its card
+  safin: '/products/safin',
 };
 
 // Client logos come from one sprite (8 cols x 4 rows)
@@ -42,6 +46,14 @@ const CORDON_CHIPS = [
   'M3 13l2-6h14l2 6v5H3zM6.5 16h.01M17.5 16h.01M3 13h18',
   'M4 8V5a1 1 0 011-1h3M16 4h3a1 1 0 011 1v3M20 16v3a1 1 0 01-1 1h-3M8 20H5a1 1 0 01-1-1v-3M9 10v1M15 10v1M9.5 15a3.5 3.5 0 005 0',
   'M6 11V8a6 6 0 0112 0v3M5 11h14v9H5zM12 15v2',
+];
+
+// The three smaller product cards: route + image class + entrance animation.
+// Tag line / description / "ASZ product · 0X" label come from t.home_products_cards (same order).
+const PRODUCT_CARDS = [
+  { id: 'mediq', to: ROUTES.mediq, img: 'pimg-mq', anim: 'rvl', name: 'MEDIQ' },
+  { id: 'jobscout', to: ROUTES.jobscout, img: 'pimg-js', anim: 'rv', name: 'JobScout' },
+  { id: 'safin', to: ROUTES.safin, img: 'pimg-sf', anim: 'rvr', name: 'Safin' },
 ];
 
 /* Small shared bits ------------------------------------------------- */
@@ -93,6 +105,7 @@ export default function Home() {
   const caps = t.home_caps;
   const statLabels = t.home_stats;
   const chipLabels = t.home_products_chips;
+  const productCards = t.home_products_cards;
   const steps = t.home_process_steps;
   const industries = t.home_industries_items;
 
@@ -493,7 +506,7 @@ export default function Home() {
           </div>
 
           {/* Cordon */}
-          <a className="card card--cordon rvs" href="#contact">
+          <A className="card card--cordon rvs" to={ROUTES.cordon}>
             <div className="pimg-co zoom card__bg" aria-hidden="true" />
             <div className="card__shade" aria-hidden="true" />
             <div className="cordon__copy">
@@ -508,56 +521,50 @@ export default function Home() {
                   </span>
                 ))}
               </div>
-              <span className="btn btn-ac cordon__btn">{t.home_products_book_demo} <Arrow size={14} /></span>
+              <span className="btn btn-ac cordon__btn">{t.home_services_learn_more} <Arrow size={14} /></span>
             </div>
 
             <div className="cordonui floaty" aria-hidden="true">
               <div className="cordonui__in">
                 <div className="cordonui__top">
-                  <div className="cordonui__name"><span className="cordonui__logo" />Cordon<span>Main Gate</span></div>
-                  <div className="cordonui__live"><span className="live dot dot--sm" />LIVE</div>
+                  <div className="cordonui__name"><span className="cordonui__logo" />Cordon<span>{t.home_cordon_ui_gate}</span></div>
+                  <div className="cordonui__live"><span className="live dot dot--sm" />{t.home_cordon_ui_live}</div>
                 </div>
                 <div className="cordonui__cam">
                   <div className="cordonui__grid" />
                   <div className="scan cordonui__scan" />
-                  <div className="cordonui__plate">ZX 4827 Q</div>
-                  <div className="cordonui__caption">CAM 02 · VEHICLE RECOGNITION</div>
+                  <div className="cordonui__plate" dir="ltr">ZX 4827 Q</div>
+                  <div className="cordonui__caption">{t.home_cordon_ui_cam}</div>
                 </div>
                 <div className="cordonui__rows">
-                  <div className="st1"><span>Vehicle recognised</span><span className="ok">Access granted</span></div>
-                  <div className="st2"><span>Facial Recognition</span><span className="ok">Verified</span></div>
-                  <div className="st3"><span>Paper log entry</span><span className="na">Not needed</span></div>
+                  <div className="st1"><span>{t.home_cordon_ui_r1}</span><span className="ok">{t.home_cordon_ui_r1v}</span></div>
+                  <div className="st2"><span>{t.home_cordon_ui_r2}</span><span className="ok">{t.home_cordon_ui_r2v}</span></div>
+                  <div className="st3"><span>{t.home_cordon_ui_r3}</span><span className="na">{t.home_cordon_ui_r3v}</span></div>
                 </div>
               </div>
             </div>
-          </a>
+          </A>
 
-          <div className="g2 products__pair">
-            {/* JobScout */}
-            <A className="card card--prod rvl" to={ROUTES.jobscout}>
-              <div className="pimg-js zoom card__bg" aria-hidden="true" />
-              <div className="card__shade card__shade--v" aria-hidden="true" />
-              <div className="card__top">
-                <span className="card__meta">{t.home_products_meta2}</span>
-                <span className="arrow"><ArrowUpRight /></span>
-              </div>
-              <h3 className="card__name">Mediq</h3>
-            </A>
-
-            {/* Safin */}
-            <A className="card card--prod rvr" to={ROUTES.safin}>
-              <div className="pimg-sf zoom card__bg" aria-hidden="true" />
-              <div className="card__shade card__shade--v" aria-hidden="true" />
-              <div className="card__top">
-                <span className="card__meta">{t.home_products_meta3}</span>
-                <span className="arrow"><ArrowUpRight /></span>
-              </div>
-              <h3 className="card__name">JobScout</h3>
-            </A>
+          <div className="products__trio">
+            {PRODUCT_CARDS.map((p, i) => (
+              <A className={`card card--prod ${p.anim}`} to={p.to} key={p.id}>
+                <div className={`${p.img} zoom card__bg`} aria-hidden="true" />
+                <div className="card__shade card__shade--v" aria-hidden="true" />
+                <div className="card__top">
+                  <span className="card__meta">{productCards[i].meta}</span>
+                  <span className="arrow"><ArrowUpRight /></span>
+                </div>
+                <div className="card__body">
+                  <div className="card__tag">{productCards[i].tag}</div>
+                  <h3 className="card__name">{p.name}</h3>
+                  <p className="card__text">{productCards[i].text}</p>
+                </div>
+              </A>
+            ))}
           </div>
 
           <div className="more rv">
-            <a className="btn morelink" href="#contact">{t.home_products_book_demo} <Arrow /></a>
+            <A className="btn morelink" to={ROUTES.products}>{t.hdr_view_all_products} <Arrow /></A>
           </div>
         </div>
       </section>
