@@ -1,11 +1,6 @@
-// Case study content, copied from case-mega-adventure-park.html, case-faith-based-organization.html
-// and case-78-shenton-way.html. ORDER matters: previous / next links cycle through this list,
-// and the "Selected work" cards on /service show them in this order.
-//
-// category drives the filter pills on /work: product | enterprise | security
-//
-// Images: place these files in /public/assets/ (they are referenced as /assets/...):
-//   logo-mega2.png, case-ngo.webp, shenton-lobby.webp
+import logoMega from '../assets/images/logo-mega2.png';
+import caseNgo from '../assets/images/case-ngo.webp';
+import shentonLobby from '../assets/images/shenton-lobby.webp';
 
 const CaseStudies = [
   {
@@ -14,7 +9,7 @@ const CaseStudies = [
     client: 'Mega Adventure Park',
     industry: 'Leisure & Entertainment',
     service: 'Product & Application Engineering',
-    image: { src: 'src/assets/images/logo-mega2.png', bg: '#FFFFFF', size: '58% auto', label: 'Mega Adventure Park logo' },
+    image: { src: logoMega, bg: '#FFFFFF', size: '58% auto', label: 'Mega Adventure Park logo' },
     card: {
       sub: 'Self-service media commerce for an adventure park',
       value: '35%',
@@ -61,7 +56,7 @@ const CaseStudies = [
     client: 'A growing faith-based organization',
     industry: 'Non-Profit & Community',
     service: 'Enterprise Systems & ERP',
-    image: { src: 'src/assets/images/case-ngo.webp', bg: '#0B0B0C', size: 'cover' },
+    image: { src: caseNgo, bg: '#0B0B0C', size: 'cover' },
     card: {
       sub: 'Centralized ERP for a faith-based organization',
       value: '90%',
@@ -105,7 +100,7 @@ const CaseStudies = [
     client: '78 Shenton Way',
     industry: 'Commercial Real Estate',
     service: 'Smart Security Systems',
-    image: { src: 'src/assets/images/shenton-lobby.webp', bg: '#0B0B0C', size: 'cover' },
+    image: { src: shentonLobby, bg: '#0B0B0C', size: 'cover' },
     card: {
       sub: 'Visitor Management System for 78 Shenton Way',
       value: '60%',
