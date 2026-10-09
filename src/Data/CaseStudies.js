@@ -14,7 +14,7 @@ const CaseStudies = [
     client: 'Mega Adventure Park',
     industry: 'Leisure & Entertainment',
     service: 'Product & Application Engineering',
-    image: { src: '../src/assets/images/logo-mega2.png', bg: '#FFFFFF', size: '58% auto', label: 'Mega Adventure Park logo' },
+    image: { src: '/src/assets/images/logo-mega2.png', bg: '#FFFFFF', size: '58% auto', label: 'Mega Adventure Park logo' },
     card: {
       sub: 'Self-service media commerce for an adventure park',
       value: '35%',
@@ -61,7 +61,7 @@ const CaseStudies = [
     client: 'A growing faith-based organization',
     industry: 'Non-Profit & Community',
     service: 'Enterprise Systems & ERP',
-    image: { src: '../src/assets/images/case-ngo.webp', bg: '#0B0B0C', size: 'cover' },
+    image: { src: '/src/assets/images/case-ngo.webp', bg: '#0B0B0C', size: 'cover' },
     card: {
       sub: 'Centralized ERP for a faith-based organization',
       value: '90%',
@@ -105,7 +105,7 @@ const CaseStudies = [
     client: '78 Shenton Way',
     industry: 'Commercial Real Estate',
     service: 'Smart Security Systems',
-    image: { src: '../src/assets/images/shenton-lobby.webp', bg: '#0B0B0C', size: 'cover' },
+    image: { src: '/src/assets/images/shenton-lobby.webp', bg: '#0B0B0C', size: 'cover' },
     card: {
       sub: 'Visitor Management System for 78 Shenton Way',
       value: '60%',
