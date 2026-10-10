@@ -377,7 +377,7 @@ const translations = {
     about_loc_eyebrow: "GLOBAL PRESENCE",
     about_loc_title: "Built for where",
     about_loc_accent: "you do business.",
-    about_loc_text: "With teams in Singapore, Dubai, Sydney and Bangalore, ASZ Technologies stays close to the markets we serve, bringing local insight and hands-on delivery to every engagement.",
+    about_loc_text: "With offices across Singapore, Dubai, Australia, and India, we combine global delivery capabilities with proximity to the markets and organizations we serve.",
     about_badge_hq: "Headquarters",
     about_badge_branch: "Branch office",
     about_offices: [
