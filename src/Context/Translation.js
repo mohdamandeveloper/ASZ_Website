@@ -294,6 +294,9 @@ const translations = {
     home_services_cloud_badge: "CLOUD & MODERNIZATION",
     home_services_cloud_title: "Digital Transformation & Cloud",
     home_services_cloud_text: "We modernize technology landscapes, cloud infrastructure, systems, and architecture aligning every layer with the business you are building next.",
+    home_services_explore: "Explore service",
+    home_services_boxes: [{"text": "Our Cordon platform brings AI-powered vehicle recognition, facial recognition, access control and visitor management into one intelligent security layer.", "tags": ["Facial Recognition", "ANPR", "Access Control", "Visitor Management"]}, {"text": "We design, engineer and scale digital products and enterprise applications, from concept to production.", "tags": ["Product Development", "Modernization", "APIs"]}, {"text": "Predictive intelligence, computer vision, machine learning and automation, engineered into the systems we ship.", "tags": ["AI Agents", "Machine Learning", "Predictive Analytics"]}, {"text": "We modernize technology landscapes, cloud infrastructure, systems and architecture, aligning every layer with the business you are building next.", "tags": ["IT Strategy", "Cloud Transformation", "Architecture"]}],
+    home_m_services: [{"text": "AI-powered vehicle recognition, facial recognition, access control and visitor management in one intelligent security layer.", "tags": ["Facial Recognition", "ANPR", "Access Control"]}, {"text": "We design, engineer and scale digital products and enterprise applications, from concept to production.", "tags": ["Product Development", "Modernization", "APIs"]}, {"text": "Predictive intelligence, computer vision, machine learning and automation, engineered into the systems we ship.", "tags": ["AI Agents", "Machine Learning", "Predictive Analytics"]}, {"text": "We modernize technology landscapes, cloud infrastructure and architecture for the business you are building next.", "tags": ["IT Strategy", "Cloud", "Architecture"]}],
 
     // home_stats
     home_stats: [
@@ -1788,6 +1791,9 @@ const translations = {
     home_services_cloud_badge: "السحابة والتحديث",
     home_services_cloud_title: "التحول الرقمي والحوسبة السحابية",
     home_services_cloud_text: "نحدّث البيئات التقنية والبنية السحابية والأنظمة والمعمارية، لنُوائم كل طبقة مع الأعمال التي تبنيها لاحقًا.",
+    home_services_explore: "استكشف الخدمة",
+    home_services_boxes: [{"text": "تجمع منصة Cordon بين التعرّف على المركبات والوجوه بالذكاء الاصطناعي، والتحكم في الدخول، وإدارة الزوار في طبقة أمنية ذكية واحدة.", "tags": ["التعرّف على الوجوه", "قراءة لوحات المركبات", "التحكم في الدخول", "إدارة الزوار"]}, {"text": "نصمّم المنتجات الرقمية وتطبيقات المؤسسات ونطوّرها ونوسّع نطاقها، من الفكرة حتى الإنتاج.", "tags": ["تطوير المنتجات", "التحديث", "واجهات API"]}, {"text": "ذكاء تنبؤي ورؤية حاسوبية وتعلّم آلة وأتمتة، مدمجة في الأنظمة التي نسلّمها.", "tags": ["وكلاء الذكاء الاصطناعي", "تعلّم الآلة", "التحليلات التنبؤية"]}, {"text": "نحدّث البيئات التقنية والبنية السحابية والأنظمة والمعمارية، لنُوائم كل طبقة مع الأعمال التي نبنيها لاحقًا.", "tags": ["استراتيجية تقنية المعلومات", "التحول السحابي", "المعمارية"]}],
+    home_m_services: [{"text": "تعرّف على المركبات والوجوه بالذكاء الاصطناعي، وتحكّم في الدخول، وإدارة للزوار في طبقة أمنية ذكية واحدة.", "tags": ["التعرّف على الوجوه", "قراءة لوحات المركبات", "التحكم في الدخول"]}, {"text": "نصمّم المنتجات الرقمية وتطبيقات المؤسسات ونطوّرها ونوسّع نطاقها، من الفكرة حتى الإنتاج.", "tags": ["تطوير المنتجات", "التحديث", "واجهات API"]}, {"text": "ذكاء تنبؤي ورؤية حاسوبية وتعلّم آلة وأتمتة، مدمجة في الأنظمة التي نسلّمها.", "tags": ["وكلاء الذكاء الاصطناعي", "تعلّم الآلة", "التحليلات التنبؤية"]}, {"text": "نحدّث البيئات التقنية والبنية السحابية والمعمارية للأعمال التي تبنيها لاحقًا.", "tags": ["استراتيجية تقنية المعلومات", "السحابة", "المعمارية"]}],
 
     // home_stats
     home_stats: [

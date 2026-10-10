@@ -25,6 +25,16 @@ const ROUTES = {
   safin: '/products/safin',
 };
 
+// "Our capabilities" boxes (index.html). Badge / title keys reuse the existing home_services_* entries;
+// description + tags live in t.home_services_boxes (desktop) and t.home_m_services (phone).
+// Product engineering has no photo in src/assets yet: add public/assets/svc-pe.webp (a dark gradient shows until then).
+const SERVICE_BOXES = [
+  { to: ROUTES.security, cls: 'bx-sec', anim: 'rvl', img: 'img-sec', style: { backgroundPosition: 'center 30%' }, mstyle: { backgroundPosition: 'center 20%' }, badge: 'home_services_security_badge', title: 'home_services_security_title' },
+  { to: ROUTES.engineering, cls: 'bx-pe', anim: 'rv', style: { background: "url('/src/assets/images/svc-pe.webp') center / cover, linear-gradient(160deg, #10222b, #0d0d0d 55%)" }, badge: 'home_services_engineering_label', title: 'home_services_engineering_title' },
+  { to: ROUTES.ai, cls: 'bx-ai', anim: 'rvr', img: 'img-ai', badge: 'home_services_ai_badge', title: 'home_services_ai_title' },
+  { to: ROUTES.cloud, cls: 'bx-dt', anim: 'rv', img: 'img-dt', badge: 'home_services_cloud_badge', title: 'home_services_cloud_title' },
+];
+
 // Client logos come from one sprite (8 cols x 4 rows)
 const logoPos = (i) =>
   `${(((i % 8) / 7) * 100).toFixed(3)}% ${((Math.floor(i / 8) / 3) * 100).toFixed(3)}%`;
@@ -428,48 +438,50 @@ export default function Home() {
             </div>
           </div>
 
+          {/* Desktop + tablet: the four photo boxes from index.html */}
           <div className="bgrid">
-            <A className="bento bento--sec rvl" to={ROUTES.security}>
-              <div className="bento__bg img-sec zoom" aria-hidden="true" />
-              <div className="bento__shade" aria-hidden="true" />
-              <span className="badge tone-orange"><span className="live dot" />{t.home_services_security_badge}</span>
-              <div className="bento__body">
-                <h3>{t.home_services_security_title}</h3>
-                <p>{t.home_services_security_text}</p>
-                <div className="bento__cta">{t.home_services_learn_more}<span className="circ"><Arrow /></span></div>
-              </div>
-            </A>
+            {SERVICE_BOXES.map((s, i) => {
+              const box = (t.home_services_boxes || [])[i] || { text: '', tags: [] };
+              return (
+                <A className={`bx ${s.cls} ${s.anim}`} to={s.to} key={s.to}>
+                  <span className={`bximg ${s.img || ''}`} style={s.style} aria-hidden="true" />
+                  <span className="bxshade" aria-hidden="true" />
+                  <span className="bxpill">{t[s.badge]}</span>
+                  <span className="bxbody">
+                    <span className="bxt">{t[s.title]}</span>
+                    <span className="bxd">{box.text}</span>
+                    <span className="bxtags">{box.tags.map((tag) => <span key={tag}>{tag}</span>)}</span>
+                  </span>
+                  <span className="bxfoot">
+                    <span>{t.home_services_explore}</span>
+                    <span className="bxgo"><ArrowUpRight /></span>
+                  </span>
+                </A>
+              );
+            })}
+          </div>
 
-            <A className="bento bento--eng rv" to={ROUTES.engineering}>
-              <div className="bento__label">{t.home_services_engineering_label}</div>
-              <h3>{t.home_services_engineering_title}</h3>
-              <p>{t.home_services_engineering_text}</p>
-            </A>
-
-            <A className="bento bento--ai rvr" to={ROUTES.ai}>
-              <div className="bento__bg img-ai zoom" aria-hidden="true" />
-              <div className="bento__shade" aria-hidden="true" />
-              <span className="badge badge--abs tone-purple"><span className="dot" />{t.home_services_ai_badge}</span>
-              <div className="bento__body bento__body--pt">
-                <h3>{t.home_services_ai_title}</h3>
-                <p>{t.home_services_ai_text}</p>
-              </div>
-            </A>
-
-            <A className="bento bento--dt rv dtsplit" to={ROUTES.cloud}>
-              <div className="dtimg">
-                <div className="bento__bg img-dt zoom" aria-hidden="true" />
-                <div className="bento__shade" aria-hidden="true" />
-              </div>
-              <div className="bento__dtbody">
-                <span className="badge badge--mb tone-teal"><span className="dot" />{t.home_services_cloud_badge}</span>
-                <h3>{t.home_services_cloud_title}</h3>
-                <p>{t.home_services_cloud_text}</p>
-                <div className="bento__row">
-                  <span className="bento__cta bento__cta--inline">{t.home_services_learn_more}<span className="circ circ--ghost"><Arrow /></span></span>
-                </div>
-              </div>
-            </A>
+          {/* Phone (<= 600px): the four compact cards from index.html */}
+          <div className="mcards" aria-label={t.home_services_eyebrow}>
+            {SERVICE_BOXES.map((s, i) => {
+              const m = (t.home_m_services || [])[i] || { text: '', tags: [] };
+              return (
+                <A className="mcard" to={s.to} key={s.to}>
+                  <span className={`mimg ${s.img || ''}`} style={s.mstyle || s.style} aria-hidden="true" />
+                  <span className="mshade" aria-hidden="true" />
+                  <span className="mpill">{t[s.badge]}</span>
+                  <span className="mbody">
+                    <span className="mt">{t[s.title]}</span>
+                    <span className="md">{m.text}</span>
+                    <span className="mtags">{m.tags.map((tag) => <span key={tag}>{tag}</span>)}</span>
+                    <span className="mfoot">
+                      <span>{t.home_services_explore}</span>
+                      <span className="mgo"><ArrowUpRight /></span>
+                    </span>
+                  </span>
+                </A>
+              );
+            })}
           </div>
 
           <div className="more rv">
