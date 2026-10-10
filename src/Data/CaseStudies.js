@@ -9,7 +9,7 @@ const CaseStudies = [
     client: 'Mega Adventure Park',
     industry: 'Leisure & Entertainment',
     service: 'Product & Application Engineering',
-    image: { src: logoMega, bg: '#FFFFFF', size: '58% auto', label: 'Mega Adventure Park logo' },
+    image: { src: logoMega, bg: '#FFFFFF', size: '80% auto', label: 'Mega Adventure Park logo' },
     card: {
       sub: 'Self-service media commerce for an adventure park',
       value: '35%',

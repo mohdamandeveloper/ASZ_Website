@@ -114,11 +114,11 @@ const Products = () => {
               <div id={p.id} className={`rv products-card${rev ? ' products-card--rev' : ''}`} key={p.id}>
                 <div className={`${rev ? 'rvr' : 'rvl'} products-card__media`}>
                   <div className="products-card__shot">
-                    <div className="products-card__zoom" aria-hidden="true" style={{ backgroundImage: `url(${p.image})` }} />
-                    <div className="products-card__shade" aria-hidden="true" />
-                    <span className="products-card__tag">{`${t.prod_label} · ${num}`}</span>
-                    {p.comingSoon && <span className="products-card__soon">{t.prod_coming_soon}</span>}
-                    <div className="floaty products-card__placeholder">{t.prod_shot_ph.replace('{name}', p.name.toUpperCase())}</div>
+                    <div className={`products-card__zoom ${p.name}`} aria-hidden="true" style={{ backgroundImage: `url(${p.image})` }} />
+                    <div className={`products-card__shade ${p.name}`} aria-hidden="true" />
+                    <span className={`products-card__tag ${p.name}`}>{`${t.prod_label} · ${num}`}</span>
+                    {/* {p.comingSoon && <span className="products-card__soon">{t.prod_coming_soon}</span>} */}
+                    {/* <div className="floaty products-card__placeholder">{t.prod_shot_ph.replace('{name}', p.name.toUpperCase())}</div> */}
                   </div>
                 </div>
 

@@ -75,7 +75,9 @@
   color: rgba(255, 255, 255, .7);
   transition: color .3s;
 
-  &[data-on] { color: #fff; }
+  &[data-on] {
+    color: #fff;
+  }
 }
 
 @media (max-width: 900px) {
@@ -113,10 +115,10 @@ $ease: cubic-bezier(.2, .7, .2, 1);
 // Thumbnails in the Products drop-down. index.html uses prod-cordon.webp, mediq2.webp,
 // prod-jobscout.webp and prod-safin.webp: copy those into assets/images and swap the lines below.
 // (All four use the cube image for now, since that is the file this project already has.)
-$img-cordon: url('../../assets/images/prod-cordon.webp');   // prod-cordon.webp
-$img-mediq: url('../../assets/images/mediq2.webp');    // mediq2.webp
-$img-jobscout: url('../../assets/images/prod-jobscout.webp'); // prod-jobscout.webp
-$img-safin: url('../../assets/images/prod-safin.webp');    // prod-safin.webp
+$img-cordon: url('../../assets/images/prod-cordon3.webp'); // prod-cordon.webp
+$img-mediq: url('../../assets/images/prod-mediq3.webp'); // mediq2.webp
+$img-jobscout: url('../../assets/images/prod-jobscout3.webp'); // prod-jobscout.webp
+$img-safin: url('../../assets/images/prod-safin3.webp'); // prod-safin.webp
 
 // Sliding nav pill (moved by useNavPill in Header.jsx)
 .npill {
@@ -148,11 +150,15 @@ $img-safin: url('../../assets/images/prod-safin.webp');    // prod-safin.webp
   align-items: center;
 
   &:not(.is-closed):hover .chev,
-  &:not(.is-closed):focus-within .chev { transform: rotate(180deg); }
+  &:not(.is-closed):focus-within .chev {
+    transform: rotate(180deg);
+  }
 }
 
 // ---------- Services ----------
-.sdd { position: relative; }
+.sdd {
+  position: relative;
+}
 
 .sddpanel {
   position: absolute;
@@ -245,8 +251,16 @@ $img-safin: url('../../assets/images/prod-safin.webp');    // prod-safin.webp
     color: #0e0e0f;
     outline: none;
 
-    .ic { background: var(--ac2); color: #fff; transform: scale(1.05); }
-    .go { opacity: 1; transform: translate(0, 0); }
+    .ic {
+      background: var(--ac2);
+      color: #fff;
+      transform: scale(1.05);
+    }
+
+    .go {
+      opacity: 1;
+      transform: translate(0, 0);
+    }
   }
 }
 
@@ -265,13 +279,17 @@ $img-safin: url('../../assets/images/prod-safin.webp');    // prod-safin.webp
   font-weight: 600;
   transition: background .2s;
 
-  svg { transition: transform .25s; }
+  svg {
+    transition: transform .25s;
+  }
 
   &:hover {
     background: var(--ac2);
     color: #fff;
 
-    svg { transform: translateX(4px); }
+    svg {
+      transform: translateX(4px);
+    }
   }
 }
 
@@ -323,12 +341,26 @@ $img-safin: url('../../assets/images/prod-safin.webp');    // prod-safin.webp
   transition: opacity .3s, translate .45s $ease, transform .35s $ease, border-color .3s, box-shadow .35s;
 
   .pdd:not(.is-closed):hover &,
-  .pdd:not(.is-closed):focus-within & { opacity: 1; translate: 0 0; }
+  .pdd:not(.is-closed):focus-within & {
+    opacity: 1;
+    translate: 0 0;
+  }
 
-  &:nth-child(2) { transition-delay: .04s, .04s, 0s, 0s, 0s; }
-  &:nth-child(3) { transition-delay: .08s, .08s, 0s, 0s, 0s; }
-  &:nth-child(4) { transition-delay: .12s, .12s, 0s, 0s, 0s; }
-  &:nth-child(5) { transition-delay: .16s, .16s, 0s, 0s, 0s; }
+  &:nth-child(2) {
+    transition-delay: .04s, .04s, 0s, 0s, 0s;
+  }
+
+  &:nth-child(3) {
+    transition-delay: .08s, .08s, 0s, 0s, 0s;
+  }
+
+  &:nth-child(4) {
+    transition-delay: .12s, .12s, 0s, 0s, 0s;
+  }
+
+  &:nth-child(5) {
+    transition-delay: .16s, .16s, 0s, 0s, 0s;
+  }
 
   .thumb {
     position: relative;
@@ -345,20 +377,38 @@ $img-safin: url('../../assets/images/prod-safin.webp');    // prod-safin.webp
     border: 1px dashed #bdbdbc;
     transition: border-color .3s;
 
-    &.dark { background: #050506; border: 1px solid #050506; color: #fff; }
+    &.dark {
+      background: #050506;
+      border: 1px solid #050506;
+      color: #fff;
+    }
 
     .pimg {
       position: absolute;
       inset: 0;
       opacity: .9;
       background-size: cover;
-      background-position: center;
+      background-position: center 30%;
       background-repeat: no-repeat;
 
-      &--cordon { background-image: $img-cordon; }
-      &--mediq { background-image: $img-mediq; }
-      &--jobscout { background-image: $img-jobscout; }
-      &--safin { background-image: $img-safin; }
+      &--cordon {
+        background-image: $img-cordon;
+      }
+
+      &--mediq {
+        background-image: $img-mediq;
+      }
+
+      &--jobscout {
+        background-image: $img-jobscout;
+      }
+
+      &--safin {
+        background-image: $img-safin;
+        background-size: 80%;
+        background-position: center;
+        background-color: white;
+      }
     }
   }
 
@@ -413,7 +463,10 @@ $img-safin: url('../../assets/images/prod-safin.webp');    // prod-safin.webp
     color: #0e0e0f;
     outline: none;
 
-    .go { opacity: 1; transform: translate(0, 0); }
+    .go {
+      opacity: 1;
+      transform: translate(0, 0);
+    }
   }
 
   // "View all" tile
@@ -423,7 +476,10 @@ $img-safin: url('../../assets/images/prod-safin.webp');    // prod-safin.webp
     border-color: #0e0e0f;
     justify-content: flex-end;
 
-    .t { font-size: 18px; margin-top: auto; }
+    .t {
+      font-size: 18px;
+      margin-top: auto;
+    }
 
     .pgo {
       position: absolute;
@@ -444,7 +500,9 @@ $img-safin: url('../../assets/images/prod-safin.webp');    // prod-safin.webp
       color: #fff;
       background: #17171a;
 
-      .pgo { transform: translateX(4px); }
+      .pgo {
+        transform: translateX(4px);
+      }
     }
   }
 }
@@ -452,7 +510,9 @@ $img-safin: url('../../assets/images/prod-safin.webp');    // prod-safin.webp
 
 // Small laptops: keep the wide Products panel inside the viewport
 @media (max-width: 1180px) {
-  .pddpanel { width: calc(100vw - 48px); }
+  .pddpanel {
+    width: calc(100vw - 48px);
+  }
 }
 
 // =====================================================================
@@ -465,7 +525,9 @@ $img-safin: url('../../assets/images/prod-safin.webp');    // prod-safin.webp
 }
 
 @media (max-width: 900px) {
-  .nav__end { gap: 8px; }
+  .nav__end {
+    gap: 8px;
+  }
 }
 
 
@@ -501,8 +563,14 @@ $img-safin: url('../../assets/images/prod-safin.webp');    // prod-safin.webp
     //   outline: none;
     // }
 
-    &__flag { font-size: 16px; line-height: 1; }
-    &__chev { transition: transform .2s; }
+    &__flag {
+      font-size: 16px;
+      line-height: 1;
+    }
+
+    &__chev {
+      transition: transform .2s;
+    }
   }
 
   .lang-dropdown {
@@ -532,21 +600,30 @@ $img-safin: url('../../assets/images/prod-safin.webp');    // prod-safin.webp
       transition: background .15s;
 
       &:hover,
-      &:focus-visible { background: rgba(255, 255, 255, .08); outline: none; }
-      &.active { background: rgba(255, 255, 255, .1); }
+      &:focus-visible {
+        background: rgba(255, 255, 255, .08);
+        outline: none;
+      }
+
+      &.active {
+        background: rgba(255, 255, 255, .1);
+      }
     }
   }
 }
 
 @media (max-width: 900px) {
-  .btn_language .language_selector { min-width: 0; padding: 0 12px; }
+  .btn_language .language_selector {
+    min-width: 0;
+    padding: 0 12px;
+  }
 }
 
 // =====================================================================
 //  Mobile: hamburger + left-sliding side navigation (MobileNav in Header.jsx)
 // =====================================================================
 .nav__burger {
-  display: none;               // desktop: hidden
+  display: none; // desktop: hidden
   align-items: center;
   justify-content: center;
   width: 44px;
@@ -560,12 +637,20 @@ $img-safin: url('../../assets/images/prod-safin.webp');    // prod-safin.webp
 }
 
 @media (max-width: 900px) {
-  .nav__end .nav__cta { display: none; }   // hide "Start a conversation" on mobile
-  .nav__burger { display: inline-flex; }
+  .nav__end .nav__cta {
+    display: none;
+  }
+
+  // hide "Start a conversation" on mobile
+  .nav__burger {
+    display: inline-flex;
+  }
 }
 
 @media (min-width: 901px) {
-  .mnav { display: none; }
+  .mnav {
+    display: none;
+  }
 }
 
 .mnav {
@@ -588,7 +673,9 @@ $img-safin: url('../../assets/images/prod-safin.webp');    // prod-safin.webp
     opacity: 0;
     transition: opacity .38s ease;
 
-    .mnav.is-open & { opacity: 1; }
+    .mnav.is-open & {
+      opacity: 1;
+    }
   }
 
   &__panel {
@@ -606,13 +693,20 @@ $img-safin: url('../../assets/images/prod-safin.webp');    // prod-safin.webp
     color: #fff;
     border-inline-end: 1px solid rgba(255, 255, 255, .08);
     box-shadow: 24px 0 60px rgba(0, 0, 0, .5);
-    transform: translateX(-100%);              // slide in from the left
+    transform: translateX(-100%); // slide in from the left
     transition: transform .38s $ease;
 
-    .mnav.is-open & { transform: translateX(0); }
+    .mnav.is-open & {
+      transform: translateX(0);
+    }
 
-    [dir='rtl'] & { transform: translateX(100%); }
-    [dir='rtl'] .mnav.is-open & { transform: translateX(0); }
+    [dir='rtl'] & {
+      transform: translateX(100%);
+    }
+
+    [dir='rtl'] .mnav.is-open & {
+      transform: translateX(0);
+    }
   }
 
   &__top {
@@ -644,11 +738,20 @@ $img-safin: url('../../assets/images/prod-safin.webp');    // prod-safin.webp
     -webkit-tap-highlight-color: transparent;
   }
 
-  &__nav { display: flex; flex-direction: column; margin-top: 6px; }
+  &__nav {
+    display: flex;
+    flex-direction: column;
+    margin-top: 6px;
+  }
 
-  &__item { border-bottom: 1px solid rgba(255, 255, 255, .12); }
+  &__item {
+    border-bottom: 1px solid rgba(255, 255, 255, .12);
+  }
 
-  &__row { display: flex; align-items: stretch; }
+  &__row {
+    display: flex;
+    align-items: stretch;
+  }
 
   &__link {
     flex: 1;
@@ -661,7 +764,9 @@ $img-safin: url('../../assets/images/prod-safin.webp');    // prod-safin.webp
     color: #fff;
     transition: color .2s;
 
-    &.active { color: var(--ac); }
+    &.active {
+      color: var(--ac);
+    }
   }
 
   &__toggle {
@@ -677,8 +782,13 @@ $img-safin: url('../../assets/images/prod-safin.webp');    // prod-safin.webp
     cursor: pointer;
     -webkit-tap-highlight-color: transparent;
 
-    svg { transition: transform .3s $ease; }
-    &.is-open svg { transform: rotate(180deg); }
+    svg {
+      transition: transform .3s $ease;
+    }
+
+    &.is-open svg {
+      transform: rotate(180deg);
+    }
   }
 
   // Accordion: animates height 0 → auto
@@ -696,7 +806,10 @@ $img-safin: url('../../assets/images/prod-safin.webp');    // prod-safin.webp
     }
   }
 
-  &__subin { min-height: 0; overflow: hidden; }
+  &__subin {
+    min-height: 0;
+    overflow: hidden;
+  }
 
   &__sublink {
     display: flex;
@@ -708,10 +821,17 @@ $img-safin: url('../../assets/images/prod-safin.webp');    // prod-safin.webp
     color: rgba(255, 255, 255, .8);
     transition: color .2s, background .2s;
 
-    svg { flex: none; color: var(--ac); }
+    svg {
+      flex: none;
+      color: var(--ac);
+    }
 
     &:hover,
-    &:focus-visible { color: #fff; background: rgba(255, 255, 255, .06); outline: none; }
+    &:focus-visible {
+      color: #fff;
+      background: rgba(255, 255, 255, .06);
+      outline: none;
+    }
   }
 
   &__num {

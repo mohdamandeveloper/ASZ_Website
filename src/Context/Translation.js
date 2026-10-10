@@ -612,7 +612,8 @@ const translations = {
           "pH & TDS Water Quality Tracking",
           "WiFi + 4G Connectivity"
         ],
-        "category": "SMART WATER INTELLIGENCE"
+        "category": "SMART WATER INTELLIGENCE",
+        "cta": "Visit Safin"
       }
     ],
     prod_sec_eyebrow: "Four products",
