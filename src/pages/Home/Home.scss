@@ -224,19 +224,27 @@ $ease: cubic-bezier(.2, .7, .2, 1);
   }
 
   .pimg-co {
-    background-image: url('../../assets/images/prod-cordon.webp');
+    background-image: url('../../assets/images/prod-cordon3.webp');
   }
 
   .pimg-mq {
-    background-image: url('../../assets/images/mediq2.webp');
+    background-image: url('../../assets/images/prod-mediq3.webp');
   }
 
   .pimg-js {
-    background-image: url('../../assets/images/prod-jobscout.webp');
+    background-image: url('../../assets/images/prod-jobscout3.webp');
   }
 
   .pimg-sf {
-    background-image: url('../../assets/images/prod-safin.webp');
+    background-image: url('../../assets/images/prod-safin3.webp');
+  }
+
+  // Safin logo panel (index.html: white panel, logo contained at 74% width, centred)
+  .pimg-sf.sflogo {
+    background-color: #fff;
+    background-size: 74% auto;
+    background-position: center;
+    background-repeat: no-repeat;
   }
 
   /* ---------- Entrances and loops ---------- */
@@ -601,12 +609,12 @@ $ease: cubic-bezier(.2, .7, .2, 1);
 
       h1 {
         margin: 0;
-        font-size: clamp(46px, 4.2vw, 88px);
+        font-size: clamp(46px, 4.3vw, 90px);
         line-height: .94;
-        font-weight: 700;
+        font-weight: 800;
         letter-spacing: -0.055em;
         animation-delay: .08s;
-        line-height: 1.1;
+        line-height: 1;
       }
 
       p {
@@ -1199,6 +1207,17 @@ $ease: cubic-bezier(.2, .7, .2, 1);
 
       .card__bg {
         opacity: .75;
+      }
+    }
+
+    // Safin card: no full-bleed photo or shade, just the white logo panel under the meta row
+    &--logo {
+      .card__logo {
+        position: absolute;
+        inset-inline: 30px;
+        top: 92px;
+        height: 132px;
+        border-radius: 16px;
       }
     }
 
@@ -1827,6 +1846,15 @@ $ease: cubic-bezier(.2, .7, .2, 1);
       
       >* {
         grid-column: 1 / -1 !important;
+      }
+    }
+
+    // keep room for the Safin logo panel when the other cards collapse to their content height
+    .products .card--logo {
+      min-height: 400px !important;
+
+      .card__logo {
+        inset-inline: 28px;
       }
     }
 

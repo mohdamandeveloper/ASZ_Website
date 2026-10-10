@@ -111,10 +111,10 @@ $ease: cubic-bezier(0.2, 0.7, 0.2, 1);
 
     &__title {
       margin: 0;
-      font-size: clamp(44px, 4.2vw, 60px);
-      line-height: 1.02;
-      font-weight: 600;
-      letter-spacing: -0.045em;
+      font-size: clamp(46px, 4.3vw, 90px);
+      line-height: 1;
+      font-weight: 800;
+      letter-spacing: -0.055em;
       animation-delay: 0.08s;
     }
 

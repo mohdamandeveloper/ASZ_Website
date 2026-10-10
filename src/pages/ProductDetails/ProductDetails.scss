@@ -1,6 +1,5 @@
 $header-h: 68px;
 $ease: cubic-bezier(0.2, 0.7, 0.2, 1);
-$mono: 'Geist Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
 
 // scroll-reveal for cards (same pattern as .rv / .rvl / .rvr; content stays visible without scroll timelines)
 @keyframes pd-rvs {
@@ -52,7 +51,6 @@ $mono: 'Geist Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
     align-items: center;
     gap: 10px;
     margin-bottom: 20px;
-    font-family: $mono;
     font-size: 11px;
     letter-spacing: 0.16em;
     text-transform: uppercase;
@@ -191,7 +189,6 @@ $mono: 'Geist Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
       padding: 0 16px;
       border-radius: 999px;
       border: 1px solid rgba(255, 255, 255, 0.18);
-      font-family: $mono;
       font-size: 11px;
       letter-spacing: 0.16em;
       text-transform: uppercase;
@@ -324,7 +321,6 @@ $mono: 'Geist Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
     border: 1px solid #e6e6e5;
 
     &__n {
-      font-family: $mono;
       font-size: 12px;
       letter-spacing: 0.14em;
       color: var(--ac2);
@@ -491,7 +487,6 @@ $mono: 'Geist Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
     }
 
     &__eyebrow {
-      font-family: $mono;
       font-size: 11px;
       letter-spacing: 0.16em;
       text-transform: uppercase;
@@ -627,7 +622,6 @@ $mono: 'Geist Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
     }
 
     &__n {
-      font-family: $mono;
       font-size: 12px;
       letter-spacing: 0.14em;
       font-weight: 400;
@@ -721,7 +715,6 @@ $mono: 'Geist Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
     }
 
     &__label {
-      font-family: $mono;
       font-size: 11px;
       letter-spacing: 0.16em;
       color: #a9abb3;

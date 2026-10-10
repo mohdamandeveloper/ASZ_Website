@@ -53,7 +53,7 @@ const CORDON_CHIPS = [
 const PRODUCT_CARDS = [
   { id: 'mediq', to: ROUTES.mediq, img: 'pimg-mq', anim: 'rvl', name: 'MEDIQ' },
   { id: 'jobscout', to: ROUTES.jobscout, img: 'pimg-js', anim: 'rv', name: 'JobScout' },
-  { id: 'safin', to: ROUTES.safin, img: 'pimg-sf', anim: 'rvr', name: 'Safin' },
+  { id: 'safin', to: ROUTES.safin, img: 'pimg-sf', anim: 'rvr', name: 'Safin', logo: true },
 ];
 
 /* Small shared bits ------------------------------------------------- */
@@ -547,9 +547,16 @@ export default function Home() {
 
           <div className="products__trio">
             {PRODUCT_CARDS.map((p, i) => (
-              <A className={`card card--prod ${p.anim}`} to={p.to} key={p.id}>
-                <div className={`${p.img} zoom card__bg`} aria-hidden="true" />
-                <div className="card__shade card__shade--v" aria-hidden="true" />
+              <A className={`card card--prod${p.logo ? ' card--logo' : ''} ${p.anim}`} to={p.to} key={p.id}>
+                {p.logo ? (
+                  // Safin: the product image sits as a white logo panel at the top of a plain dark card (as in index.html)
+                  <div className={`${p.img} sflogo card__logo`} aria-hidden="true" />
+                ) : (
+                  <>
+                    <div className={`${p.img} zoom card__bg`} aria-hidden="true" />
+                    <div className="card__shade card__shade--v" aria-hidden="true" />
+                  </>
+                )}
                 <div className="card__top">
                   <span className="card__meta">{productCards[i].meta}</span>
                   <span className="arrow"><ArrowUpRight /></span>

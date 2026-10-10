@@ -1,5 +1,4 @@
 $ease: cubic-bezier(.2, .7, .2, 1);
-$mono: 'Geist Mono', monospace;
 
 @keyframes ct-bob {
 
@@ -108,7 +107,6 @@ $mono: 'Geist Mono', monospace;
       border-radius: 999px;
       background: rgba(255, 255, 255, .8);
       border: 1px solid #e2e2e1;
-      font-family: $mono;
       font-size: 11px;
       letter-spacing: .16em;
       color: #5c5c5c;
@@ -212,7 +210,6 @@ $mono: 'Geist Mono', monospace;
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      font-family: $mono;
       font-size: 13px;
       background: #fff;
       color: #8a8a8a;
@@ -288,7 +285,6 @@ $mono: 'Geist Mono', monospace;
     gap: 18px;
 
     &__txt {
-      font-family: $mono;
       font-size: 11px;
       letter-spacing: .16em;
       color: #8a8a8a;

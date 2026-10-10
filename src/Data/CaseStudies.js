@@ -1,5 +1,5 @@
 import logoMega from '../assets/images/logo-mega2.png';
-import caseNgo from '../assets/images/case-ngo.webp';
+import caseNgo from '../assets/images/case-ngo3.webp';
 import shentonLobby from '../assets/images/shenton-lobby.webp';
 
 const CaseStudies = [

@@ -138,7 +138,8 @@ export default function About() {
                                 >
                                     <div className="ofc__country">{offices[i].country}</div>
                                     <div className="ofc__city">{offices[i].city}</div>
-                                    <span className={`ofc__badge${o.hq ? ' ofc__badge--hq' : ''}`}>{o.hq ? t.about_badge_hq : t.about_badge_branch}</span>
+                                    {o.hq ? <span className="ofc__badge ofc__badge--hq">{t.about_badge_hq}</span> : ''}
+                                    {/* <span className={`ofc__badge${o.hq ? ' ofc__badge--hq' : ''}`}>{o.hq ? t.about_badge_hq : t.about_badge_branch}</span> */}
                                     <p>{offices[i].addr}</p>
                                 </div>
                             );

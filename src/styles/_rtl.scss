@@ -1,20 +1,4 @@
-// =====================================================================
-//  RTL (Arabic) overrides
-//  Active whenever <html dir="rtl"> (set by I18nProvider).
-//  Prefix selectors with [dir='rtl'] so the LTR design is untouched.
-// =====================================================================
 
-// ---------- Typography ----------
-// Poppins has no Arabic glyphs: keep Poppins first so Latin text (brand names,
-// numbers) stays on-brand, and let Arabic fall through to Cairo.
-html[lang='ar'] body,
-html[lang='ar'] button,
-html[lang='ar'] input {
-  font-family: 'Poppins', Helvetica, sans-serif;
-}
-
-// Letter-spacing breaks Arabic letter joining (the script is cursive), so
-// every tracking value in the LTR design is switched off here.
 [dir='rtl'] *,
 [dir='rtl'] *::before,
 [dir='rtl'] *::after {
@@ -30,9 +14,7 @@ html[lang='ar'] input {
   line-height: 1.8;
 }
 
-// ---------- Shared: arrows that point "forward" ----------
-// `scale` is applied separately from `transform`, so existing hover
-// translateX() nudges keep working and now move in the reading direction.
+
 [dir='rtl'] .rtl-flip {
   scale: -1 1;
 }
