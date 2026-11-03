@@ -380,7 +380,7 @@ const translations = {
     about_loc_eyebrow: "GLOBAL PRESENCE",
     about_loc_title: "Built for where",
     about_loc_accent: "you do business.",
-    about_loc_text: "With offices across Singapore, Dubai, Australia, and India, we combine global delivery capabilities with proximity to the markets and organizations we serve.",
+    about_loc_text: "With offices across Singapore, UAE, Australia, and India, we combine global delivery capabilities with proximity to the markets and organizations we serve.",
     about_badge_hq: "Headquarters",
     about_badge_branch: "Branch office",
     about_offices: [
@@ -1877,7 +1877,7 @@ const translations = {
     about_loc_eyebrow: "حضور عالمي",
     about_loc_title: "مبنيّون حيث",
     about_loc_accent: "تمارس أعمالك.",
-    about_loc_text: "بفرق في سنغافورة ودبي وسيدني وبنغالور، تبقى ASZ Technologies قريبة من الأسواق التي نخدمها، لنقدّم رؤية محلية وتنفيذًا عمليًا في كل مشروع.",
+    about_loc_text: "من خلال مكاتبنا المنتشرة في سنغافورة والإمارات العربية المتحدة وأستراليا والهند، نجمع بين قدراتنا العالمية في تقديم الخدمات وبين قربنا من الأسواق والمؤسسات التي نخدمها.",
     about_badge_hq: "المقر الرئيسي",
     about_badge_branch: "مكتب فرعي",
     about_offices: [

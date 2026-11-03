@@ -23,7 +23,7 @@ const ROUTES = {
   cordon: '/products/cordon',
   mediq: '/products/mediq',
   jobscout: '/products#jobscout', // external product: no detail page, lands on its card
-  safin: '/products/safin',
+  safin: '/products#safin',
 };
 
 // "Our capabilities" boxes (index.html). Badge / title keys reuse the existing home_services_* entries;
@@ -684,7 +684,7 @@ export default function Home() {
                     <div className="tlbody">
                       <div className="tlmeta">
                         {t.home_process_step} {`0${i + 1}`}
-                        <span>{i < step ? t.home_process_done : i === step ? t.home_process_in_progress : ''}</span>
+                        <span>{i < step ? t.home_process_done : ''}</span>
                       </div>
                       <h3>{s.title}</h3>
                       <p>{s.text}</p>
