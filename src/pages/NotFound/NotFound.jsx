@@ -78,19 +78,21 @@ export default function NotFound() {
   const navigate = useNavigate();
   const orbRef = useRef(null);
 
-  // Tab title + keep the 404 out of search indexes
+  // Tab title (re-applied when the language changes)
+  const pageTitle = `404 | ${tr('nf_line1')} ${tr('nf_line2')}`;
   useEffect(() => {
     const prevTitle = document.title;
-    document.title = `404 | ${tr('nf_line1')} ${tr('nf_line2')}`;
+    document.title = pageTitle;
+    return () => { document.title = prevTitle; };
+  }, [pageTitle]);
+
+  // Keep the 404 out of search indexes
+  useEffect(() => {
     const meta = document.createElement('meta');
     meta.name = 'robots';
     meta.content = 'noindex';
     document.head.appendChild(meta);
-    return () => {
-      document.title = prevTitle;
-      document.head.removeChild(meta);
-    };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    return () => { document.head.removeChild(meta); };
   }, []);
 
   // Go back if there is history to go back to, otherwise home

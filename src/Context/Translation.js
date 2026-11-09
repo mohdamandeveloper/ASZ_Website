@@ -1,3 +1,5 @@
+import SV from "./locales/sv";
+
 const translations = {
 
   EN: {
@@ -1013,6 +1015,40 @@ const translations = {
     cf_done_work: "See our work",
     cf_done_services: "Explore Our Services",
     cf_privacy_note: "Your details are only used to reply to this enquiry.",
+
+    // ---- Mobile menu button (Header.jsx) ----
+    hdr_open_menu: "Open menu",
+    hdr_close_menu: "Close menu",
+
+    // ---- Privacy / Terms placeholder pages (ComingSoon.jsx) ----
+    cs_pill: "Coming soon",
+    cs_privacy_line1: "Privacy",
+    cs_privacy_line2: "Policy.",
+    cs_privacy_text: "We are finalising how we explain what data we collect, why we collect it, and how we protect it. The full policy will be published here shortly.",
+    cs_terms_line1: "Terms &",
+    cs_terms_line2: "Conditions.",
+    cs_terms_text: "We are putting the finishing touches on the terms that govern the use of our website, services and products. They will be published here shortly.",
+    cs_status: "Drafting in progress",
+    cs_home: "Back to home",
+    cs_contact: "Contact us",
+    cs_also: "Also see",
+    cs_privacy_name: "Privacy Policy",
+    cs_terms_name: "Terms & Conditions",
+
+    // ---- 404 page (NotFound.jsx) ----
+    nf_pill: "Error 404",
+    nf_line1: "Page not",
+    nf_line2: "found.",
+    nf_text: "The page you are looking for does not exist, was moved, or the link is incorrect. Let us get you back on track.",
+    nf_home: "Back to home",
+    nf_back: "Go back",
+    nf_try: "Or try one of these",
+    nf_requested: "Requested",
+    nf_link_services: "Services",
+    nf_link_products: "Products",
+    nf_link_work: "Work",
+    nf_link_about: "About",
+    nf_link_contact: "Contact",
   },
 
   FR: {
@@ -2112,7 +2148,8 @@ const translations = {
           "تتبّع جودة المياه (pH وTDS)",
           "اتصال WiFi و4G"
         ],
-        "category": "ذكاء المياه الذكي"
+        "category": "ذكاء المياه الذكي",
+        "cta": "زيارة Safin"
       }
     ],
     prod_sec_eyebrow: "أربعة منتجات",
@@ -2509,7 +2546,43 @@ const translations = {
     cf_done_work: "اطّلع على أعمالنا",
     cf_done_services: "استكشف خدماتنا",
     cf_privacy_note: "تُستخدم بياناتك فقط للردّ على هذا الاستفسار.",
+
+    // ---- زر القائمة على الجوال (Header.jsx) ----
+    hdr_open_menu: "فتح القائمة",
+    hdr_close_menu: "إغلاق القائمة",
+
+    // ---- صفحتا الخصوصية والشروط (ComingSoon.jsx) ----
+    cs_pill: "قريبًا",
+    cs_privacy_line1: "سياسة",
+    cs_privacy_line2: "الخصوصية.",
+    cs_privacy_text: "نعمل على وضع اللمسات الأخيرة على شرح البيانات التي نجمعها، وسبب جمعها، وكيفية حمايتها. ستُنشر السياسة الكاملة هنا قريبًا.",
+    cs_terms_line1: "الشروط",
+    cs_terms_line2: "والأحكام.",
+    cs_terms_text: "نضع اللمسات الأخيرة على الشروط التي تحكم استخدام موقعنا وخدماتنا ومنتجاتنا. ستُنشر هنا قريبًا.",
+    cs_status: "جارٍ الإعداد",
+    cs_home: "العودة إلى الرئيسية",
+    cs_contact: "تواصل معنا",
+    cs_also: "اطّلع أيضًا على",
+    cs_privacy_name: "سياسة الخصوصية",
+    cs_terms_name: "الشروط والأحكام",
+
+    // ---- صفحة 404 (NotFound.jsx) ----
+    nf_pill: "خطأ 404",
+    nf_line1: "الصفحة غير",
+    nf_line2: "موجودة.",
+    nf_text: "الصفحة التي تبحث عنها غير موجودة، أو تم نقلها، أو أن الرابط غير صحيح. دعنا نعيدك إلى المسار الصحيح.",
+    nf_home: "العودة إلى الرئيسية",
+    nf_back: "رجوع",
+    nf_try: "أو جرّب أحد هذه الروابط",
+    nf_requested: "الرابط المطلوب",
+    nf_link_services: "الخدمات",
+    nf_link_products: "المنتجات",
+    nf_link_work: "أعمالنا",
+    nf_link_about: "من نحن",
+    nf_link_contact: "تواصل معنا",
   },
+
+  SV,
 };
 
 export default translations;

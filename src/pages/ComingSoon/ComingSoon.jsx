@@ -55,12 +55,13 @@ export default function ComingSoon({ type = 'privacy' }) {
   const line1 = tr(`cs_${doc.key}_line1`);
   const line2 = tr(`cs_${doc.key}_line2`);
 
+  // Tab title (re-applied when the page type or language changes)
+  const pageTitle = `${line1} ${line2} | ${tr('cs_pill')}`;
   useEffect(() => {
     const prev = document.title;
-    document.title = `${line1} ${line2} | ${tr('cs_pill')}`;
+    document.title = pageTitle;
     return () => { document.title = prev; };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [type]);
+  }, [pageTitle]);
 
   return (
     <main className="comingsoon">

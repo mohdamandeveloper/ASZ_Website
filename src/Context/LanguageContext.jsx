@@ -10,6 +10,7 @@ const RTL_CODES = ["AR"];
 export const LANGUAGES = [
   { code: "EN", label: "English",   flag: "🇺🇸" },
   { code: "AR", label: "العربية",   flag: "🇸🇦" },
+  { code: "SV", label: "Svenska",   flag: "🇸🇪" },
   // To enable later (blocks already exist in Translation.js):
   // { code: "FR", label: "Français",  flag: "🇫🇷" },
   // { code: "DE", label: "Deutsch",   flag: "🇩🇪" },
