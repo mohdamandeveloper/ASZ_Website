@@ -1,6 +1,7 @@
-import React, { createContext, useContext, useState, useEffect, useMemo } from "react";
+import React, { createContext, useContext, useState, useEffect, useMemo, useRef } from "react";
 import { useSearchParams } from "react-router-dom";
 import translations from "./Translation"; // adjust path if needed
+import { detectLangFromTimezone, detectCountryFromIP, langFromCountry } from "./geoLanguage";
 
 const LanguageContext = createContext(null);
 
@@ -47,24 +48,56 @@ function detectBrowserLang() {
 }
 // ─────────────────────────────────────────────────────────────────────────────
 
+const MANUAL_LANG_KEY = "asz_lang"; // language the visitor picked themselves
+
+function readManualLang() {
+  try {
+    const code = localStorage.getItem(MANUAL_LANG_KEY);
+    return code ? getLangFromCode(code) : null;
+  } catch {
+    return null;
+  }
+}
+
+function saveManualLang(code) {
+  try {
+    localStorage.setItem(MANUAL_LANG_KEY, code);
+  } catch {
+    /* storage blocked – ignore */
+  }
+}
+
+// Language for a country (geo), else browser locale, else English.
+function langForCountryOrBrowser(country) {
+  const code = langFromCountry(country);
+  return (code && getLangFromCode(code)) ?? detectBrowserLang();
+}
+
 export function LanguageProvider({ children }) {
   const [searchParams, setSearchParams] = useSearchParams();
 
   const urlCode = (searchParams.get("lang") ?? "").toUpperCase();
 
   // Priority:
-  //  1. ?lang= in URL , explicit user / shareable choice
-  //  2. Browser locale, auto-detect on first visit
-  //  3. English       , hard fallback
-  const initial = urlCode
-    ? (getLangFromCode(urlCode) ?? DEFAULT_LANG)
-    : detectBrowserLang();
+  //  1. ?lang= in URL         , explicit / shareable choice
+  //  2. Saved manual choice   , visitor picked a language before
+  //  3. Geo-location          , timezone now, confirmed by IP lookup below
+  //  4. Browser locale
+  //  5. English               , hard fallback
+  const [initial] = useState(() => {
+    if (urlCode) return { lang: getLangFromCode(urlCode) ?? DEFAULT_LANG, auto: false };
+    const manual = readManualLang();
+    if (manual) return { lang: manual, auto: false };
+    const tzCode = detectLangFromTimezone();
+    return { lang: (tzCode && getLangFromCode(tzCode)) ?? detectBrowserLang(), auto: true };
+  });
 
-  const [language, _setLanguage] = useState(initial);
+  const [language, _setLanguage] = useState(initial.lang);
+  // Stays true until the visitor picks a language, so a late geo result
+  // never overrides their choice.
+  const autoRef = useRef(initial.auto);
 
-  // Keep URL in sync whenever language changes
-  const setLanguage = (lang) => {
-    _setLanguage(lang);
+  const writeLangToUrl = (lang) => {
     setSearchParams(prev => {
       const next = new URLSearchParams(prev);
       if (lang.code === "EN") {
@@ -76,16 +109,35 @@ export function LanguageProvider({ children }) {
     }, { replace: true });
   };
 
-  // On first load: if browser-detected lang isn't EN, write it into the URL
-  // so ?lang= persists across navigation and refresh.
+  // Manual choice (language switcher): remember it and keep URL in sync
+  const setLanguage = (lang) => {
+    autoRef.current = false;
+    saveManualLang(lang.code);
+    _setLanguage(lang);
+    writeLangToUrl(lang);
+  };
+
+  // On first load: write an auto-detected non-EN language into the URL so it
+  // persists across navigation and refresh.
   useEffect(() => {
-    if (!searchParams.get("lang") && initial.code !== "EN") {
-      setSearchParams(prev => {
-        const next = new URLSearchParams(prev);
-        next.set("lang", initial.code.toLowerCase());
-        return next;
-      }, { replace: true });
+    if (!searchParams.get("lang") && initial.lang.code !== "EN") {
+      writeLangToUrl(initial.lang);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  // Confirm the timezone guess with the visitor's IP country.
+  useEffect(() => {
+    if (!initial.auto) return;
+    let cancelled = false;
+    detectCountryFromIP().then(country => {
+      if (cancelled || !country || !autoRef.current) return;
+      const geoLang = langForCountryOrBrowser(country);
+      if (geoLang.code === initial.lang.code) return;
+      _setLanguage(geoLang);
+      writeLangToUrl(geoLang);
+    });
+    return () => { cancelled = true; };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
