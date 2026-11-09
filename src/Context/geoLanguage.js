@@ -29,8 +29,7 @@ const TIMEZONE_TO_COUNTRY = {
   "Europe/Stockholm": "SE",
 };
 
-const GEO_CACHE_KEY = "asz_geo_country";
-const GEO_CACHE_TTL = 24 * 60 * 60 * 1000; // 24h
+const LEGACY_GEO_CACHE_KEY = "asz_geo_country";
 const GEO_TIMEOUT = 3000;
 
 export function langFromCountry(country) {
@@ -49,30 +48,12 @@ export function detectLangFromTimezone() {
   }
 }
 
-function readCachedCountry() {
-  try {
-    const raw = localStorage.getItem(GEO_CACHE_KEY);
-    if (!raw) return null;
-    const { country, ts } = JSON.parse(raw);
-    if (Date.now() - ts > GEO_CACHE_TTL) return null;
-    return country;
-  } catch {
-    return null;
-  }
-}
-
-function writeCachedCountry(country) {
-  try {
-    localStorage.setItem(GEO_CACHE_KEY, JSON.stringify({ country, ts: Date.now() }));
-  } catch {
-    /* storage blocked – ignore */
-  }
-}
-
 // Resolves to the visitor's ISO country code, or null if the lookup fails.
+// Not cached on purpose: a cached country goes stale when the visitor travels
+// or switches VPN, and the lookup only runs on a fresh load with no ?lang=.
 export async function detectCountryFromIP() {
-  const cached = readCachedCountry();
-  if (cached) return cached;
+  // Remove the country cache left by earlier versions of the site.
+  try { localStorage.removeItem(LEGACY_GEO_CACHE_KEY); } catch { /* ignore */ }
 
   const controller = new AbortController();
   const timer = setTimeout(() => controller.abort(), GEO_TIMEOUT);
@@ -80,9 +61,7 @@ export async function detectCountryFromIP() {
     const res = await fetch("https://api.country.is/", { signal: controller.signal });
     if (!res.ok) return null;
     const { country } = await res.json();
-    if (!country) return null;
-    writeCachedCountry(country);
-    return country;
+    return country || null;
   } catch {
     return null;
   } finally {
