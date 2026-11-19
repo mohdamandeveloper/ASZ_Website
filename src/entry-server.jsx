@@ -4,9 +4,9 @@ import { StrictMode } from 'react';
 import { renderToString } from 'react-dom/server';
 import { createStaticHandler, createStaticRouter, StaticRouterProvider } from 'react-router-dom';
 import { routes } from './routes';
-import { SITE_URL, PRERENDER_PATHS, getSeo } from './seo';
+import { SITE_URL, PRERENDER_PATHS, getSeo, headTagList } from './seo';
 
-export { SITE_URL, PRERENDER_PATHS, getSeo };
+export { SITE_URL, PRERENDER_PATHS, getSeo, headTagList };
 
 const handler = createStaticHandler(routes);
 

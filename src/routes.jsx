@@ -1,4 +1,4 @@
-import { createRoutesFromElements, Route } from 'react-router-dom';
+import { createRoutesFromElements, Navigate, Route } from 'react-router-dom';
 import App from './App';
 import About from './pages/About/About';
 import Home from './pages/Home/Home';
@@ -23,7 +23,7 @@ import ComingSoon from './pages/ComingSoon/ComingSoon';
 export const routes = createRoutesFromElements(
   <Route path="/" element={<App />}>
     <Route index element={<Home />} />
-    <Route path='home' element={<Home />} />
+    <Route path='home' element={<Navigate to="/" replace />} />
     <Route path='about' element={<About />} />
     <Route path='service' element={<Service />} />
     <Route path='service' element={<Services />}>

@@ -6,7 +6,7 @@ import './Header.scss';
 
 // ---- Route map: adjust these to match your router ----
 const ROUTES = {
-  home: '/home',
+  home: '/',
   about: '/about',
   services: '/service',
   products: '/products',
@@ -268,7 +268,7 @@ function MobileNav({ open, onClose, t, serviceItems, productItems }) {
 
   return (
     <div id="mobile-nav" className={'mnav__panel' + (open ? ' is-open' : '')} aria-hidden={!open}>
-      <NavLink className="mnav__row" to={ROUTES.home} onClick={onClose}>{t.hdr_home}</NavLink>
+      <NavLink end className="mnav__row" to={ROUTES.home} onClick={onClose}>{t.hdr_home}</NavLink>
       <NavLink className="mnav__row" to={ROUTES.about} onClick={onClose}>{t.hdr_about}</NavLink>
 
       {renderGroup(
@@ -440,12 +440,12 @@ export default function Header() {
     <header className="site-header">
       <nav className={'nav' + (menuOpen || navSolid ? ' nav--menu-open' : '')} aria-label={t.hdr_main}>
         <Link className="nav__brand" to="/" aria-label={t.hdr_home_aria} onClick={closeMenu}>
-          <img src={logo} alt="ASZ" />
+          <img src={logo} alt="ASZ Technologies" width="111" height="38" />
         </Link>
 
         <div className="nav__links" ref={linksRef}>
           <span className="npill" ref={pillRef} aria-hidden="true" />
-          <NavLink className="navlink" to={ROUTES.home}>
+          <NavLink end className="navlink" to={ROUTES.home}>
             {renderLabel(t.hdr_home)}
           </NavLink>
           <NavLink className="navlink" to={ROUTES.about}>

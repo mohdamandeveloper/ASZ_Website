@@ -47,7 +47,7 @@ export default function SmartSecurity() {
           <div className="svc__hero-inner">
             <div className="svc__crumb up">
               <span className="svc__crumb-dot live" />
-              <a href="/services">{t.svc_crumb_services}</a>
+              <Link to="/service">{t.svc_crumb_services}</Link>
               <span className="svc__crumb-sep">/</span>
               <span>{t.sec_crumb}</span>
             </div>
@@ -118,9 +118,9 @@ export default function SmartSecurity() {
               {t.svc_cta_start}
               <ArrowIcon />
             </Link>
-            <a className="btn svc__cta-btn svc__cta-ghost" href="/services">
+            <Link className="btn svc__cta-btn svc__cta-ghost" to="/service">
               {t.svc_all_services}
-            </a>
+            </Link>
           </div>
         </div>
       </section>

@@ -46,7 +46,7 @@ export default function EnterpriseErp() {
           <div className="svc__hero-inner">
             <div className="svc__crumb up">
               <span className="svc__crumb-dot live" />
-              <a href="/services">{t.svc_crumb_services}</a>
+              <Link to="/service">{t.svc_crumb_services}</Link>
               <span className="svc__crumb-sep">/</span>
               <span>{t.erp_crumb}</span>
             </div>

@@ -41,7 +41,7 @@ export default function Footer() {
         <div className="g12">
           <div className="site-footer__about">
             <div className="site-footer__brand">
-              <img src={logo} alt="ASZ" />
+              <img src={logo} alt="ASZ Technologies" width="111" height="38" />
               {/* <span>Technologies</span> */}
             </div>
             <p>{t.ftr_about}</p>

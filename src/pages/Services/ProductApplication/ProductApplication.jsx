@@ -3,7 +3,7 @@ import { useTranslation } from '../../../Context/LanguageContext';
 import './ProductApplication.scss';
 
 const ROUTES = {
-  services: '/services', // change to your route (or swap <a> for <Link>)
+  services: '/service',
   contact: '#contact',
   email: 'mailto:info@asztechnologies.com',
 };
@@ -26,7 +26,7 @@ const ProductApplication = () => {
         <div className="svc-hero__grid">
           <div className="up svc-hero__crumb">
             <span className="live dot" />
-            <a href={ROUTES.services}>{t.svc_crumb_services}</a>
+            <Link to={ROUTES.services}>{t.svc_crumb_services}</Link>
             <span className="sep">/</span>
             <span>{t.pa_crumb}</span>
           </div>
