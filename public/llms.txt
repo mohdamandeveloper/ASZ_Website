@@ -1,0 +1,33 @@
+# ASZ Technologies
+
+> ASZ Technologies is a global technology and engineering company. We build AI systems, intelligent security, digital products and enterprise technology: secure, scalable software that solves complex business challenges. Contact: info@asztechnologies.com
+
+We work as an extension of our clients' teams, from strategy through to shipped product and ongoing operations, and build tailored solutions across 12+ industries.
+
+## Services
+
+- [AI & Intelligent Systems](https://asztechnologies.com/service/ai-intelligence): AI agents, generative AI, machine learning in production
+- [Smart Security Systems](https://asztechnologies.com/service/smart-security): facial recognition, vehicle recognition (ANPR), access control, visitor management
+- [Enterprise Systems & ERP](https://asztechnologies.com/service/enterprise-erp): ERP implementation, CRM integration
+- [Product & Application Engineering](https://asztechnologies.com/service/product-application): product development, application modernisation
+- [Digital Transformation & Cloud](https://asztechnologies.com/service/digital-transformation): technology strategy, cloud transformation
+- [Technology Talent & Engineering](https://asztechnologies.com/service/technology-talent): dedicated engineering teams, staff augmentation
+
+## Products
+
+- [Cordon](https://asztechnologies.com/products/cordon): zero-touch, AI-powered security and access control for modern premises
+- [MEDIQ](https://asztechnologies.com/products/mediq): self-service technology for hospital registration, payments and patient services
+- [JobScout](https://jobsscout.in/): AI-powered career discovery platform
+- [Safin](https://safinwater.com/): smart water monitoring for real-time tank levels and water quality
+
+## Case studies
+
+- [Mega Adventure Park](https://asztechnologies.com/case-study/mega-adventure-park): self-service media commerce, 35% higher purchase conversion
+- [Faith-based organization](https://asztechnologies.com/case-study/faith-based-organization): centralised ERP, one source of truth
+- [78 Shenton Way](https://asztechnologies.com/case-study/78-shenton-way): visitor management system, automated access
+
+## Company
+
+- [About us](https://asztechnologies.com/about)
+- [Our work](https://asztechnologies.com/work)
+- [Contact](https://asztechnologies.com/contact)
