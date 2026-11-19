@@ -22,7 +22,7 @@ const DEFAULT_IMAGE_ALT = 'ASZ Technologies: AI, intelligent security and enterp
 const SAME_AS = [];
 
 const DEFAULT_DESCRIPTION =
-  'Software development company building AI systems, intelligent security, ERP and custom enterprise software. Offices in Singapore, Dubai, Sydney & Bangalore.';
+  'ASZ Technologies builds AI systems, smart security, custom software and enterprise platforms. 15+ years, 20+ countries. HQ Singapore. Start a conversation.';
 
 const OFFICES = [
   { city: 'Singapore', street: '156 MacPherson Rd', postal: '348528', country: 'SG' },
@@ -38,40 +38,40 @@ const SERVICE_AREAS = ['Singapore', 'United Arab Emirates', 'Australia', 'India'
 const PAGES = {
   '/': {
     kind: 'home',
-    title: 'ASZ Technologies | AI, Security & Enterprise Software',
+    title: 'AI, Security & Software Engineering | ASZ Technologies',
     description: DEFAULT_DESCRIPTION,
   },
   '/about': {
     kind: 'about',
     crumb: 'About',
-    title: 'About ASZ Technologies | Global Technology Company',
+    title: 'About ASZ Technologies | Global Tech & Engineering Firm',
     description:
-      'ASZ Technologies engineers and scales mission-critical software with AI, cloud and modern engineering, from offices in Singapore, Dubai, Sydney and Bangalore.',
+      '15+ years, 80+ professionals and clients in 20+ countries. Meet ASZ Technologies, with offices in Singapore, Dubai, Sydney and Bangalore.',
   },
   '/service': {
     kind: 'collection',
     crumb: 'Services',
-    title: 'Software Development & AI Services | ASZ Technologies',
+    title: 'IT Services: AI, Security, ERP & Cloud | ASZ Technologies',
     description:
-      'Technology services end to end: AI development, smart security systems, ERP implementation, product engineering, cloud transformation and dedicated teams.',
+      'Six capabilities, one partner: AI systems, smart security, ERP, product engineering, cloud transformation and engineering teams, from strategy to execution.',
   },
   '/service/ai-intelligence': {
     kind: 'service',
     crumb: 'AI & Intelligent Systems',
     parent: '/service',
     serviceType: 'Artificial intelligence development',
-    title: 'AI Development Services: Agents, GenAI & ML | ASZ',
+    title: 'AI Development Services & AI Agents | ASZ Technologies',
     description:
-      'AI development company building production AI agents, generative AI, machine learning and computer vision that automate workflows and act on business data.',
+      'AI agents, generative AI, machine learning and computer vision built for production. We engineer AI into the systems that run your business.',
   },
   '/service/smart-security': {
     kind: 'service',
     crumb: 'Smart Security Systems',
     parent: '/service',
     serviceType: 'Intelligent security systems',
-    title: 'Smart Security Systems: Face Recognition & ANPR | ASZ',
+    title: 'Smart Security Systems: ANPR & Face Recognition | ASZ',
     description:
-      'AI-powered physical security: facial recognition, ANPR vehicle recognition, access control and visitor management systems for offices, campuses and buildings.',
+      'AI security with vehicle number plate recognition (ANPR), facial recognition, access control and visitor management for buildings and campuses.',
   },
   '/service/enterprise-erp': {
     kind: 'service',
@@ -80,76 +80,108 @@ const PAGES = {
     serviceType: 'ERP implementation and CRM integration',
     title: 'ERP Implementation & CRM Integration | ASZ Technologies',
     description:
-      'ERP implementation and CRM integration services that connect operations, finance and reporting into one source of truth across your whole organisation.',
+      'ERP implementation, CRM integration and enterprise systems integration that connect finance, operations, sales and supply chain on one platform.',
   },
   '/service/product-application': {
     kind: 'service',
     crumb: 'Product & Application Engineering',
     parent: '/service',
     serviceType: 'Custom software development',
-    title: 'Custom Software & App Development | ASZ Technologies',
+    title: 'Custom Software & Product Development | ASZ Technologies',
     description:
-      'Custom software development and application modernisation: web, mobile and platform engineering from discovery and design through to production and support.',
+      'Custom software, web and mobile apps, application modernization and API integration, engineered around how your business works, from concept to production.',
   },
   '/service/digital-transformation': {
     kind: 'service',
     crumb: 'Digital Transformation & Cloud',
     parent: '/service',
     serviceType: 'Digital transformation and cloud migration',
-    title: 'Digital Transformation & Cloud Migration | ASZ',
+    title: 'Digital Transformation & Cloud Services | ASZ Technologies',
     description:
-      'Technology strategy, cloud migration and DevOps: modernise legacy infrastructure and move workloads to the cloud safely, with measurable business outcomes.',
+      'IT strategy, cloud migration, enterprise architecture and intelligent automation to modernize your technology and turn it into a business advantage.',
   },
   '/service/technology-talent': {
     kind: 'service',
     crumb: 'Technology Talent & Engineering',
     parent: '/service',
     serviceType: 'IT staff augmentation',
-    title: 'Dedicated Developers & IT Staff Augmentation | ASZ',
+    title: 'Dedicated Engineering Teams & Staff Augmentation | ASZ',
     description:
-      'Hire dedicated software engineers through IT staff augmentation. Vetted engineering teams that work as an extension of yours, without the hiring bottleneck.',
+      'Add experienced engineers fast: dedicated teams, staff augmentation and managed engineering teams that integrate with your organization.',
   },
   '/products': {
     kind: 'collection',
     crumb: 'Products',
-    title: 'Products: Cordon, MEDIQ, JobScout & Safin | ASZ',
+    title: 'AI & Security Products: Cordon, MEDIQ, JobScout, Safin | ASZ',
     description:
-      'Products built by ASZ Technologies: Cordon intelligent security, MEDIQ smart healthcare kiosks, JobScout AI career platform and Safin smart water monitoring.',
+      'Software built in-house and running in production: Cordon security, MEDIQ hospital self-service, JobScout careers and Safin smart water monitoring.',
   },
   '/products/cordon': {
     kind: 'product',
     crumb: 'Cordon',
     parent: '/products',
     productName: 'Cordon',
-    title: 'Cordon: AI Access Control & Visitor Management | ASZ',
+    title: 'Cordon: AI Access Control & Visitor Management System',
     description:
-      'Cordon is zero-touch intelligent security: AI facial recognition, access control and visitor management in one platform for modern offices and premises.',
+      'Cordon automates gate security with number plate recognition, facial recognition, visitor and vendor management, and real-time monitoring. Book a demo.',
   },
   '/products/mediq': {
     kind: 'product',
     crumb: 'MEDIQ',
     parent: '/products',
     productName: 'MEDIQ',
-    title: 'MEDIQ: Hospital Self-Service Kiosk Software | ASZ',
+    title: 'MEDIQ: Hospital Self-Service Kiosk | ASZ Technologies',
     description:
-      'MEDIQ is smart healthcare self-service: patient registration, payments and hospital services at a kiosk, cutting queues and front-desk workload.',
+      'MEDIQ lets patients register, pay, book appointments, check in and get queue tokens at a self-service kiosk, cutting front-desk queues. Book a demo.',
   },
   '/work': {
     kind: 'collection',
     crumb: 'Our Work',
-    title: 'Case Studies & Client Work | ASZ Technologies',
+    title: 'Case Studies: AI, Security & ERP Projects | ASZ Technologies',
     description:
-      'Real projects, real results: self-service media commerce, centralised ERP and visitor management systems delivered by ASZ Technologies for clients worldwide.',
+      'See how organizations replaced manual processes with AI, security and enterprise systems built by ASZ: the challenge, the solution and the results.',
   },
   '/contact': {
     kind: 'contact',
     crumb: 'Contact',
-    title: 'Contact ASZ Technologies | Get a Project Proposal',
+    title: 'Contact ASZ Technologies | Start a Conversation',
     description:
-      "Tell us what you're building and get a team proposal within 48 hours, no commitment. Offices in Singapore, Dubai, Sydney and Bangalore. info@asztechnologies.com",
+      'Tell us about your project, team needs or a product demo. We reply within 1 business day. Offices in Singapore, Dubai, Sydney and Bangalore.',
   },
-  '/privacy-policy': { kind: 'page', crumb: 'Privacy Policy', title: 'Privacy Policy | ASZ Technologies', noindex: true },
-  '/terms-and-conditions': { kind: 'page', crumb: 'Terms & Conditions', title: 'Terms & Conditions | ASZ Technologies', noindex: true },
+  '/privacy-policy': {
+    kind: 'page',
+    crumb: 'Privacy Policy',
+    title: 'Privacy Policy | ASZ Technologies',
+    description:
+      'How ASZ Technologies collects, uses and protects personal information shared through asztechnologies.com, and how to exercise your privacy rights.',
+  },
+  '/terms-and-conditions': {
+    kind: 'page',
+    crumb: 'Terms and Conditions',
+    title: 'Terms and Conditions | ASZ Technologies',
+    description:
+      'The terms that govern your use of asztechnologies.com, including website content, intellectual property, third-party links and governing law.',
+  },
+};
+
+// Hand-written SEO for case studies, keyed by slug. A case study without an entry
+// here falls back to a title/description generated from its data (loop below).
+const CASE_SEO = {
+  'mega-adventure-park': {
+    title: 'Mega Adventure Park Case Study: 35% More Media Sales | ASZ',
+    description:
+      'How self-service kiosks and digital delivery lifted photo and video purchase conversion by 35% and revenue by 25% at Mega Adventure Park.',
+  },
+  'faith-based-organization': {
+    title: 'Non-Profit ERP Case Study: 90% Less Admin | ASZ Technologies',
+    description:
+      'One ERP platform for members, donations and finance cut manual administration by 90% for a growing faith-based organization.',
+  },
+  '78-shenton-way': {
+    title: '78 Shenton Way Visitor Management Case Study | ASZ',
+    description:
+      'A visitor management system for a high-security Singapore tower: 60% faster visitor processing, automated permits and a full audit trail.',
+  },
 };
 
 // Keep descriptions inside Google's ~160 character snippet, cut on a word boundary.
@@ -161,8 +193,8 @@ for (const c of CaseStudies) {
     kind: 'article',
     crumb: c.client,
     parent: '/work',
-    title: `${c.card.sub} | Case Study`,
-    description: clamp(`${c.teaser} ${c.card.value} ${c.card.label} for ${c.client.replace(/^(A|An|The) /, (m) => m.toLowerCase())} (${c.industry}). An ASZ Technologies case study.`),
+    title: CASE_SEO[c.slug]?.title ?? `${c.card.sub} | Case Study`,
+    description: CASE_SEO[c.slug]?.description ?? clamp(`${c.teaser} ${c.card.value} ${c.card.label} for ${c.client.replace(/^(A|An|The) /, (m) => m.toLowerCase())} (${c.industry}). An ASZ Technologies case study.`),
   };
 }
 

@@ -1049,6 +1049,309 @@ const translations = {
     nf_link_work: "Work",
     nf_link_about: "About",
     nf_link_contact: "Contact",
+
+    // ---- Privacy Policy (pages/PrivacyPolicy) ----
+    // Blocks: { p }, { h3 }, { ul: [] }, { address: [] }. Inline: **bold**, [text](/path), {email}, [[left-to-right text]]
+    pp_line1: "Privacy",
+    pp_line2: "Policy.",
+    pp_intro: "How we collect, use and protect the personal information you share with us through asztechnologies.com, and the choices and rights you have.",
+    pp_related_name: "Terms and Conditions",
+    pp_related_text: "The rules for using this website, including content, intellectual property and governing law.",
+    pp_sections: [
+      {
+        id: "who-we-are",
+        title: "Who we are",
+        blocks: [
+          { p: "This Privacy Policy explains how ASZ Technologies (\"ASZ\", \"we\", \"us\" or \"our\") collects, uses, discloses and protects personal information when you visit **asztechnologies.com** (the \"Website\") or contact us through it." },
+          { p: "ASZ Technologies is headquartered in Singapore, with offices in Dubai, Sydney and Bangalore. We handle personal data in line with Singapore's Personal Data Protection Act 2012 (PDPA) and other data protection laws that apply to us where we operate." },
+          { p: "This policy covers the Website only. When we deliver services or products to a client (for example Cordon, MEDIQ, JobScout or Safin), the handling of personal data is governed by our agreement with that client, and the client is usually responsible for informing the people whose data is processed." },
+        ],
+      },
+      {
+        id: "information-we-collect",
+        title: "Information we collect",
+        blocks: [
+          { h3: "Information you give us" },
+          { p: "When you fill in our contact form or email us, we collect the details you choose to share, such as:" },
+          { ul: [
+            "your first and last name, email address and phone number;",
+            "your company name and job role;",
+            "the type of enquiry (for example a project, an engineering team, a product demo or a partnership), the services, skills or products you select, and the message you write.",
+          ] },
+          { p: "Please do not send us sensitive personal data (such as health, financial or identity document details) or confidential business information through the Website." },
+          { h3: "Information collected automatically" },
+          { ul: [
+            "**Server logs.** Like most websites, our servers record technical information when pages are requested, such as your IP address, browser type, device and operating system, the pages you visit, the referring page and the date and time of the request.",
+            "**Approximate country.** To show the Website in a suitable language, your browser may send your IP address to a country lookup service (country.is), which returns your country only. We use the result to choose a language and do not store it.",
+            "**Language preference.** If you choose a language manually, that choice is saved in your browser's local storage so the Website remembers it on your next visit.",
+          ] },
+        ],
+      },
+      {
+        id: "how-we-use-information",
+        title: "How we use your information",
+        blocks: [
+          { p: "We use personal information to:" },
+          { ul: [
+            "respond to your enquiry and arrange calls, proposals or product demos;",
+            "assess and prepare proposals for projects, engineering teams or partnerships you ask about;",
+            "manage our business relationship with you or your organisation;",
+            "operate, secure and improve the Website, and detect and prevent misuse;",
+            "show the Website in the right language;",
+            "comply with legal, regulatory and accounting obligations, and protect our legal rights.",
+          ] },
+          { p: "We will only send you marketing emails if you have agreed to receive them, and you can opt out at any time using the link in the email or by contacting us. We do not use your information for automated decisions that have legal or similarly significant effects on you." },
+        ],
+      },
+      {
+        id: "legal-basis",
+        title: "Consent and legal basis",
+        blocks: [
+          { p: "When you submit the contact form, you consent to us using the details you provide to reply to your enquiry. Where the law requires a legal basis for processing, we rely on your consent; on steps needed before entering into a contract with you or your organisation; on our legitimate interests in running and securing our business and the Website; or on our legal obligations." },
+          { p: "You may withdraw your consent at any time by contacting us. This will not affect processing that took place before you withdrew it, but we may no longer be able to respond to your enquiry or provide what you asked for." },
+        ],
+      },
+      {
+        id: "sharing",
+        title: "How we share information",
+        blocks: [
+          { p: "We do not sell or rent your personal information. We share it only where needed, with:" },
+          { ul: [
+            "**ASZ Technologies offices** in Singapore, the United Arab Emirates, Australia and India, so the right team can respond to your enquiry;",
+            "**service providers** who host the Website, provide email and business software or otherwise support our operations, under contracts that require them to protect your information and use it only on our instructions;",
+            "**professional advisers** such as lawyers, auditors and insurers, where necessary;",
+            "**authorities, regulators or courts** where the law requires it, or to protect the rights, property or safety of ASZ, our clients or others;",
+            "**a buyer or successor** if our business, or part of it, is reorganised, merged or sold, subject to equivalent confidentiality protections.",
+          ] },
+        ],
+      },
+      {
+        id: "international-transfers",
+        title: "International transfers",
+        blocks: [
+          { p: "Because we work across several countries, your information may be transferred to and processed in countries other than your own, including Singapore, the United Arab Emirates, Australia and India. When we transfer personal data, we take steps to make sure it receives a standard of protection comparable to that required under the PDPA, for example through contractual safeguards with recipients." },
+        ],
+      },
+      {
+        id: "retention",
+        title: "How long we keep information",
+        blocks: [
+          { p: "We keep personal information only for as long as it is needed for the purposes described in this policy, or as required by law. In general:" },
+          { ul: [
+            "enquiries that do not lead to a business relationship are deleted within 24 months of our last contact with you;",
+            "information related to clients and contracts is kept for the duration of the relationship and afterwards for as long as legal, tax or accounting rules require;",
+            "server logs are kept for a limited period for security and troubleshooting, then deleted.",
+          ] },
+        ],
+      },
+      {
+        id: "security",
+        title: "How we protect information",
+        blocks: [
+          { p: "We use reasonable administrative, technical and physical safeguards to protect personal information against unauthorised access, collection, use, disclosure, copying, modification, loss or disposal. These include encrypted connections (HTTPS), access controls and limiting access to staff who need it. No method of transmission over the internet or electronic storage is completely secure, so we cannot guarantee absolute security. If a data breach is likely to cause you significant harm, we will notify you and the relevant authorities as required by law." },
+        ],
+      },
+      {
+        id: "your-rights",
+        title: "Your rights",
+        blocks: [
+          { p: "Depending on where you live, you may have the right to:" },
+          { ul: [
+            "ask whether we hold personal information about you and request a copy of it;",
+            "ask how your personal information has been used or disclosed in the past year;",
+            "ask us to correct information that is inaccurate or incomplete;",
+            "withdraw your consent, or object to or ask us to restrict certain processing;",
+            "ask us to delete your information, where we have no legal reason to keep it;",
+            "ask us to transfer your information to another organisation, where the law provides for this.",
+          ] },
+          { p: "To make a request, email {email}. We may need to verify your identity before acting on it, and we will respond within the time required by applicable law (usually within 30 days). If you are not satisfied with our response, you can contact the data protection authority in your country, such as Singapore's Personal Data Protection Commission (PDPC) or the Office of the Australian Information Commissioner (OAIC)." },
+        ],
+      },
+      {
+        id: "cookies",
+        title: "Cookies and local storage",
+        blocks: [
+          { p: "The Website does not use advertising or tracking cookies, and we do not run third-party analytics on it. We use your browser's local storage only to remember a language you have chosen. You can clear it at any time through your browser settings; the Website will then pick a language automatically again." },
+          { p: "If we introduce analytics or other cookies in the future, we will update this policy and, where required, ask for your consent first." },
+        ],
+      },
+      {
+        id: "third-party-links",
+        title: "Third-party websites",
+        blocks: [
+          { p: "The Website may link to websites, platforms or services run by others. We are not responsible for their content or privacy practices, and this policy does not apply to them. Please read the privacy policy of any third-party site you visit." },
+        ],
+      },
+      {
+        id: "children",
+        title: "Children",
+        blocks: [
+          { p: "The Website is intended for businesses and professionals and is not directed at children. We do not knowingly collect personal information from anyone under 18. If you believe a child has given us personal information, please contact us and we will delete it." },
+        ],
+      },
+      {
+        id: "changes",
+        title: "Changes to this policy",
+        blocks: [
+          { p: "We may update this Privacy Policy from time to time to reflect changes in the law, our practices or the Website. The \"Last updated\" date at the top of this page shows when it was last changed. Where changes are significant, we will make reasonable efforts to bring them to your attention." },
+        ],
+      },
+      {
+        id: "contact",
+        title: "Contact us",
+        blocks: [
+          { p: "For any question, request or complaint about this policy or how we handle your personal information, please contact our Data Protection Officer:" },
+          { address: [
+            "**Data Protection Officer, ASZ Technologies**",
+            "156 MacPherson Rd, Singapore 348528",
+            "Email: {email}",
+          ] },
+          { p: "You can also reach us through our [contact page](/contact)." },
+        ],
+      },
+    ],
+
+    // ---- Terms and Conditions (pages/TermsCondition) ----
+    tc_line1: "Terms and",
+    tc_line2: "Conditions.",
+    tc_intro: "The terms that govern your use of asztechnologies.com, including the website content, intellectual property, third-party links and governing law.",
+    tc_related_name: "Privacy Policy",
+    tc_related_text: "How we collect, use and protect the personal information you share with us.",
+    tc_sections: [
+      {
+        id: "acceptance",
+        title: "Acceptance of these terms",
+        blocks: [
+          { p: "These Terms and Conditions (the \"Terms\") govern your access to and use of **asztechnologies.com** and any pages, content and features on it (the \"Website\"), operated by ASZ Technologies (\"ASZ\", \"we\", \"us\" or \"our\"), headquartered at 156 MacPherson Rd, Singapore 348528." },
+          { p: "By using the Website, you agree to these Terms. If you use the Website on behalf of an organisation, you confirm that you are authorised to accept these Terms for it. If you do not agree, please do not use the Website." },
+        ],
+      },
+      {
+        id: "use-of-website",
+        title: "Using the Website",
+        blocks: [
+          { p: "You may use the Website for lawful purposes only: to learn about ASZ, our services and products, and to get in touch with us. You agree not to:" },
+          { ul: [
+            "use the Website in any way that breaks any applicable law or regulation;",
+            "attempt to gain unauthorised access to the Website, its servers or any connected system, or probe, scan or test their vulnerability without our written permission;",
+            "introduce viruses, malware or other harmful code, or interfere with or disrupt the Website or its performance;",
+            "scrape, copy or harvest content or data from the Website by automated means for commercial purposes, other than standard search engine indexing;",
+            "send spam, or submit false, misleading or someone else's information through our contact form;",
+            "impersonate ASZ, our staff or any other person, or misrepresent your affiliation with anyone.",
+          ] },
+          { p: "We may suspend or restrict access to the Website, or any part of it, at any time and without notice." },
+        ],
+      },
+      {
+        id: "website-content",
+        title: "Website content",
+        blocks: [
+          { p: "The content on the Website is provided for general information about ASZ and what we do. It is not professional, technical, legal or financial advice, and it does not form an offer capable of acceptance." },
+          { p: "Case studies, statistics and results describe specific projects for specific clients. They illustrate our work and are not a promise that you will achieve the same results. Descriptions of services and product features may change as we develop them." },
+          { p: "We work to keep the Website accurate and up to date, but we do not guarantee that its content is complete, current or error free, and we may change it at any time." },
+        ],
+      },
+      {
+        id: "intellectual-property",
+        title: "Intellectual property",
+        blocks: [
+          { p: "The Website and its content, including text, graphics, logos, images, videos, design, layout and code, are owned by or licensed to ASZ Technologies and are protected by copyright, trade mark and other intellectual property laws." },
+          { p: "\"ASZ Technologies\", the ASZ logo, and the names and logos of our products, including Cordon, MEDIQ, JobScout and Safin, are trade marks of ASZ Technologies. Client names and logos shown on the Website belong to their respective owners and are used with permission or for identification only." },
+          { p: "You may view, print or share pages of the Website for your own non-commercial or internal business use, provided you keep all copyright and other notices intact. You may not otherwise copy, reproduce, modify, distribute, republish or create derivative works from any part of the Website without our prior written consent." },
+        ],
+      },
+      {
+        id: "enquiries",
+        title: "Enquiries and information you send us",
+        blocks: [
+          { p: "Sending an enquiry, requesting a proposal or booking a demo through the Website does not create a contract between you and ASZ, and does not oblige either of us to enter into one. Any proposal we provide is an invitation to discuss and is not binding until it is confirmed in a signed agreement." },
+          { p: "You confirm that the information you send us is accurate and that you are entitled to share it. Please do not send confidential information through the Website before a confidentiality agreement is in place. We handle personal information as described in our [Privacy Policy](/privacy-policy)." },
+        ],
+      },
+      {
+        id: "services-and-products",
+        title: "Our services and products",
+        blocks: [
+          { p: "Our services, products and engineering teams are provided under separate written agreements, such as a master services agreement, statement of work, licence or subscription terms. Those agreements govern the work, fees, deliverables, warranties and liability for that engagement. If they conflict with these Terms, the separate agreement takes precedence for that engagement." },
+        ],
+      },
+      {
+        id: "third-party-links",
+        title: "Third-party links",
+        blocks: [
+          { p: "The Website may contain links to websites, platforms or resources run by third parties. These links are provided for convenience only. We do not control and are not responsible for their content, availability, products, services or privacy practices, and a link does not mean we endorse them. Your use of any third-party site is at your own risk and subject to its own terms." },
+        ],
+      },
+      {
+        id: "disclaimer",
+        title: "Disclaimer",
+        blocks: [
+          { p: "The Website is provided on an \"as is\" and \"as available\" basis. To the fullest extent permitted by law, we make no warranties or representations of any kind, whether express or implied, about the Website or its content, including warranties of accuracy, completeness, availability, merchantability, fitness for a particular purpose or non-infringement. We do not guarantee that the Website will be uninterrupted, secure or free from errors, viruses or other harmful components." },
+        ],
+      },
+      {
+        id: "limitation-of-liability",
+        title: "Limitation of liability",
+        blocks: [
+          { p: "To the fullest extent permitted by law, ASZ Technologies, its affiliates and their directors, employees and agents will not be liable for any indirect, incidental, special, consequential or punitive loss or damage, or for any loss of profits, revenue, business, goodwill, data or anticipated savings, arising out of or in connection with your use of, or inability to use, the Website or any content on it, even if we have been told such loss is possible." },
+          { p: "Nothing in these Terms excludes or limits liability that cannot be excluded or limited under applicable law, including liability for death or personal injury caused by negligence, or for fraud." },
+        ],
+      },
+      {
+        id: "indemnity",
+        title: "Indemnity",
+        blocks: [
+          { p: "You agree to indemnify and hold harmless ASZ Technologies, its affiliates and their directors, employees and agents from any claims, losses, liabilities, damages, costs and expenses (including reasonable legal fees) arising from your misuse of the Website or your breach of these Terms." },
+        ],
+      },
+      {
+        id: "privacy",
+        title: "Privacy",
+        blocks: [
+          { p: "Our [Privacy Policy](/privacy-policy) explains how we collect, use and protect personal information shared through the Website. By using the Website, you acknowledge that we handle your information as described there." },
+        ],
+      },
+      {
+        id: "changes",
+        title: "Changes to these terms",
+        blocks: [
+          { p: "We may update these Terms from time to time. The \"Last updated\" date at the top of this page shows when they were last changed. Changes apply from the moment they are published, so please check this page regularly. By continuing to use the Website after changes are published, you accept the updated Terms." },
+        ],
+      },
+      {
+        id: "governing-law",
+        title: "Governing law and jurisdiction",
+        blocks: [
+          { p: "These Terms, and any dispute or claim arising out of or in connection with them or the Website, are governed by the laws of the Republic of Singapore. You agree that the courts of Singapore have exclusive jurisdiction to settle any such dispute or claim." },
+        ],
+      },
+      {
+        id: "general",
+        title: "General",
+        blocks: [
+          { ul: [
+            "If any part of these Terms is found to be invalid or unenforceable, the rest of the Terms will remain in full force and effect.",
+            "If we do not enforce any right under these Terms, that does not mean we have waived it.",
+            "These Terms, together with our Privacy Policy, form the entire agreement between you and us about your use of the Website.",
+            "We may transfer our rights and obligations under these Terms to another organisation. You may not transfer yours without our written consent.",
+            "No one other than you and ASZ has any right to enforce these Terms, including under the Contracts (Rights of Third Parties) Act 2001 of Singapore.",
+          ] },
+        ],
+      },
+      {
+        id: "contact",
+        title: "Contact us",
+        blocks: [
+          { p: "If you have any questions about these Terms, please contact us:" },
+          { address: [
+            "**ASZ Technologies**",
+            "156 MacPherson Rd, Singapore 348528",
+            "Email: {email}",
+          ] },
+          { p: "You can also reach us through our [contact page](/contact)." },
+        ],
+      },
+    ],
   },
 
   FR: {
@@ -2580,6 +2883,320 @@ const translations = {
     nf_link_work: "أعمالنا",
     nf_link_about: "من نحن",
     nf_link_contact: "تواصل معنا",
+
+    // ---- الصفحات القانونية (components/LegalDoc) ----
+    lg_pill: "قانوني",
+    lg_updated: "آخر تحديث",
+    lg_toc: "في هذه الصفحة",
+    lg_also: "اقرأ أيضًا",
+    lg_q_title: "لديك أسئلة حول هذه الصفحة؟",
+    lg_q_text: "راسلنا وسنرد عليك خلال يوم عمل واحد.",
+    lg_q_cta: "تواصل معنا",
+    lg_notice: "هذه ترجمة مقدّمة للتسهيل. وفي حال وجود أي اختلاف بينها وبين النسخة الإنجليزية، تكون النسخة الإنجليزية هي المعتمدة.",
+    lg_notice_cta: "اقرأ بالإنجليزية",
+
+    // ---- سياسة الخصوصية (pages/PrivacyPolicy) ----
+    // Blocks: { p }, { h3 }, { ul: [] }, { address: [] }. Inline: **bold**, [text](/path), {email}, [[left-to-right text]]
+    pp_line1: "سياسة",
+    pp_line2: "الخصوصية.",
+    pp_intro: "كيف نجمع المعلومات الشخصية التي تشاركها معنا عبر asztechnologies.com ونستخدمها ونحميها، والخيارات والحقوق المتاحة لك.",
+    pp_related_name: "الشروط والأحكام",
+    pp_related_text: "قواعد استخدام هذا الموقع، بما في ذلك المحتوى والملكية الفكرية والقانون الواجب التطبيق.",
+    pp_sections: [
+      {
+        id: "who-we-are",
+        title: "من نحن",
+        blocks: [
+          { p: "توضّح سياسة الخصوصية هذه كيف تقوم ASZ Technologies (\"ASZ\" أو \"نحن\" أو \"لنا\") بجمع المعلومات الشخصية واستخدامها والإفصاح عنها وحمايتها عند زيارتك لموقع **[[asztechnologies.com]]** (\"الموقع\") أو تواصلك معنا من خلاله." },
+          { p: "يقع المقر الرئيسي لشركة ASZ Technologies في سنغافورة، ولدينا مكاتب في دبي وسيدني وبنغالور. ونتعامل مع البيانات الشخصية وفقًا لقانون حماية البيانات الشخصية في سنغافورة لعام 2012 (PDPA) وقوانين حماية البيانات الأخرى المعمول بها في الدول التي نعمل فيها." },
+          { p: "تقتصر هذه السياسة على الموقع فقط. وعندما نقدّم خدمات أو منتجات لأحد العملاء (مثل Cordon أو MEDIQ أو JobScout أو Safin)، تخضع معالجة البيانات الشخصية للاتفاقية المبرمة بيننا وبين ذلك العميل، ويكون العميل عادةً هو المسؤول عن إبلاغ الأشخاص الذين تتم معالجة بياناتهم." },
+        ],
+      },
+      {
+        id: "information-we-collect",
+        title: "المعلومات التي نجمعها",
+        blocks: [
+          { h3: "المعلومات التي تقدّمها لنا" },
+          { p: "عندما تملأ نموذج التواصل أو ترسل إلينا بريدًا إلكترونيًا، نجمع التفاصيل التي تختار مشاركتها، مثل:" },
+          { ul: [
+            "اسمك الأول واسم العائلة وعنوان بريدك الإلكتروني ورقم هاتفك؛",
+            "اسم شركتك ومسمّاك الوظيفي؛",
+            "نوع الاستفسار (مثل مشروع، أو فريق هندسي، أو عرض توضيحي لمنتج، أو شراكة)، والخدمات أو المهارات أو المنتجات التي تختارها، والرسالة التي تكتبها.",
+          ] },
+          { p: "يُرجى عدم إرسال بيانات شخصية حساسة (مثل التفاصيل الصحية أو المالية أو بيانات وثائق الهوية) أو معلومات تجارية سرية من خلال الموقع." },
+          { h3: "المعلومات التي تُجمع تلقائيًا" },
+          { ul: [
+            "**سجلات الخادم.** كما هو الحال في معظم المواقع، تسجّل خوادمنا معلومات تقنية عند طلب الصفحات، مثل عنوان IP الخاص بك، ونوع المتصفح، والجهاز ونظام التشغيل، والصفحات التي تزورها، والصفحة التي أحالتك إلينا، وتاريخ الطلب ووقته.",
+            "**الدولة التقريبية.** لعرض الموقع بلغة مناسبة، قد يرسل متصفحك عنوان IP الخاص بك إلى خدمة لتحديد الدولة ([[country.is]])، والتي تُعيد اسم دولتك فقط. ونستخدم هذه النتيجة لاختيار اللغة ولا نحتفظ بها.",
+            "**تفضيل اللغة.** إذا اخترت لغة بنفسك، يُحفظ هذا الاختيار في التخزين المحلي لمتصفحك حتى يتذكّره الموقع في زيارتك التالية.",
+          ] },
+        ],
+      },
+      {
+        id: "how-we-use-information",
+        title: "كيف نستخدم معلوماتك",
+        blocks: [
+          { p: "نستخدم المعلومات الشخصية من أجل:" },
+          { ul: [
+            "الرد على استفسارك وترتيب المكالمات أو العروض أو العروض التوضيحية للمنتجات؛",
+            "تقييم المشاريع أو الفرق الهندسية أو الشراكات التي تسأل عنها وإعداد العروض الخاصة بها؛",
+            "إدارة علاقتنا التجارية معك أو مع مؤسستك؛",
+            "تشغيل الموقع وتأمينه وتحسينه، واكتشاف إساءة استخدامه ومنعها؛",
+            "عرض الموقع باللغة المناسبة؛",
+            "الامتثال للالتزامات القانونية والتنظيمية والمحاسبية، وحماية حقوقنا القانونية.",
+          ] },
+          { p: "لن نرسل إليك رسائل تسويقية عبر البريد الإلكتروني إلا إذا وافقت على تلقيها، ويمكنك إلغاء الاشتراك في أي وقت باستخدام الرابط الموجود في الرسالة أو بالتواصل معنا. ولا نستخدم معلوماتك لاتخاذ قرارات آلية تترتب عليها آثار قانونية أو آثار جوهرية مماثلة عليك." },
+        ],
+      },
+      {
+        id: "legal-basis",
+        title: "الموافقة والأساس القانوني",
+        blocks: [
+          { p: "عند إرسالك نموذج التواصل، فإنك توافق على استخدامنا للتفاصيل التي تقدّمها للرد على استفسارك. وحيثما يشترط القانون وجود أساس قانوني للمعالجة، فإننا نستند إلى موافقتك؛ أو إلى الخطوات اللازمة قبل إبرام عقد معك أو مع مؤسستك؛ أو إلى مصالحنا المشروعة في إدارة أعمالنا والموقع وتأمينهما؛ أو إلى التزاماتنا القانونية." },
+          { p: "يمكنك سحب موافقتك في أي وقت بالتواصل معنا. ولن يؤثر ذلك على المعالجة التي تمت قبل سحبها، لكن قد لا نتمكن بعد ذلك من الرد على استفسارك أو تقديم ما طلبته." },
+        ],
+      },
+      {
+        id: "sharing",
+        title: "كيف نشارك المعلومات",
+        blocks: [
+          { p: "نحن لا نبيع معلوماتك الشخصية ولا نؤجّرها. ولا نشاركها إلا عند الحاجة، مع:" },
+          { ul: [
+            "**مكاتب ASZ Technologies** في سنغافورة والإمارات العربية المتحدة وأستراليا والهند، ليتمكن الفريق المناسب من الرد على استفسارك؛",
+            "**مزوّدي الخدمات** الذين يستضيفون الموقع، أو يقدّمون خدمات البريد الإلكتروني وبرامج الأعمال، أو يدعمون عملياتنا بطرق أخرى، بموجب عقود تُلزمهم بحماية معلوماتك واستخدامها وفق تعليماتنا فقط؛",
+            "**المستشارين المهنيين** مثل المحامين والمدققين وشركات التأمين، عند الضرورة؛",
+            "**السلطات أو الجهات التنظيمية أو المحاكم** حيثما يشترط القانون ذلك، أو لحماية حقوق ASZ أو عملائنا أو غيرهم أو ممتلكاتهم أو سلامتهم؛",
+            "**مشترٍ أو خلف قانوني** في حال إعادة تنظيم أعمالنا أو جزء منها أو دمجها أو بيعها، مع الالتزام بضمانات سرية مماثلة.",
+          ] },
+        ],
+      },
+      {
+        id: "international-transfers",
+        title: "النقل الدولي للبيانات",
+        blocks: [
+          { p: "نظرًا لأننا نعمل في عدة دول، فقد تُنقل معلوماتك إلى دول غير دولتك وتُعالَج فيها، بما في ذلك سنغافورة والإمارات العربية المتحدة وأستراليا والهند. وعند نقل البيانات الشخصية، نتخذ خطوات لضمان حصولها على مستوى حماية مماثل لما يشترطه قانون PDPA، على سبيل المثال من خلال ضمانات تعاقدية مع الجهات المتلقية." },
+        ],
+      },
+      {
+        id: "retention",
+        title: "مدة الاحتفاظ بالمعلومات",
+        blocks: [
+          { p: "نحتفظ بالمعلومات الشخصية فقط طوال المدة اللازمة لتحقيق الأغراض الموضّحة في هذه السياسة، أو وفقًا لما يقتضيه القانون. وبوجه عام:" },
+          { ul: [
+            "تُحذف الاستفسارات التي لا تؤدي إلى علاقة تجارية خلال 24 شهرًا من آخر تواصل بيننا؛",
+            "يُحتفظ بالمعلومات المتعلقة بالعملاء والعقود طوال مدة العلاقة، وبعدها للمدة التي تقتضيها القواعد القانونية أو الضريبية أو المحاسبية؛",
+            "يُحتفظ بسجلات الخادم لفترة محدودة لأغراض الأمان واستكشاف الأخطاء وإصلاحها، ثم تُحذف.",
+          ] },
+        ],
+      },
+      {
+        id: "security",
+        title: "كيف نحمي المعلومات",
+        blocks: [
+          { p: "نستخدم ضمانات إدارية وتقنية ومادية معقولة لحماية المعلومات الشخصية من الوصول أو الجمع أو الاستخدام أو الإفصاح أو النسخ أو التعديل أو الفقدان أو الإتلاف غير المصرّح به. ويشمل ذلك الاتصالات المشفّرة (HTTPS)، وضوابط الوصول، وقصر الوصول على الموظفين الذين يحتاجون إليه. ولا توجد وسيلة نقل عبر الإنترنت أو تخزين إلكتروني آمنة تمامًا، لذا لا يمكننا ضمان الأمان المطلق. وإذا كان من المرجّح أن يُلحق خرق البيانات بك ضررًا جسيمًا، فسنبلغك ونبلغ السلطات المختصة وفقًا لما يقتضيه القانون." },
+        ],
+      },
+      {
+        id: "your-rights",
+        title: "حقوقك",
+        blocks: [
+          { p: "بحسب مكان إقامتك، قد يحق لك:" },
+          { ul: [
+            "الاستفسار عمّا إذا كنا نحتفظ بمعلومات شخصية عنك وطلب نسخة منها؛",
+            "الاستفسار عن كيفية استخدام معلوماتك الشخصية أو الإفصاح عنها خلال العام الماضي؛",
+            "مطالبتنا بتصحيح المعلومات غير الدقيقة أو غير المكتملة؛",
+            "سحب موافقتك، أو الاعتراض على معالجة معيّنة أو مطالبتنا بتقييدها؛",
+            "مطالبتنا بحذف معلوماتك، إذا لم يكن لدينا سبب قانوني للاحتفاظ بها؛",
+            "مطالبتنا بنقل معلوماتك إلى مؤسسة أخرى، حيثما ينص القانون على ذلك.",
+          ] },
+          { p: "لتقديم طلب، راسلنا على {email}. وقد نحتاج إلى التحقق من هويتك قبل تنفيذ الطلب، وسنرد خلال المدة التي يشترطها القانون المعمول به (عادةً خلال 30 يومًا). وإذا لم تكن راضيًا عن ردّنا، يمكنك التواصل مع هيئة حماية البيانات في دولتك، مثل لجنة حماية البيانات الشخصية في سنغافورة (PDPC) أو مكتب مفوّض المعلومات الأسترالي (OAIC)." },
+        ],
+      },
+      {
+        id: "cookies",
+        title: "ملفات تعريف الارتباط والتخزين المحلي",
+        blocks: [
+          { p: "لا يستخدم الموقع ملفات تعريف الارتباط الإعلانية أو ملفات التتبّع، ولا نشغّل عليه أدوات تحليلات تابعة لجهات خارجية. ونستخدم التخزين المحلي في متصفحك فقط لتذكّر اللغة التي اخترتها. ويمكنك مسحه في أي وقت من خلال إعدادات المتصفح، وسيختار الموقع حينها لغة تلقائيًا من جديد." },
+          { p: "إذا أضفنا أدوات تحليلات أو ملفات تعريف ارتباط أخرى مستقبلًا، فسنحدّث هذه السياسة، وسنطلب موافقتك أولًا حيثما يكون ذلك مطلوبًا." },
+        ],
+      },
+      {
+        id: "third-party-links",
+        title: "مواقع الجهات الخارجية",
+        blocks: [
+          { p: "قد يحتوي الموقع على روابط لمواقع أو منصات أو خدمات تديرها جهات أخرى. ونحن لسنا مسؤولين عن محتواها أو ممارسات الخصوصية الخاصة بها، ولا تنطبق عليها هذه السياسة. يُرجى قراءة سياسة الخصوصية لأي موقع تابع لجهة خارجية تزوره." },
+        ],
+      },
+      {
+        id: "children",
+        title: "الأطفال",
+        blocks: [
+          { p: "الموقع مخصّص للشركات والمهنيين، وليس موجّهًا للأطفال. ولا نجمع عن علم معلومات شخصية من أي شخص دون سن 18 عامًا. وإذا كنت تعتقد أن طفلًا قدّم إلينا معلومات شخصية، فيُرجى التواصل معنا وسنقوم بحذفها." },
+        ],
+      },
+      {
+        id: "changes",
+        title: "التغييرات على هذه السياسة",
+        blocks: [
+          { p: "قد نحدّث سياسة الخصوصية هذه من وقت لآخر لتعكس التغييرات في القانون أو في ممارساتنا أو في الموقع. ويُظهر تاريخ \"آخر تحديث\" أعلى هذه الصفحة موعد آخر تغيير. وفي حال إجراء تغييرات جوهرية، سنبذل جهودًا معقولة لإطلاعك عليها." },
+        ],
+      },
+      {
+        id: "contact",
+        title: "تواصل معنا",
+        blocks: [
+          { p: "لأي سؤال أو طلب أو شكوى بشأن هذه السياسة أو طريقة تعاملنا مع معلوماتك الشخصية، يُرجى التواصل مع مسؤول حماية البيانات لدينا:" },
+          { address: [
+            "**مسؤول حماية البيانات، ASZ Technologies**",
+            "[[156 MacPherson Rd, Singapore 348528]]",
+            "البريد الإلكتروني: {email}",
+          ] },
+          { p: "يمكنك أيضًا التواصل معنا عبر [صفحة التواصل](/contact)." },
+        ],
+      },
+    ],
+
+    // ---- الشروط والأحكام (pages/TermsCondition) ----
+    tc_line1: "الشروط",
+    tc_line2: "والأحكام.",
+    tc_intro: "الشروط التي تحكم استخدامك لموقع asztechnologies.com، بما في ذلك محتوى الموقع والملكية الفكرية وروابط الجهات الخارجية والقانون الواجب التطبيق.",
+    tc_related_name: "سياسة الخصوصية",
+    tc_related_text: "كيف نجمع المعلومات الشخصية التي تشاركها معنا ونستخدمها ونحميها.",
+    tc_sections: [
+      {
+        id: "acceptance",
+        title: "قبول هذه الشروط",
+        blocks: [
+          { p: "تحكم هذه الشروط والأحكام (\"الشروط\") وصولك إلى موقع **[[asztechnologies.com]]** واستخدامك له ولأي صفحات أو محتوى أو ميزات فيه (\"الموقع\")، والذي تديره ASZ Technologies (\"ASZ\" أو \"نحن\" أو \"لنا\")، ومقرها الرئيسي في [[156 MacPherson Rd, Singapore 348528]]." },
+          { p: "باستخدامك للموقع، فإنك توافق على هذه الشروط. وإذا كنت تستخدم الموقع نيابةً عن مؤسسة، فإنك تؤكد أنك مخوّل بقبول هذه الشروط نيابةً عنها. وإذا كنت لا توافق عليها، فيُرجى عدم استخدام الموقع." },
+        ],
+      },
+      {
+        id: "use-of-website",
+        title: "استخدام الموقع",
+        blocks: [
+          { p: "يجوز لك استخدام الموقع للأغراض المشروعة فقط: للتعرّف على ASZ وخدماتنا ومنتجاتنا، وللتواصل معنا. وتوافق على عدم القيام بما يلي:" },
+          { ul: [
+            "استخدام الموقع بأي طريقة تخالف أي قانون أو لائحة معمول بها؛",
+            "محاولة الوصول غير المصرّح به إلى الموقع أو خوادمه أو أي نظام متصل به، أو فحصها أو اختبار ثغراتها دون إذن كتابي منا؛",
+            "إدخال فيروسات أو برمجيات خبيثة أو أي شيفرة ضارة أخرى، أو التدخل في الموقع أو أدائه أو تعطيلهما؛",
+            "استخراج المحتوى أو البيانات من الموقع أو نسخها أو جمعها بوسائل آلية لأغراض تجارية، باستثناء الفهرسة المعتادة لمحركات البحث؛",
+            "إرسال رسائل غير مرغوب فيها، أو تقديم معلومات كاذبة أو مضللة أو تخص شخصًا آخر عبر نموذج التواصل؛",
+            "انتحال صفة ASZ أو موظفينا أو أي شخص آخر، أو تقديم معلومات مضللة عن انتمائك لأي جهة.",
+          ] },
+          { p: "يجوز لنا تعليق الوصول إلى الموقع أو أي جزء منه أو تقييده في أي وقت ودون إشعار." },
+        ],
+      },
+      {
+        id: "website-content",
+        title: "محتوى الموقع",
+        blocks: [
+          { p: "يُقدَّم المحتوى المنشور على الموقع كمعلومات عامة عن ASZ وما نقوم به. ولا يُعدّ استشارة مهنية أو تقنية أو قانونية أو مالية، ولا يشكّل عرضًا قابلًا للقبول." },
+          { p: "تصف دراسات الحالة والإحصاءات والنتائج مشاريع محددة لعملاء محددين. وهي توضّح أعمالنا ولا تمثّل وعدًا بأنك ستحقق النتائج نفسها. وقد تتغيّر أوصاف الخدمات وميزات المنتجات مع تطويرنا لها." },
+          { p: "نحرص على أن يكون الموقع دقيقًا ومحدّثًا، لكننا لا نضمن أن محتواه كامل أو حديث أو خالٍ من الأخطاء، ويجوز لنا تغييره في أي وقت." },
+        ],
+      },
+      {
+        id: "intellectual-property",
+        title: "الملكية الفكرية",
+        blocks: [
+          { p: "الموقع ومحتواه، بما في ذلك النصوص والرسومات والشعارات والصور ومقاطع الفيديو والتصميم والتخطيط والشيفرة البرمجية، مملوكة لشركة ASZ Technologies أو مرخّصة لها، ومحمية بموجب قوانين حقوق النشر والعلامات التجارية وغيرها من قوانين الملكية الفكرية." },
+          { p: "إن \"ASZ Technologies\" وشعار ASZ وأسماء منتجاتنا وشعاراتها، بما في ذلك Cordon وMEDIQ وJobScout وSafin، هي علامات تجارية لشركة ASZ Technologies. أما أسماء العملاء وشعاراتهم المعروضة على الموقع فهي ملك لأصحابها، وتُستخدم بإذن منهم أو لأغراض التعريف فقط." },
+          { p: "يجوز لك عرض صفحات الموقع أو طباعتها أو مشاركتها لاستخدامك الشخصي غير التجاري أو لاستخدام داخلي في أعمالك، شريطة الإبقاء على جميع إشعارات حقوق النشر وغيرها كما هي. ولا يجوز لك بخلاف ذلك نسخ أي جزء من الموقع أو إعادة إنتاجه أو تعديله أو توزيعه أو إعادة نشره أو إنشاء أعمال مشتقة منه دون موافقة كتابية مسبقة منا." },
+        ],
+      },
+      {
+        id: "enquiries",
+        title: "الاستفسارات والمعلومات التي ترسلها إلينا",
+        blocks: [
+          { p: "لا يُنشئ إرسال استفسار أو طلب عرض أو حجز عرض توضيحي عبر الموقع عقدًا بينك وبين ASZ، ولا يُلزم أيًّا منا بإبرام عقد. وأي عرض نقدّمه هو دعوة للتباحث، ولا يكون ملزمًا إلا بعد تأكيده في اتفاقية موقّعة." },
+          { p: "تؤكد أن المعلومات التي ترسلها إلينا دقيقة وأنه يحق لك مشاركتها. ويُرجى عدم إرسال معلومات سرية عبر الموقع قبل إبرام اتفاقية سرية. ونتعامل مع المعلومات الشخصية وفقًا لما هو موضّح في [سياسة الخصوصية](/privacy-policy) الخاصة بنا." },
+        ],
+      },
+      {
+        id: "services-and-products",
+        title: "خدماتنا ومنتجاتنا",
+        blocks: [
+          { p: "تُقدَّم خدماتنا ومنتجاتنا وفرقنا الهندسية بموجب اتفاقيات مكتوبة منفصلة، مثل اتفاقية الخدمات الرئيسية أو بيان العمل أو شروط الترخيص أو الاشتراك. وتحكم تلك الاتفاقيات العمل والرسوم والمخرجات والضمانات والمسؤولية الخاصة بذلك التعاقد. وفي حال تعارضها مع هذه الشروط، تكون الأولوية للاتفاقية المنفصلة فيما يتعلق بذلك التعاقد." },
+        ],
+      },
+      {
+        id: "third-party-links",
+        title: "روابط الجهات الخارجية",
+        blocks: [
+          { p: "قد يحتوي الموقع على روابط لمواقع أو منصات أو موارد تديرها جهات خارجية. وتُقدَّم هذه الروابط للتسهيل فقط. ونحن لا نتحكم في محتواها أو توفّرها أو منتجاتها أو خدماتها أو ممارسات الخصوصية الخاصة بها ولسنا مسؤولين عنها، ولا يعني وجود الرابط أننا نؤيدها. ويكون استخدامك لأي موقع تابع لجهة خارجية على مسؤوليتك الخاصة وخاضعًا لشروطه." },
+        ],
+      },
+      {
+        id: "disclaimer",
+        title: "إخلاء المسؤولية",
+        blocks: [
+          { p: "يُقدَّم الموقع \"كما هو\" و\"حسب توفّره\". وإلى أقصى حد يسمح به القانون، لا نقدّم أي ضمانات أو إقرارات من أي نوع، صريحة كانت أو ضمنية، بشأن الموقع أو محتواه، بما في ذلك ضمانات الدقة أو الاكتمال أو التوفّر أو القابلية للتسويق أو الملاءمة لغرض معيّن أو عدم التعدي. ولا نضمن أن يعمل الموقع دون انقطاع، أو أن يكون آمنًا أو خاليًا من الأخطاء أو الفيروسات أو المكوّنات الضارة الأخرى." },
+        ],
+      },
+      {
+        id: "limitation-of-liability",
+        title: "حدود المسؤولية",
+        blocks: [
+          { p: "إلى أقصى حد يسمح به القانون، لن تكون ASZ Technologies أو الشركات التابعة لها أو مديروها أو موظفوها أو وكلاؤها مسؤولين عن أي خسارة أو ضرر غير مباشر أو عرضي أو خاص أو تبعي أو عقابي، أو عن أي خسارة في الأرباح أو الإيرادات أو الأعمال أو السمعة التجارية أو البيانات أو الوفورات المتوقعة، الناشئة عن استخدامك للموقع أو أي محتوى فيه أو عدم قدرتك على استخدامه أو المتعلقة بذلك، حتى لو أُبلغنا بإمكانية حدوث هذه الخسارة." },
+          { p: "لا يوجد في هذه الشروط ما يستبعد أو يحدّ من المسؤولية التي لا يجوز استبعادها أو الحد منها بموجب القانون المعمول به، بما في ذلك المسؤولية عن الوفاة أو الإصابة الشخصية الناتجة عن الإهمال، أو عن الاحتيال." },
+        ],
+      },
+      {
+        id: "indemnity",
+        title: "التعويض",
+        blocks: [
+          { p: "توافق على تعويض ASZ Technologies والشركات التابعة لها ومديريها وموظفيها ووكلائها وإبراء ذمتهم من أي مطالبات أو خسائر أو التزامات أو أضرار أو تكاليف أو نفقات (بما في ذلك أتعاب المحاماة المعقولة) تنشأ عن إساءة استخدامك للموقع أو إخلالك بهذه الشروط." },
+        ],
+      },
+      {
+        id: "privacy",
+        title: "الخصوصية",
+        blocks: [
+          { p: "توضّح [سياسة الخصوصية](/privacy-policy) الخاصة بنا كيف نجمع المعلومات الشخصية التي تتم مشاركتها عبر الموقع ونستخدمها ونحميها. وباستخدامك للموقع، فإنك تقرّ بأننا نتعامل مع معلوماتك وفقًا لما هو موضّح فيها." },
+        ],
+      },
+      {
+        id: "changes",
+        title: "التغييرات على هذه الشروط",
+        blocks: [
+          { p: "قد نحدّث هذه الشروط من وقت لآخر. ويُظهر تاريخ \"آخر تحديث\" أعلى هذه الصفحة موعد آخر تغيير لها. وتسري التغييرات فور نشرها، لذا يُرجى مراجعة هذه الصفحة بانتظام. وباستمرارك في استخدام الموقع بعد نشر التغييرات، فإنك تقبل الشروط المحدّثة." },
+        ],
+      },
+      {
+        id: "governing-law",
+        title: "القانون الواجب التطبيق والاختصاص القضائي",
+        blocks: [
+          { p: "تخضع هذه الشروط، وأي نزاع أو مطالبة تنشأ عنها أو عن الموقع أو تتعلق بهما، لقوانين جمهورية سنغافورة. وتوافق على أن تكون لمحاكم سنغافورة الولاية القضائية الحصرية للفصل في أي نزاع أو مطالبة من هذا القبيل." },
+        ],
+      },
+      {
+        id: "general",
+        title: "أحكام عامة",
+        blocks: [
+          { ul: [
+            "إذا تبيّن أن أي جزء من هذه الشروط باطل أو غير قابل للتنفيذ، تظل بقية الشروط سارية ونافذة بالكامل.",
+            "لا يعني عدم ممارستنا لأي حق بموجب هذه الشروط أننا تنازلنا عنه.",
+            "تشكّل هذه الشروط، إلى جانب سياسة الخصوصية، الاتفاق الكامل بينك وبيننا بشأن استخدامك للموقع.",
+            "يجوز لنا نقل حقوقنا والتزاماتنا بموجب هذه الشروط إلى مؤسسة أخرى. ولا يجوز لك نقل حقوقك والتزاماتك دون موافقة كتابية منا.",
+            "لا يحق لأي شخص غيرك وغير ASZ إنفاذ هذه الشروط، بما في ذلك بموجب قانون العقود (حقوق الأطراف الثالثة) لعام 2001 في سنغافورة.",
+          ] },
+        ],
+      },
+      {
+        id: "contact",
+        title: "تواصل معنا",
+        blocks: [
+          { p: "إذا كانت لديك أي أسئلة حول هذه الشروط، يُرجى التواصل معنا:" },
+          { address: [
+            "**ASZ Technologies**",
+            "[[156 MacPherson Rd, Singapore 348528]]",
+            "البريد الإلكتروني: {email}",
+          ] },
+          { p: "يمكنك أيضًا التواصل معنا عبر [صفحة التواصل](/contact)." },
+        ],
+      },
+    ],
   },
 
   SV,

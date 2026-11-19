@@ -16,7 +16,8 @@ import Contact from './pages/Contact/Contact';
 import CaseStudy from './pages/CaseStudy/CaseStudy';
 import ProductDetail from './pages/ProductDetails/ProductDetails';
 import NotFound from './pages/NotFound/NotFound';
-import ComingSoon from './pages/ComingSoon/ComingSoon';
+import PrivacyPolicy from './pages/PrivacyPolicy/PrivacyPolicy';
+import TermsCondition from './pages/TermsCondition/TermsCondition';
 
 // Shared by the browser entry (main.jsx) and the build-time prerender
 // (entry-server.jsx), so both render exactly the same pages.
@@ -39,8 +40,8 @@ export const routes = createRoutesFromElements(
     <Route path='work' element={<Work />} />
     <Route path='contact' element={<Contact />} />
     <Route path='case-study/:slug' element={<CaseStudy />} />
-    <Route path='privacy-policy' element={<ComingSoon type="privacy" />} />
-    <Route path='terms-and-conditions' element={<ComingSoon type="terms" />} />
+    <Route path='privacy-policy' element={<PrivacyPolicy />} />
+    <Route path='terms-and-conditions' element={<TermsCondition />} />
     <Route path='*' element={<NotFound />} />
   </Route>
 );

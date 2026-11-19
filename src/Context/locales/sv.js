@@ -882,6 +882,320 @@ const SV = {
   nf_link_work: "Vårt arbete",
   nf_link_about: "Om oss",
   nf_link_contact: "Kontakt",
+
+  // ---- Legal pages (components/LegalDoc) ----
+  lg_pill: "Juridiskt",
+  lg_updated: "Senast uppdaterad",
+  lg_toc: "På denna sida",
+  lg_also: "Läs även",
+  lg_q_title: "Frågor om denna sida?",
+  lg_q_text: "Skriv till oss så återkommer vi inom en arbetsdag.",
+  lg_q_cta: "Kontakta oss",
+  lg_notice: "Detta är en översättning som tillhandahålls för din bekvämlighet. Om den skiljer sig från den engelska versionen gäller den engelska versionen.",
+  lg_notice_cta: "Läs på engelska",
+
+  // ---- Integritetspolicy (pages/PrivacyPolicy) ----
+  // Blocks: { p }, { h3 }, { ul: [] }, { address: [] }. Inline: **bold**, [text](/path), {email}, [[left-to-right text]]
+  pp_line1: "Vår",
+  pp_line2: "integritetspolicy.",
+  pp_intro: "Hur vi samlar in, använder och skyddar de personuppgifter du delar med oss via asztechnologies.com, och vilka val och rättigheter du har.",
+  pp_related_name: "Allmänna villkor",
+  pp_related_text: "Reglerna för att använda denna webbplats, inklusive innehåll, immateriella rättigheter och tillämplig lag.",
+  pp_sections: [
+    {
+      id: "who-we-are",
+      title: "Vilka vi är",
+      blocks: [
+        { p: "Denna integritetspolicy förklarar hur ASZ Technologies (\"ASZ\", \"vi\", \"oss\" eller \"vår\") samlar in, använder, lämnar ut och skyddar personuppgifter när du besöker **asztechnologies.com** (\"Webbplatsen\") eller kontaktar oss via den." },
+        { p: "ASZ Technologies har sitt huvudkontor i Singapore och kontor i Dubai, Sydney och Bangalore. Vi hanterar personuppgifter i enlighet med Singapores Personal Data Protection Act 2012 (PDPA) och andra dataskyddslagar som gäller för oss där vi är verksamma." },
+        { p: "Denna policy gäller endast Webbplatsen. När vi levererar tjänster eller produkter till en kund (till exempel Cordon, MEDIQ, JobScout eller Safin) styrs hanteringen av personuppgifter av vårt avtal med kunden, och det är vanligtvis kunden som ansvarar för att informera de personer vars uppgifter behandlas." },
+      ],
+    },
+    {
+      id: "information-we-collect",
+      title: "Uppgifter vi samlar in",
+      blocks: [
+        { h3: "Uppgifter som du lämnar till oss" },
+        { p: "När du fyller i vårt kontaktformulär eller mejlar oss samlar vi in de uppgifter du väljer att dela, till exempel:" },
+        { ul: [
+          "ditt för- och efternamn, din e-postadress och ditt telefonnummer;",
+          "ditt företagsnamn och din roll;",
+          "typ av förfrågan (till exempel ett projekt, ett utvecklingsteam, en produktdemo eller ett partnerskap), de tjänster, kompetenser eller produkter du väljer och meddelandet du skriver.",
+        ] },
+        { p: "Skicka inte känsliga personuppgifter (såsom uppgifter om hälsa, ekonomi eller identitetshandlingar) eller konfidentiell affärsinformation till oss via Webbplatsen." },
+        { h3: "Uppgifter som samlas in automatiskt" },
+        { ul: [
+          "**Serverloggar.** Liksom de flesta webbplatser registrerar våra servrar teknisk information när sidor efterfrågas, till exempel din IP-adress, webbläsartyp, enhet och operativsystem, de sidor du besöker, den hänvisande sidan samt datum och tid för begäran.",
+          "**Ungefärligt land.** För att visa Webbplatsen på ett lämpligt språk kan din webbläsare skicka din IP-adress till en tjänst för landsuppslag (country.is), som endast returnerar ditt land. Vi använder resultatet för att välja språk och sparar det inte.",
+          "**Språkval.** Om du själv väljer ett språk sparas valet i webbläsarens lokala lagring så att Webbplatsen kommer ihåg det vid ditt nästa besök.",
+        ] },
+      ],
+    },
+    {
+      id: "how-we-use-information",
+      title: "Hur vi använder dina uppgifter",
+      blocks: [
+        { p: "Vi använder personuppgifter för att:" },
+        { ul: [
+          "besvara din förfrågan och boka samtal, offerter eller produktdemonstrationer;",
+          "bedöma och ta fram förslag för projekt, utvecklingsteam eller partnerskap som du frågar om;",
+          "hantera vår affärsrelation med dig eller din organisation;",
+          "driva, skydda och förbättra Webbplatsen samt upptäcka och förhindra missbruk;",
+          "visa Webbplatsen på rätt språk;",
+          "uppfylla rättsliga, regulatoriska och redovisningsmässiga skyldigheter och skydda våra rättigheter.",
+        ] },
+        { p: "Vi skickar endast marknadsföringsmejl till dig om du har samtyckt till att ta emot dem, och du kan när som helst avregistrera dig via länken i mejlet eller genom att kontakta oss. Vi använder inte dina uppgifter för automatiserade beslut som har rättsliga eller liknande betydande följder för dig." },
+      ],
+    },
+    {
+      id: "legal-basis",
+      title: "Samtycke och rättslig grund",
+      blocks: [
+        { p: "När du skickar kontaktformuläret samtycker du till att vi använder de uppgifter du lämnar för att besvara din förfrågan. Där lagen kräver en rättslig grund för behandlingen stödjer vi oss på ditt samtycke; på åtgärder som krävs innan ett avtal ingås med dig eller din organisation; på vårt berättigade intresse av att driva och skydda vår verksamhet och Webbplatsen; eller på våra rättsliga förpliktelser." },
+        { p: "Du kan när som helst återkalla ditt samtycke genom att kontakta oss. Det påverkar inte behandling som skett innan du återkallade det, men vi kanske inte längre kan besvara din förfrågan eller leverera det du bad om." },
+      ],
+    },
+    {
+      id: "sharing",
+      title: "Hur vi delar uppgifter",
+      blocks: [
+        { p: "Vi säljer eller hyr inte ut dina personuppgifter. Vi delar dem endast när det behövs, med:" },
+        { ul: [
+          "**ASZ Technologies kontor** i Singapore, Förenade Arabemiraten, Australien och Indien, så att rätt team kan besvara din förfrågan;",
+          "**tjänsteleverantörer** som är värd för Webbplatsen, tillhandahåller e-post och affärssystem eller på annat sätt stödjer vår verksamhet, enligt avtal som kräver att de skyddar dina uppgifter och endast använder dem enligt våra instruktioner;",
+          "**professionella rådgivare** såsom jurister, revisorer och försäkringsbolag, när det är nödvändigt;",
+          "**myndigheter, tillsynsorgan eller domstolar** när lagen kräver det, eller för att skydda rättigheter, egendom eller säkerhet för ASZ, våra kunder eller andra;",
+          "**en köpare eller efterträdare** om vår verksamhet, eller en del av den, omorganiseras, slås samman eller säljs, med motsvarande sekretesskydd.",
+        ] },
+      ],
+    },
+    {
+      id: "international-transfers",
+      title: "Internationella överföringar",
+      blocks: [
+        { p: "Eftersom vi arbetar i flera länder kan dina uppgifter överföras till och behandlas i andra länder än ditt eget, bland annat Singapore, Förenade Arabemiraten, Australien och Indien. När vi överför personuppgifter vidtar vi åtgärder för att säkerställa att de får ett skydd som är jämförbart med det som krävs enligt PDPA, till exempel genom avtalsmässiga skyddsåtgärder med mottagarna." },
+      ],
+    },
+    {
+      id: "retention",
+      title: "Hur länge vi sparar uppgifter",
+      blocks: [
+        { p: "Vi sparar personuppgifter endast så länge som de behövs för de ändamål som beskrivs i denna policy, eller så länge lagen kräver. I allmänhet gäller att:" },
+        { ul: [
+          "förfrågningar som inte leder till en affärsrelation raderas inom 24 månader från vår senaste kontakt med dig;",
+          "uppgifter om kunder och avtal sparas under relationens löptid och därefter så länge som rättsliga, skatte- eller redovisningsregler kräver;",
+          "serverloggar sparas under en begränsad tid för säkerhet och felsökning och raderas sedan.",
+        ] },
+      ],
+    },
+    {
+      id: "security",
+      title: "Hur vi skyddar uppgifter",
+      blocks: [
+        { p: "Vi använder rimliga administrativa, tekniska och fysiska skyddsåtgärder för att skydda personuppgifter mot obehörig åtkomst, insamling, användning, utlämnande, kopiering, ändring, förlust eller radering. Dessa omfattar krypterade anslutningar (HTTPS), åtkomstkontroller och att endast personal som behöver det har åtkomst. Ingen metod för överföring via internet eller elektronisk lagring är helt säker, så vi kan inte garantera absolut säkerhet. Om en personuppgiftsincident sannolikt kan orsaka dig betydande skada underrättar vi dig och berörda myndigheter i enlighet med lagen." },
+      ],
+    },
+    {
+      id: "your-rights",
+      title: "Dina rättigheter",
+      blocks: [
+        { p: "Beroende på var du bor kan du ha rätt att:" },
+        { ul: [
+          "fråga om vi har personuppgifter om dig och begära en kopia av dem;",
+          "fråga hur dina personuppgifter har använts eller lämnats ut under det senaste året;",
+          "be oss rätta uppgifter som är felaktiga eller ofullständiga;",
+          "återkalla ditt samtycke, eller invända mot eller begära begränsning av viss behandling;",
+          "be oss radera dina uppgifter, om vi inte har något rättsligt skäl att spara dem;",
+          "be oss överföra dina uppgifter till en annan organisation, där lagen ger rätt till detta.",
+        ] },
+        { p: "För att göra en begäran, mejla {email}. Vi kan behöva bekräfta din identitet innan vi hanterar begäran, och vi svarar inom den tid som gällande lag kräver (vanligtvis inom 30 dagar). Om du inte är nöjd med vårt svar kan du kontakta dataskyddsmyndigheten i ditt land, till exempel Singapores Personal Data Protection Commission (PDPC), Office of the Australian Information Commissioner (OAIC) eller, i Sverige, Integritetsskyddsmyndigheten (IMY)." },
+      ],
+    },
+    {
+      id: "cookies",
+      title: "Cookies och lokal lagring",
+      blocks: [
+        { p: "Webbplatsen använder inte reklam- eller spårningscookies, och vi använder inga analysverktyg från tredje part på den. Vi använder webbläsarens lokala lagring endast för att komma ihåg ett språk som du har valt. Du kan när som helst rensa den via webbläsarens inställningar; Webbplatsen väljer då ett språk automatiskt igen." },
+        { p: "Om vi i framtiden inför analysverktyg eller andra cookies uppdaterar vi denna policy och ber, där det krävs, om ditt samtycke först." },
+      ],
+    },
+    {
+      id: "third-party-links",
+      title: "Tredje parts webbplatser",
+      blocks: [
+        { p: "Webbplatsen kan innehålla länkar till webbplatser, plattformar eller tjänster som drivs av andra. Vi ansvarar inte för deras innehåll eller integritetspraxis, och denna policy gäller inte för dem. Läs integritetspolicyn för varje tredjepartswebbplats du besöker." },
+      ],
+    },
+    {
+      id: "children",
+      title: "Barn",
+      blocks: [
+        { p: "Webbplatsen riktar sig till företag och yrkesverksamma och inte till barn. Vi samlar inte medvetet in personuppgifter från någon under 18 år. Om du tror att ett barn har lämnat personuppgifter till oss, kontakta oss så raderar vi dem." },
+      ],
+    },
+    {
+      id: "changes",
+      title: "Ändringar av denna policy",
+      blocks: [
+        { p: "Vi kan uppdatera denna integritetspolicy då och då för att återspegla ändringar i lagstiftningen, vår praxis eller Webbplatsen. Datumet \"Senast uppdaterad\" högst upp på sidan visar när den senast ändrades. Vid väsentliga ändringar gör vi rimliga ansträngningar för att uppmärksamma dig på dem." },
+      ],
+    },
+    {
+      id: "contact",
+      title: "Kontakta oss",
+      blocks: [
+        { p: "Om du har frågor, önskemål eller klagomål som gäller denna policy eller hur vi hanterar dina personuppgifter, kontakta vårt dataskyddsombud:" },
+        { address: [
+          "**Dataskyddsombud, ASZ Technologies**",
+          "156 MacPherson Rd, Singapore 348528",
+          "E-post: {email}",
+        ] },
+        { p: "Du kan också nå oss via vår [kontaktsida](/contact)." },
+      ],
+    },
+  ],
+
+  // ---- Allmänna villkor (pages/TermsCondition) ----
+  tc_line1: "Allmänna",
+  tc_line2: "villkor.",
+  tc_intro: "Villkoren som gäller för din användning av asztechnologies.com, inklusive webbplatsens innehåll, immateriella rättigheter, länkar till tredje part och tillämplig lag.",
+  tc_related_name: "Integritetspolicy",
+  tc_related_text: "Hur vi samlar in, använder och skyddar de personuppgifter du delar med oss.",
+  tc_sections: [
+    {
+      id: "acceptance",
+      title: "Godkännande av dessa villkor",
+      blocks: [
+        { p: "Dessa villkor (\"Villkoren\") reglerar din åtkomst till och användning av **asztechnologies.com** och alla sidor, allt innehåll och alla funktioner på den (\"Webbplatsen\"), som drivs av ASZ Technologies (\"ASZ\", \"vi\", \"oss\" eller \"vår\") med huvudkontor på 156 MacPherson Rd, Singapore 348528." },
+        { p: "Genom att använda Webbplatsen godkänner du dessa Villkor. Om du använder Webbplatsen för en organisations räkning bekräftar du att du är behörig att godkänna Villkoren för den. Om du inte godkänner dem, använd inte Webbplatsen." },
+      ],
+    },
+    {
+      id: "use-of-website",
+      title: "Användning av Webbplatsen",
+      blocks: [
+        { p: "Du får endast använda Webbplatsen för lagliga ändamål: för att lära dig mer om ASZ, våra tjänster och produkter och för att kontakta oss. Du förbinder dig att inte:" },
+        { ul: [
+          "använda Webbplatsen på ett sätt som bryter mot tillämplig lag eller förordning;",
+          "försöka få obehörig åtkomst till Webbplatsen, dess servrar eller anslutna system, eller undersöka, skanna eller testa deras sårbarhet utan vårt skriftliga tillstånd;",
+          "sprida virus, skadlig kod eller annan skadlig programvara, eller störa Webbplatsen eller dess prestanda;",
+          "skrapa, kopiera eller samla in innehåll eller data från Webbplatsen med automatiserade metoder i kommersiellt syfte, utöver sedvanlig indexering av sökmotorer;",
+          "skicka skräppost, eller lämna falska, vilseledande eller någon annans uppgifter via vårt kontaktformulär;",
+          "utge dig för att vara ASZ, vår personal eller någon annan, eller ge en felaktig bild av din tillhörighet.",
+        ] },
+        { p: "Vi kan när som helst och utan förvarning stänga av eller begränsa åtkomsten till Webbplatsen eller delar av den." },
+      ],
+    },
+    {
+      id: "website-content",
+      title: "Webbplatsens innehåll",
+      blocks: [
+        { p: "Innehållet på Webbplatsen tillhandahålls som allmän information om ASZ och vår verksamhet. Det utgör inte professionell, teknisk, juridisk eller finansiell rådgivning, och det utgör inte ett erbjudande som kan antas." },
+        { p: "Kundcase, statistik och resultat beskriver specifika projekt för specifika kunder. De illustrerar vårt arbete och är inget löfte om att du kommer att uppnå samma resultat. Beskrivningar av tjänster och produktfunktioner kan ändras i takt med att vi utvecklar dem." },
+        { p: "Vi arbetar för att hålla Webbplatsen korrekt och aktuell, men vi garanterar inte att innehållet är fullständigt, aktuellt eller felfritt, och vi kan ändra det när som helst." },
+      ],
+    },
+    {
+      id: "intellectual-property",
+      title: "Immateriella rättigheter",
+      blocks: [
+        { p: "Webbplatsen och dess innehåll, inklusive text, grafik, logotyper, bilder, videor, design, layout och kod, ägs av eller är licensierade till ASZ Technologies och skyddas av upphovsrätt, varumärkesrätt och andra immaterialrättsliga lagar." },
+        { p: "\"ASZ Technologies\", ASZ-logotypen samt namn och logotyper för våra produkter, inklusive Cordon, MEDIQ, JobScout och Safin, är varumärken som tillhör ASZ Technologies. Kunders namn och logotyper som visas på Webbplatsen tillhör respektive ägare och används med tillstånd eller endast i identifieringssyfte." },
+        { p: "Du får visa, skriva ut eller dela sidor från Webbplatsen för eget icke-kommersiellt bruk eller internt bruk i din verksamhet, förutsatt att alla upphovsrättsliga och andra meddelanden behålls. I övrigt får du inte kopiera, återge, ändra, distribuera, återpublicera eller skapa bearbetningar av någon del av Webbplatsen utan vårt skriftliga förhandsgodkännande." },
+      ],
+    },
+    {
+      id: "enquiries",
+      title: "Förfrågningar och uppgifter du skickar till oss",
+      blocks: [
+        { p: "Att skicka en förfrågan, begära en offert eller boka en demo via Webbplatsen skapar inget avtal mellan dig och ASZ och förpliktar ingen av oss att ingå ett. Ett förslag från oss är en inbjudan till diskussion och är inte bindande förrän det har bekräftats i ett undertecknat avtal." },
+        { p: "Du bekräftar att de uppgifter du skickar till oss är korrekta och att du har rätt att dela dem. Skicka inte konfidentiell information via Webbplatsen innan ett sekretessavtal har ingåtts. Vi hanterar personuppgifter enligt beskrivningen i vår [integritetspolicy](/privacy-policy)." },
+      ],
+    },
+    {
+      id: "services-and-products",
+      title: "Våra tjänster och produkter",
+      blocks: [
+        { p: "Våra tjänster, produkter och utvecklingsteam tillhandahålls enligt separata skriftliga avtal, såsom ett ramavtal, en uppdragsbeskrivning, licens- eller prenumerationsvillkor. Dessa avtal reglerar arbetet, avgifterna, leveranserna, garantierna och ansvaret för uppdraget. Om de strider mot dessa Villkor har det separata avtalet företräde för det uppdraget." },
+      ],
+    },
+    {
+      id: "third-party-links",
+      title: "Länkar till tredje part",
+      blocks: [
+        { p: "Webbplatsen kan innehålla länkar till webbplatser, plattformar eller resurser som drivs av tredje part. Länkarna tillhandahålls endast för din bekvämlighet. Vi kontrollerar inte och ansvarar inte för deras innehåll, tillgänglighet, produkter, tjänster eller integritetspraxis, och en länk innebär inte att vi rekommenderar dem. Du använder tredjepartswebbplatser på egen risk och enligt deras egna villkor." },
+      ],
+    },
+    {
+      id: "disclaimer",
+      title: "Ansvarsfriskrivning",
+      blocks: [
+        { p: "Webbplatsen tillhandahålls i befintligt skick och i mån av tillgänglighet. I den utsträckning lagen tillåter lämnar vi inga garantier eller utfästelser av något slag, uttryckliga eller underförstådda, om Webbplatsen eller dess innehåll, inklusive garantier om riktighet, fullständighet, tillgänglighet, säljbarhet, lämplighet för ett visst ändamål eller att intrång inte sker. Vi garanterar inte att Webbplatsen är oavbruten, säker eller fri från fel, virus eller andra skadliga komponenter." },
+      ],
+    },
+    {
+      id: "limitation-of-liability",
+      title: "Ansvarsbegränsning",
+      blocks: [
+        { p: "I den utsträckning lagen tillåter ansvarar ASZ Technologies, dess närstående bolag och deras styrelseledamöter, anställda och ombud inte för indirekta skador, följdskador, särskilda skador eller skadestånd i bestraffningssyfte, eller för förlust av vinst, intäkter, affärer, goodwill, data eller förväntade besparingar, som uppstår till följd av eller i samband med din användning av, eller oförmåga att använda, Webbplatsen eller dess innehåll, även om vi har informerats om att sådan förlust kan uppstå." },
+        { p: "Ingenting i dessa Villkor utesluter eller begränsar ansvar som inte kan uteslutas eller begränsas enligt tillämplig lag, inklusive ansvar för dödsfall eller personskada orsakad av vårdslöshet, eller för bedrägeri." },
+      ],
+    },
+    {
+      id: "indemnity",
+      title: "Skadeslöshet",
+      blocks: [
+        { p: "Du förbinder dig att hålla ASZ Technologies, dess närstående bolag och deras styrelseledamöter, anställda och ombud skadeslösa från alla krav, förluster, skulder, skador, kostnader och utgifter (inklusive skäliga advokatkostnader) som uppstår till följd av ditt missbruk av Webbplatsen eller ditt brott mot dessa Villkor." },
+      ],
+    },
+    {
+      id: "privacy",
+      title: "Integritet",
+      blocks: [
+        { p: "Vår [integritetspolicy](/privacy-policy) förklarar hur vi samlar in, använder och skyddar personuppgifter som delas via Webbplatsen. Genom att använda Webbplatsen bekräftar du att vi hanterar dina uppgifter enligt beskrivningen där." },
+      ],
+    },
+    {
+      id: "changes",
+      title: "Ändringar av dessa villkor",
+      blocks: [
+        { p: "Vi kan uppdatera dessa Villkor då och då. Datumet \"Senast uppdaterad\" högst upp på sidan visar när de senast ändrades. Ändringar gäller från det att de publiceras, så kontrollera sidan regelbundet. Genom att fortsätta använda Webbplatsen efter att ändringar har publicerats godkänner du de uppdaterade Villkoren." },
+      ],
+    },
+    {
+      id: "governing-law",
+      title: "Tillämplig lag och jurisdiktion",
+      blocks: [
+        { p: "Dessa Villkor, och varje tvist eller krav som uppstår ur eller i samband med dem eller Webbplatsen, regleras av lagarna i Republiken Singapore. Du godkänner att domstolarna i Singapore har exklusiv behörighet att avgöra sådana tvister eller krav." },
+      ],
+    },
+    {
+      id: "general",
+      title: "Allmänt",
+      blocks: [
+        { ul: [
+          "Om någon del av dessa Villkor befinns ogiltig eller inte går att verkställa, fortsätter resten av Villkoren att gälla fullt ut.",
+          "Om vi inte utövar en rättighet enligt dessa Villkor innebär det inte att vi har avstått från den.",
+          "Dessa Villkor utgör, tillsammans med vår integritetspolicy, hela avtalet mellan dig och oss om din användning av Webbplatsen.",
+          "Vi kan överlåta våra rättigheter och skyldigheter enligt dessa Villkor till en annan organisation. Du får inte överlåta dina utan vårt skriftliga samtycke.",
+          "Ingen annan än du och ASZ har rätt att göra gällande dessa Villkor, inklusive enligt Singapores Contracts (Rights of Third Parties) Act 2001.",
+        ] },
+      ],
+    },
+    {
+      id: "contact",
+      title: "Kontakta oss",
+      blocks: [
+        { p: "Om du har frågor om dessa Villkor, kontakta oss:" },
+        { address: [
+          "**ASZ Technologies**",
+          "156 MacPherson Rd, Singapore 348528",
+          "E-post: {email}",
+        ] },
+        { p: "Du kan också nå oss via vår [kontaktsida](/contact)." },
+      ],
+    },
+  ],
 };
 
 export default SV;
